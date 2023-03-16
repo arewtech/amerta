@@ -12,7 +12,9 @@ class CampBenefitController extends Controller
      */
     public function index()
     {
-        //
+        $benefits = CampBenefit::with("camp")->get();
+        // return $benefits;
+        return view("dashboard.camp-benefits.index", compact("benefits"));
     }
 
     /**

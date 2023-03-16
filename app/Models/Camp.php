@@ -12,4 +12,9 @@ class Camp extends Model
     use SoftDeletes;
 
     protected $fillable = ["title", "slug", "price", "description"];
+
+    public function benefits()
+    {
+        return $this->hasMany(CampBenefit::class);
+    }
 }

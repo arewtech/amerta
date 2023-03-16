@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CampBenefitController;
+use App\Http\Controllers\CampController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +18,13 @@ use Illuminate\Support\Facades\Route;
 Route::get("/", function () {
     return view("welcome");
 });
+
+Route::get("/camps/{slug}", [CampController::class, "show"])->name(
+    "camps.show"
+);
+Route::resource("dashboard/camps", CampController::class);
+Route::resource("dashboard/camp-benefits", CampBenefitController::class);
+
 Route::get("/dashboard", function () {
     return view("dashboard.index");
 });

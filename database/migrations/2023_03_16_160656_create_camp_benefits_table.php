@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create("camp_benefits", function (Blueprint $table) {
             $table->id();
             $table->foreignId("camp_id")->constrained("camps");
-            $table->string("title");
+            $table->string("name");
             $table->timestamps();
             $table->softDeletes();
         });
