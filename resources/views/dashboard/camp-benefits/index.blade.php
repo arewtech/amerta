@@ -3,7 +3,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Table Camp Benefits</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+        <a href="{{ route('camp-benefits.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
     </div>
 
@@ -30,7 +30,13 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $benefit->camp->title }}</td>
                                 <td>{{ $benefit->name }}</td>
-                                <td>-</td>
+                                <td>
+                                    <form action="{{ route('camp-benefits.destroy', $benefit->id) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                </td>
                             </tr>
                         @empty
                             <tr>
