@@ -19,4 +19,14 @@ class Checkout extends Model
         "cvc",
         "is_paid",
     ];
+
+    public function camp()
+    {
+        return $this->belongsTo(Camp::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -23,12 +23,8 @@ class CampBenefitController extends Controller
      */
     public function create()
     {
-        // dd($camp);
         $camps = Camp::all();
-        // $camp->all();
-        // return $camps;
-        // $camps = Camp::with('be')->get();
-        // $camps = Camp::where("id", $camp->id)->firstOrFail();
+        // dd($camp);
         return view("dashboard.camp-benefits.create", compact("camps"));
     }
 
@@ -61,7 +57,12 @@ class CampBenefitController extends Controller
      */
     public function edit(CampBenefit $campBenefit)
     {
-        //
+        // return $campBenefit;
+        $benefits = Camp::all();
+        return view(
+            "dashboard.camp-benefits.edit",
+            compact("campBenefit", "benefits")
+        );
     }
 
     /**
@@ -69,7 +70,16 @@ class CampBenefitController extends Controller
      */
     public function update(Request $request, CampBenefit $campBenefit)
     {
-        //
+        // return $campBenefit;
+        $request->validate([
+            "camp_id" => ["required", "exists:camps,id", "integer"],
+            "name" => "required",
+        ]);
+        $data = $request->all();
+        $data["camp_id"] = $request->camp_id;
+        $campBenefit->update($data);
+        // return $campBenefit;
+        return redirect()->route("camp-benefits.index");
     }
 
     /**

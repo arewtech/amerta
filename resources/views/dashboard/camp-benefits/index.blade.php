@@ -4,7 +4,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Table Camp Benefits</h1>
         <a href="{{ route('camp-benefits.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                class="fas fa-download fa-sm text-white-50"></i> Create camp benefits </a>
     </div>
 
     <!-- Content Row -->
@@ -31,11 +31,15 @@
                                 <td>{{ $benefit->camp->title }}</td>
                                 <td>{{ $benefit->name }}</td>
                                 <td>
-                                    <form action="{{ route('camp-benefits.destroy', $benefit->id) }}" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                    </form>
+                                    <div class="d-inline-flex">
+                                        <a href="{{ route('camp-benefits.edit', $benefit->id) }}"
+                                            class="btn btn-warning btn-sm mr-2">Edit</a>
+                                        <form action="{{ route('camp-benefits.destroy', $benefit->id) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @empty
