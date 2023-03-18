@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CampBenefitController;
 use App\Http\Controllers\CampController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +17,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get("/", function () {
-    return view("pages.index");
-});
+Route::get("/", [HomeController::class, "index"])->name("home");
+
+Route::get("/checkout/q/{camp:slug}/checkout-success", [
+    CheckoutController::class,
+    "success",
+])->name("checkout.success");
+Route::get("/checkout/{camp:slug}", [
+    CheckoutController::class,
+    "create",
+])->name("checkout.create");
+Route::post("/checkout/{camp}", [CheckoutController::class, "store"])->name(
+    "checkout.store"
+);
 
 Route::resource("dashboard/camps", CampController::class);
 Route::resource("dashboard/camp-benefits", CampBenefitController::class);

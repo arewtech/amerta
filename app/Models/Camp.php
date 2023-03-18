@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Camp extends Model
 {
@@ -13,8 +14,26 @@ class Camp extends Model
 
     protected $fillable = ["title", "slug", "price", "description"];
 
+    public function getIsRegisteredAttribute()
+    {
+        // return $this->users()->where("user_id", auth()->id())->exists();
+        // check jika user tidak login maka return false
+        if (!Auth::check()) {
+            return false;
+        }
+        // check jika user sudah login maka return true
+        return checkout::whereCampId($this->id)
+            ->whereUserId(auth()->id())
+            ->exists();
+    }
+
     public function benefits()
     {
         return $this->hasMany(CampBenefit::class);
     }
+
+    // public function checkouts()
+    // {
+    //     return $this->hasMany(Checkout::class);
+    // }
 }

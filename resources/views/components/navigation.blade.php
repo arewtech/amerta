@@ -2,7 +2,7 @@
     <header x-data="{ open: false }" class="bg-transparent">
         <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
-                <a href="#" class="-m-1.5 p-1.5">
+                <a href="{{ route('home') }}" class="-m-1.5 p-1.5">
                     <span class="sr-only">Your Company</span>
                     <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                         alt="" />
@@ -20,7 +20,7 @@
                 </button>
             </div>
             <div class="hidden lg:flex lg:gap-x-12">
-                <a href="#" class="text-sm font-semibold leading-6 text-blue-500">Program</a>
+                <a href="{{ route('home') }}" class="text-sm font-semibold leading-6 text-blue-500">Program</a>
                 <a href="#" class="text-sm font-medium leading-6 text-gray-900">Mentor</a>
                 <a href="#" class="text-sm font-medium leading-6 text-gray-900">Pricing</a>
                 <div x-data="{ open: false }" class="relative">
@@ -251,7 +251,7 @@
                                             ></div> -->
             <div class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 shadow sm:max-w-sm">
                 <div class="flex items-center justify-between">
-                    <a href="#" class="-m-1.5 p-1.5">
+                    <a href="{{ route('home') }}" class="-m-1.5 p-1.5">
                         <span class="sr-only">Your Company</span>
                         <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                             alt="" />
@@ -267,7 +267,7 @@
                 <div class="mt-6 flow-root">
                     <div class="-my-6 divide-y divide-gray-500/10">
                         <div class="space-y-2 py-6">
-                            <a href="#"
+                            <a href="{{ route('home') }}"
                                 class="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-blue-500 hover:bg-gray-50">Program</a>
                             <a href="#"
                                 class="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Mentor</a>
