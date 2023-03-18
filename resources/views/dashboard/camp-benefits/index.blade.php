@@ -34,11 +34,8 @@
                                     <div class="d-inline-flex">
                                         <a href="{{ route('camp-benefits.edit', $benefit->id) }}"
                                             class="btn btn-warning btn-sm mr-2">Edit</a>
-                                        <form action="{{ route('camp-benefits.destroy', $benefit->id) }}" method="post">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                        </form>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                            data-target="#campBenefitsModal">Delete</button>
                                     </div>
                                 </td>
                             </tr>
@@ -49,6 +46,31 @@
                         @endforelse
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Camp Benefit Modal-->
+    <div class="modal fade" id="campBenefitsModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabelCampBenefits" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabelCampBenefits">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Detele Camp Benefits" below if you are ready to end your current
+                    session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <form action="{{ route('camp-benefits.destroy', $benefit->id) }}" method="post">
+                        @csrf
+                        @method('delete')
+                        <button class="btn btn-primary" type="submit">Delete</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
