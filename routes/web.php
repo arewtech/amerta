@@ -19,9 +19,10 @@ Route::get("/", function () {
     return view("welcome");
 });
 
-Route::get("/camps/{slug}", [CampController::class, "show"])->name(
-    "camps.show"
-);
+Route::get("/pages", function () {
+    return view("pages.index");
+});
+
 Route::resource("dashboard/camps", CampController::class);
 Route::resource("dashboard/camp-benefits", CampBenefitController::class);
 
