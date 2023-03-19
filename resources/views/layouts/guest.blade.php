@@ -23,9 +23,7 @@
     </div>
 
     <!-- content -->
-    <div class='flex justify-center h-screen lg:h-auto items-center'>
-        @yield('content')
-    </div>
+    @yield('content')
 
     <!-- js -->
     @include('includes.script')
