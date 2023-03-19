@@ -4,6 +4,7 @@ use App\Http\Controllers\CampBenefitController;
 use App\Http\Controllers\CampController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
+use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,18 +20,22 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/", [HomeController::class, "index"])->name("home");
 
-Route::controller(CheckoutController::class)->group(function () {
-    Route::get("/checkout/q/{camp:slug}/checkout-success", "success")->name(
-        "checkout.success"
-    );
-    Route::get("/checkout/{camp:slug}", "create")->name("checkout.create");
-    Route::post("/checkout/{camp}", "store")->name("checkout.store");
-});
+Route::controller(CheckoutController::class)
+    ->middleware("auth")
+    ->group(function () {
+        Route::get("/checkout/q/{camp:slug}/checkout-success", "success")->name(
+            "checkout.success"
+        );
+        Route::get("/checkout/{camp:slug}", "create")->name("checkout.create");
+        Route::post("/checkout/{camp}", "store")->name("checkout.store");
+    });
 
-Route::prefix("dashboard")->group(function () {
-    Route::get("/", function () {
-        return view("dashboard.index");
-    })->name("dashboard");
-    Route::resource("/camps", CampController::class);
-    Route::resource("/camp-benefits", CampBenefitController::class);
-});
+Route::prefix("dashboard")
+    ->middleware(["auth", EnsureTokenIsValid::class])
+    ->group(function () {
+        Route::get("/", function () {
+            return view("dashboard.index");
+        })->name("dashboard");
+        Route::resource("/camps", CampController::class);
+        Route::resource("/camp-benefits", CampBenefitController::class);
+    });

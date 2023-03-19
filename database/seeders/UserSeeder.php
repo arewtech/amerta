@@ -14,12 +14,28 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            "name" => "Admin",
-            "email" => "admin@gmail.com",
-            "email_verified_at" => now(),
-            "password" => bcrypt("password"),
-            "remember_token" => Str::random(10),
-        ]);
+        // create two users seeder
+        $users = [
+            [
+                "name" => "Admin",
+                "email" => "admin@gmail.com",
+                "email_verified_at" => now(),
+                "password" => bcrypt("password"),
+                "is_admin" => "admin",
+                "remember_token" => Str::random(10),
+            ],
+            [
+                "name" => "Admin",
+                "email" => "maman@gmail.com",
+                "email_verified_at" => now(),
+                "password" => bcrypt("password"),
+                "is_admin" => "users",
+                "remember_token" => Str::random(10),
+            ],
+        ];
+
+        foreach ($users as $user) {
+            User::create($user);
+        }
     }
 }
