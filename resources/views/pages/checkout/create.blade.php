@@ -22,8 +22,8 @@
         <!-- content checkout -->
         <div class="mt-14">
             <!--
-                                                                                                                                                  This example requires some changes to your config:
-                                                                                                                                                        -->
+                                                                                                                                                      This example requires some changes to your config:
+                                                                                                                                                            -->
 
             <div class="my-10 sm:mt-0">
                 <div class="md:grid md:grid-cols-4 md:gap-6">
@@ -41,7 +41,11 @@
                     </div>
                     <div class="mt-10 md:col-span-2 md:mt-0">
                         @foreach ($errors->all() as $error)
-                            {{ $error }}
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                                role="alert">
+                                <strong class="font-bold">Error!</strong>
+                                <span class="block sm:inline">{{ $error }}</span>
+                            </div>
                         @endforeach
                         <form action="{{ route('checkout.store', $camp->id) }}" method="POST">
                             @csrf

@@ -17,6 +17,8 @@ class CampSeeder extends Seeder
             [
                 "title" => "Basic Laravel Camp",
                 "slug" => "basic-laravel-camp",
+                "tagline" =>
+                    "Belajar Laravel dari dasar hingga mahir dengan para mentor yang berpengalaman",
                 "price" => 100,
                 "description" => "Camp 1 description",
                 // "benefits" => [
@@ -31,6 +33,8 @@ class CampSeeder extends Seeder
             [
                 "title" => "Expert Laravel Camp",
                 "slug" => "expert-laravel-camp",
+                "tagline" =>
+                    "Belajar Laravel lanjutan dari para mentor yang berpengalaman dan ahli di bidangnya",
                 "price" => 500,
                 "description" => "Camp 2 description",
                 // "benefits" => [

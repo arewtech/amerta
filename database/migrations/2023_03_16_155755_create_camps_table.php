@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string("title");
             $table->string("slug");
+            $table->string("tagline");
             $table->integer("price");
             $table->text("description");
             $table->softDeletes();

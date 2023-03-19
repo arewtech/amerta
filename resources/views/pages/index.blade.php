@@ -270,11 +270,11 @@
                         </h5>
                         <div class="flex items-baseline text-gray-900">
                             <span class="text-3xl font-semibold">$</span>
-                            <span class="text-5xl font-extrabold tracking-tight">49</span>
+                            <span class="text-5xl font-extrabold tracking-tight">{{ $item->price }}</span>
                             <span class="ml-1 text-xl font-normal text-gray-500">/month</span>
                         </div>
                         <p class="mt-4 text-sm text-gray-600 md:text-base">
-                            Belajar Laravel dari dasar sampai mahir, studi kasus Ecommerce.
+                            {{ $item->tagline }}
                         </p>
                     </div>
                     <!-- List -->

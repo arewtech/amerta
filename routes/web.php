@@ -19,21 +19,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/", [HomeController::class, "index"])->name("home");
 
-Route::get("/checkout/q/{camp:slug}/checkout-success", [
-    CheckoutController::class,
-    "success",
-])->name("checkout.success");
-Route::get("/checkout/{camp:slug}", [
-    CheckoutController::class,
-    "create",
-])->name("checkout.create");
-Route::post("/checkout/{camp}", [CheckoutController::class, "store"])->name(
-    "checkout.store"
-);
+Route::controller(CheckoutController::class)->group(function () {
+    Route::get("/checkout/q/{camp:slug}/checkout-success", "success")->name(
+        "checkout.success"
+    );
+    Route::get("/checkout/{camp:slug}", "create")->name("checkout.create");
+    Route::post("/checkout/{camp}", "store")->name("checkout.store");
+});
 
-Route::resource("dashboard/camps", CampController::class);
-Route::resource("dashboard/camp-benefits", CampBenefitController::class);
-
-Route::get("/dashboard", function () {
-    return view("dashboard.index");
-})->name("dashboard");
+Route::prefix("dashboard")->group(function () {
+    Route::get("/", function () {
+        return view("dashboard.index");
+    })->name("dashboard");
+    Route::resource("/camps", CampController::class);
+    Route::resource("/camp-benefits", CampBenefitController::class);
+});
