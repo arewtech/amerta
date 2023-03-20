@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Camp;
 use App\Models\CampBenefit;
 use Illuminate\Http\Request;
+use Termwind\Components\Dd;
 
 class CampBenefitController extends Controller
 {
@@ -13,8 +14,12 @@ class CampBenefitController extends Controller
      */
     public function index()
     {
-        $benefits = CampBenefit::with("camp")->get();
+        // dd($camp);
+        $benefits = Camp::with("benefits")->get();
+
+        // return $camp;
         // return $benefits;
+
         return view("dashboard.camp-benefits.index", compact("benefits"));
     }
 
@@ -41,7 +46,7 @@ class CampBenefitController extends Controller
         $data["camp_id"] = $request->camp_id;
         CampBenefit::create($data);
         // dd($yo);
-        return redirect()->route("camp-benefits.index");
+        return redirect()->route("camp-benefits.show", $request->camp_id);
     }
 
     /**
@@ -49,7 +54,15 @@ class CampBenefitController extends Controller
      */
     public function show(CampBenefit $campBenefit)
     {
-        //
+        // return $campBenefit;
+        $campBenefits = Camp::with("benefits")
+            ->where("id", $campBenefit->id)
+            ->firstOrFail();
+        // $campBenefit = CampBenefit::with("camp")
+        //     ->where("id", $campBenefit->id)
+        //     ->firstOrFail();
+        // return $campBenefits;
+        return view("dashboard.camp-benefits.show", compact("campBenefits"));
     }
 
     /**
@@ -88,6 +101,6 @@ class CampBenefitController extends Controller
     public function destroy(CampBenefit $campBenefit)
     {
         $campBenefit->delete();
-        return redirect()->route("camp-benefits.index");
+        return back();
     }
 }

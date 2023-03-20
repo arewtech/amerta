@@ -2,7 +2,7 @@
 @section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Table Camp Benefits</h1>
+        <h1 class="h3 mb-0 text-gray-800">Table List Benefits ( {{ $campBenefits->title }} )</h1>
         <a href="{{ route('camp-benefits.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                 class="fas fa-download fa-sm text-white-50"></i> Create camp benefits </a>
     </div>
@@ -19,31 +19,21 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Title Camps</th>
-                            <th>Active</th>
+                            <th>Benefit Camps ( {{ $campBenefits->title }} )</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($benefits as $benefit)
+                        @forelse ($campBenefits->benefits as $benefit)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $benefit->title }}</td>
+                                <td>{{ $benefit->name }}</td>
                                 <td>
-                                    <span style='font-size: 13px;'
-                                        class='badge rounded-pill px-2 text-white bg-success'>active</span>
-                                </td>
-                                <td>
-                                    <div class="d-inline-flex align-items-center">
-                                        <a href="{{ route('camp-benefits.show', $benefit->id) }}"
-                                            class="btn btn-sm mr-4 btn-primary position-relative">
-                                            Detail
-                                            <span
-                                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                                {{ $benefit->benefits->count() }}
-                                                <span class="visually-hidden"></span>
-                                            </span>
-                                        </a>
+                                    <div class="d-inline-flex">
+                                        <a href="{{ route('camp-benefits.edit', $benefit->id) }}"
+                                            class="btn btn-warning btn-sm mr-2">Edit</a>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                            data-target="#campBenefitsModal">Delete</button>
                                     </div>
                                 </td>
                             </tr>

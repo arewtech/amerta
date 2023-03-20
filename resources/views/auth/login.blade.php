@@ -17,7 +17,7 @@
                             <div>
                                 <label for="email"
                                     class="@error('email') is-invalid-field @enderror block mb-2 text-sm font-medium text-gray-900 ">Email</label>
-                                <input type="email" name="email" id="email"
+                                <input type="email" autocomplete="off" name="email" id="email"
                                     class="@error('email') is-invalid-input @enderror bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 "
                                     placeholder="nomads@company.com">
                                 @error('email')

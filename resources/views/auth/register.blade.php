@@ -1,6 +1,6 @@
 @extends('layouts.guest')
 @section('content')
-    <div class='flex justify-center md:h-screen lg:mt-5 lg:h-auto items-center'>
+    <div class='flex justify-center md:h-screen lg:mt-5 lg:h-auto items-center mb-8'>
         <section class="lg:w-1/3 w-11/12">
             <div class="flex w-full flex-col items-center justify-center px-6 py-8 mx-auto  lg:py-0">
                 <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 ">
@@ -18,7 +18,7 @@
                                 <label for="name"
                                     class="@error('name') is-invalid-field @enderror block mb-2 text-sm font-medium text-gray-900 ">
                                     Name</label>
-                                <input type="text" name="name" id="name"
+                                <input type="text" name="name" autocomplete="off" id="name"
                                     class="@error('name') is-invalid-input @enderror bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 "
                                     placeholder="Your Name">
                                 @error('name')
@@ -31,7 +31,7 @@
                                 <label for="email"
                                     class="@error('email') is-invalid-field @enderror block mb-2 text-sm font-medium text-gray-900 ">
                                     Email</label>
-                                <input type="email" name="email" id="email"
+                                <input type="email" name="email" autocomplete="off" id="email"
                                     class="@error('email') is-invalid-input @enderror bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 "
                                     placeholder="nomads@company.com">
                                 @error('email')

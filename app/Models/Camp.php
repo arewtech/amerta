@@ -22,9 +22,15 @@ class Camp extends Model
             return false;
         }
         // check jika user sudah login maka return true
+
         return checkout::whereCampId($this->id)
             ->whereUserId(auth()->id())
             ->exists();
+    }
+
+    public function getRouteKeyName()
+    {
+        return "slug";
     }
 
     public function benefits()

@@ -38,6 +38,11 @@ Route::prefix("dashboard")
             return view("dashboard.index");
         })->name("dashboard");
         Route::resource("/camps", CampController::class);
+        // create custom route slug camp benefit
+        // Route::get("/camp-benefits/{camp:slug}", [
+        //     CampBenefitController::class,
+        //     "show",
+        // ])->name("camp-benefits.show");
         Route::resource("/camp-benefits", CampBenefitController::class);
     });
 

@@ -6,7 +6,7 @@
         @if (session('success'))
             <!-- alert -->
             <div x-data="{ open: true }" :class="{ 'hidden': !open }"
-                class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                class="bg-green-100 mt-4 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
                 <strong class="font-bold">{{ auth()->user()->name }},</strong>
                 <span class="block sm:inline">{{ session('success') }}</span>
                 <button @click="open = false" class="absolute top-0 bottom-0 right-0 px-4 py-3">

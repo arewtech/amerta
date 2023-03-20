@@ -18,6 +18,7 @@ class UserController extends Controller
         // check juga berdasarkan user yang login
         $user = Checkout::with("user", "camp")
             ->where("user_id", auth()->user()->id)
+            ->orderBy("id", "DESC")
             ->get();
         // return $user;
         return view("pages.user.index", compact("user"));
