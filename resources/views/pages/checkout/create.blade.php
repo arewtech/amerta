@@ -22,8 +22,8 @@
         <!-- content checkout -->
         <div class="mt-14">
             <!--
-                                                                                                                                                      This example requires some changes to your config:
-                                                                                                                                                            -->
+                                                                                                                                                                                  This example requires some changes to your config:
+                                                                                                                                                                                        -->
 
             <div class="my-10 sm:mt-0">
                 <div class="md:grid md:grid-cols-4 md:gap-6">
@@ -58,7 +58,7 @@
                                                 address</label>
                                             <input type="text" name="email" value="{{ auth()->user()->email }}"
                                                 id="email-address" autocomplete="email" placeholder="Your Email"
-                                                class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-sm placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6" />
+                                                class="mt-2 block bg-slate-100 pointer-events-none w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-sm placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6" />
                                         </div>
 
                                         <div class="col-span-6 sm:col-span-4 md:col-span-6 lg:col-span-4">
@@ -66,7 +66,7 @@
                                                 class="block text-sm font-medium leading-6 text-gray-900">Name</label>
                                             <input type="text" name="name" value="{{ auth()->user()->name }}"
                                                 id="full-name" autocomplete="given-name" placeholder="Your Name"
-                                                class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-sm placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6" />
+                                                class="mt-2 block w-full bg-slate-100 pointer-events-none rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-sm placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6" />
                                         </div>
 
                                         <div class="col-span-6 sm:col-span-4 md:col-span-6 lg:col-span-4">

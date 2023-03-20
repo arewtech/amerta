@@ -16,19 +16,35 @@ class CampBenefitSeeder extends Seeder
         $camp_benefit = [
             [
                 "camp_id" => 1,
-                "name" => "Camp 1 benefit 1",
+                "name" => "Apa Itu Laravel",
             ],
             [
                 "camp_id" => 1,
-                "name" => "Camp 1 benefit 2",
+                "name" => "Mengenal Routing Laravel",
+            ],
+            [
+                "camp_id" => 1,
+                "name" => "Mengenal Controller Laravel",
+            ],
+            [
+                "camp_id" => 1,
+                "name" => "Mengenal Model Laravel",
             ],
             [
                 "camp_id" => 2,
-                "name" => "Camp 2 benefit 1",
+                "name" => "Apa itu Refactoring Code",
             ],
             [
                 "camp_id" => 2,
-                "name" => "Camp 2 benefit 2",
+                "name" => "Mengenal SOLID Principle",
+            ],
+            [
+                "camp_id" => 2,
+                "name" => "Mengenal Clean Code",
+            ],
+            [
+                "camp_id" => 2,
+                "name" => "Mengenal Design Pattern",
             ],
         ];
         CampBenefit::insert($camp_benefit);

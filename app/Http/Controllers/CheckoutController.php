@@ -27,7 +27,12 @@ class CheckoutController extends Controller
         // check apakah user sudah terdaftar di camp ini
         if ($camp->is_registered) {
             // kalau sudah maka redirect ke halaman dashboard payment
-            return "kamu sudah terdaftar di $camp->title";
+            return redirect()
+                ->route("report.index")
+                ->with(
+                    "success",
+                    "kamu sudah terdaftar di $camp->title ini!, silahkan lanjutkan pembayaran."
+                );
         }
         // kalau belum maka tampilkan halaman checkout / create
         return view("pages.checkout.create", compact("camp"));

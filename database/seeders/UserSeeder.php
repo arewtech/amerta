@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
                 "remember_token" => Str::random(10),
             ],
             [
-                "name" => "Admin",
+                "name" => "Maman",
                 "email" => "maman@gmail.com",
                 "email_verified_at" => now(),
                 "password" => bcrypt("password"),

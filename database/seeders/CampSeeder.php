@@ -20,7 +20,7 @@ class CampSeeder extends Seeder
                 "tagline" =>
                     "Belajar Laravel dari dasar hingga mahir dengan para mentor yang berpengalaman",
                 "price" => 100,
-                "description" => "Camp 1 description",
+                "description" => fake()->paragraph(5),
                 // "benefits" => [
                 //     [
                 //         "title" => "Camp 1 benefit 1",
@@ -36,7 +36,7 @@ class CampSeeder extends Seeder
                 "tagline" =>
                     "Belajar Laravel lanjutan dari para mentor yang berpengalaman dan ahli di bidangnya",
                 "price" => 500,
-                "description" => "Camp 2 description",
+                "description" => fake()->paragraph(5),
                 // "benefits" => [
                 //     [
                 //         "title" => "Camp 2 benefit 1",
