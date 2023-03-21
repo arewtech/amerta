@@ -12,7 +12,7 @@ class Camp extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ["title", "slug", "price", "description"];
+    protected $fillable = ["title", "slug", "tagline", "price", "description"];
 
     public function getIsRegisteredAttribute()
     {
@@ -28,10 +28,10 @@ class Camp extends Model
             ->exists();
     }
 
-    public function getRouteKeyName()
-    {
-        return "slug";
-    }
+    // public function getRouteKeyName()
+    // {
+    //     return "slug";
+    // }
 
     public function benefits()
     {

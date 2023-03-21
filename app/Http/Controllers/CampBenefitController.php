@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Camp;
 use App\Models\CampBenefit;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Termwind\Components\Dd;
 
 class CampBenefitController extends Controller
@@ -29,7 +30,7 @@ class CampBenefitController extends Controller
     public function create()
     {
         $camps = Camp::all();
-        // dd($camp);
+        // return $camps;
         return view("dashboard.camp-benefits.create", compact("camps"));
     }
 
@@ -40,7 +41,7 @@ class CampBenefitController extends Controller
     {
         $request->validate([
             "camp_id" => ["required", "exists:camps,id", "integer"],
-            "name" => "required",
+            "name" => ["required", "string"],
         ]);
         $data = $request->all();
         $data["camp_id"] = $request->camp_id;
@@ -58,9 +59,6 @@ class CampBenefitController extends Controller
         $campBenefits = Camp::with("benefits")
             ->where("id", $campBenefit->id)
             ->firstOrFail();
-        // $campBenefit = CampBenefit::with("camp")
-        //     ->where("id", $campBenefit->id)
-        //     ->firstOrFail();
         // return $campBenefits;
         return view("dashboard.camp-benefits.show", compact("campBenefits"));
     }
@@ -86,13 +84,13 @@ class CampBenefitController extends Controller
         // return $campBenefit;
         $request->validate([
             "camp_id" => ["required", "exists:camps,id", "integer"],
-            "name" => "required",
+            "name" => ["required", "string"],
         ]);
         $data = $request->all();
         $data["camp_id"] = $request->camp_id;
         $campBenefit->update($data);
         // return $campBenefit;
-        return redirect()->route("camp-benefits.index");
+        return redirect()->route("camp-benefits.show", $request->camp_id);
     }
 
     /**

@@ -262,90 +262,95 @@
         </div>
         <div class="-mx-8 flex flex-wrap items-center justify-center gap-10 pt-28 pb-10 md:pt-24 lg:pt-16">
             <!-- card pricing -->
+
             @foreach ($camps as $item)
-                <div class="w-full basis-11/12 rounded-3xl bg-white p-2 shadow md:basis-2/5 lg:basis-2/6">
-                    <div class="p-8 sm:p-8">
-                        <h5 class="mb-4 text-xl font-medium text-blue-500">
-                            {{ $item->title }}
-                        </h5>
-                        <div class="flex items-baseline text-gray-900">
-                            <span class="text-3xl font-semibold">$</span>
-                            <span class="text-5xl font-extrabold tracking-tight">{{ $item->price }}</span>
-                            <span class="ml-1 text-xl font-normal text-gray-500">/month</span>
+                @if (count($item->benefits) >= 4)
+                    <div class="w-full basis-11/12 rounded-3xl bg-white p-2 shadow md:basis-2/5 lg:basis-2/6">
+                        <div class="p-8 sm:p-8">
+                            <h5 class="mb-4 text-xl font-medium text-blue-500">
+                                {{ $item->title }}
+                            </h5>
+                            <div class="flex items-baseline text-gray-900">
+                                <span class="text-3xl font-semibold">$</span>
+                                <span class="text-5xl font-extrabold tracking-tight">{{ $item->price }}</span>
+                                <span class="ml-1 text-xl font-normal text-gray-500">/month</span>
+                            </div>
+                            <p class="mt-4 text-sm text-gray-600 md:text-base">
+                                {{ $item->tagline }}
+                            </p>
                         </div>
-                        <p class="mt-4 text-sm text-gray-600 md:text-base">
-                            {{ $item->tagline }}
-                        </p>
-                    </div>
-                    <!-- List -->
-                    <ul role="list" class="my-4 space-y-5 rounded-2xl bg-gray-50/95 p-8">
-                        @foreach ($item->benefits as $benefit)
-                            <li class="flex space-x-3">
-                                <!-- icon -->
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="25"
-                                    height="25" style="fill: #3b82f6">
-                                    <path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path>
+                        <!-- List -->
+                        <ul role="list" class="my-4 space-y-5 rounded-2xl bg-gray-50/95 p-8">
+                            @foreach ($item->benefits as $benefit)
+                                <li class="flex space-x-3">
+                                    <!-- icon -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="25"
+                                        height="25" style="fill: #3b82f6">
+                                        <path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z">
+                                        </path>
+                                    </svg>
+                                    <span
+                                        class="text-base font-normal leading-tight text-gray-500">{{ $benefit->name }}</span>
+                                </li>
+                            @endforeach
+
+                            <li class="flex space-x-3 line-through decoration-gray-500">
+                                <!-- Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" style="fill: #9ca3af">
+                                    <path
+                                        d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z">
+                                    </path>
                                 </svg>
-                                <span class="text-base font-normal leading-tight text-gray-500">{{ $benefit->name }}</span>
+                                <span class="text-base font-normal leading-tight text-gray-500">Database (Builder)</span>
                             </li>
-                        @endforeach
-
-                        <li class="flex space-x-3 line-through decoration-gray-500">
-                            <!-- Icon -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                style="fill: #9ca3af">
-                                <path
-                                    d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z">
-                                </path>
-                            </svg>
-                            <span class="text-base font-normal leading-tight text-gray-500">Database (Builder)</span>
-                        </li>
-                        <li class="flex space-x-3 line-through decoration-gray-500">
-                            <!-- Icon -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                style="fill: #9ca3af">
-                                <path
-                                    d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z">
-                                </path>
-                            </svg>
-                            <span class="text-base font-normal leading-tight text-gray-500">API Access</span>
-                        </li>
-                        <li class="flex space-x-3 line-through decoration-gray-500">
-                            <!-- Icon -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                style="fill: #9ca3af">
-                                <path
-                                    d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z">
-                                </path>
-                            </svg>
-                            <span class="text-base font-normal leading-tight text-gray-500">Complete documentation</span>
-                        </li>
-                        <li class="flex space-x-3 line-through decoration-gray-500">
-                            <!-- Icon -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                style="fill: #9ca3af">
-                                <path
-                                    d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z">
-                                </path>
-                            </svg>
-                            <span class="text-base font-normal leading-tight text-gray-500">24×7 phone & email
-                                support</span>
-                        </li>
-                        @auth
-                            <a href="{{ route('checkout.create', $item->slug) }}"
-                                class="inline-flex w-full justify-center rounded-lg bg-blue-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-200">
-                                Choose plan
-                            </a>
-                        @else
-                            <a href="{{ route('login') }}"
-                                class="inline-flex w-full justify-center rounded-lg bg-blue-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-200">
-                                Sign in to choose plan
-                            </a>
-                        @endauth
-                    </ul>
-                </div>
+                            <li class="flex space-x-3 line-through decoration-gray-500">
+                                <!-- Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" style="fill: #9ca3af">
+                                    <path
+                                        d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z">
+                                    </path>
+                                </svg>
+                                <span class="text-base font-normal leading-tight text-gray-500">API Access</span>
+                            </li>
+                            <li class="flex space-x-3 line-through decoration-gray-500">
+                                <!-- Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" style="fill: #9ca3af">
+                                    <path
+                                        d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z">
+                                    </path>
+                                </svg>
+                                <span class="text-base font-normal leading-tight text-gray-500">Complete
+                                    documentation</span>
+                            </li>
+                            <li class="flex space-x-3 line-through decoration-gray-500">
+                                <!-- Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" style="fill: #9ca3af">
+                                    <path
+                                        d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z">
+                                    </path>
+                                </svg>
+                                <span class="text-base font-normal leading-tight text-gray-500">24×7 phone & email
+                                    support</span>
+                            </li>
+                            @auth
+                                <a href="{{ route('checkout.create', $item->slug) }}"
+                                    class="inline-flex w-full justify-center rounded-lg bg-blue-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-200">
+                                    Choose plan
+                                </a>
+                            @else
+                                <a href="{{ route('login') }}"
+                                    class="inline-flex w-full justify-center rounded-lg bg-blue-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-200">
+                                    Sign in to choose plan
+                                </a>
+                            @endauth
+                        </ul>
+                    </div>
+                @endif
             @endforeach
-
         </div>
     </section>
     <!-- end pricing -->

@@ -2,7 +2,8 @@
 @section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Table List Benefits ( {{ $campBenefits->title }} )</h1>
+        <h1 class="h3 mb-0 text-gray-800">Table List Benefits ( {{ $campBenefits->title }} :
+            {{ $campBenefits->benefits->count() }} )</h1>
         <a href="{{ route('camp-benefits.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                 class="fas fa-download fa-sm text-white-50"></i> Create camp benefits </a>
     </div>
@@ -33,7 +34,7 @@
                                         <a href="{{ route('camp-benefits.edit', $benefit->id) }}"
                                             class="btn btn-warning btn-sm mr-2">Edit</a>
                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                            data-target="#campBenefitsModal">Delete</button>
+                                            data-target="#deleteCampBenefits">Delete</button>
                                     </div>
                                 </td>
                             </tr>
@@ -49,26 +50,30 @@
     </div>
 
     <!-- Delete Camp Benefit Modal-->
-    <div class="modal fade" id="campBenefitsModal" tabindex="-1" role="dialog"
+    <div class="modal fade" id="deleteCampBenefits" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabelCampBenefits" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabelCampBenefits">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabelCampBenefits">Delete List {{ $campBenefits->title }}
+                    </h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Detele Camp Benefits" below if you are ready to end your current
-                    session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <form action="{{ route('camp-benefits.destroy', $benefit->id) }}" method="post">
-                        @csrf
-                        @method('delete')
-                        <button class="btn btn-primary" type="submit">Delete</button>
-                    </form>
-                </div>
+                @isset($benefit)
+                    <div class="modal-body">
+                        <p>Are you sure want to delete this camp {{ $benefit->title }}?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <form action="{{ route('camp-benefits.destroy', $benefit->id) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button class="btn btn-primary" type="submit">Delete</button>
+                        </form>
+                    </div>
+                @endisset
             </div>
         </div>
     </div>

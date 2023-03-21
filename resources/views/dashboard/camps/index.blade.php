@@ -2,9 +2,9 @@
 @section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Table Camps</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+        <h1 class="h3 mb-0 text-gray-800">Table Camp : {{ $camps->count() }}</h1>
+        <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal"
+            data-target="#createCampModal"><i class="fas fa-download fa-sm text-white-50"></i> Create Camp</button>
     </div>
 
     <!-- Content Row -->
@@ -20,7 +20,7 @@
                         <tr>
                             <th>No</th>
                             <th>Title Camp</th>
-                            <th>Slug</th>
+                            <th>Tagline</th>
                             <th>Price</th>
                             <th>Action</th>
                         </tr>
@@ -30,9 +30,16 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $camp->title }}</td>
-                                <td>{{ $camp->slug }}</td>
+                                <td>{{ $camp->tagline }}</td>
                                 <td>${{ $camp->price }}</td>
-                                <td>-</td>
+                                <td>
+                                    <div class="d-inline-flex">
+                                        <a href="{{ route('camps.edit', $camp->id) }}"
+                                            class="btn btn-warning btn-sm mr-2">Edit</a>
+                                        <button type="button" data-toggle="modal" data-target="#deleteCamp"
+                                            class="btn btn-danger btn-sm">Delete</button>
+                                    </div>
+                                </td>
                             </tr>
                         @empty
                             <tr>
@@ -41,6 +48,78 @@
                         @endforelse
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Camp Modal-->
+    <div class="modal fade" id="createCampModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabelCampBenefits" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabelCampBenefits">Create Camp Amerta</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="{{ route('camps.store') }}" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Camp Title</label>
+                            <input type="text" name="title" class="form-control" id="title"
+                                placeholder="Camp title">
+                        </div>
+                        <div class="mb-3">
+                            <label for="slug" class="form-label">Camp slug</label>
+                            <input type="text" name="slug" class="form-control" id="slug"
+                                placeholder="your-camp-slug">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tagline" class="form-label">Camp Tagline</label>
+                            <input type="text" name="tagline" class="form-control" id="tagline"
+                                placeholder="Camp tagline">
+                        </div>
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Price</label>
+                            <input type="number" name="price" class="form-control" id="price" placeholder="Price">
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" name="description" placeholder="Your desc.." id="description" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Camp Modal-->
+    <div class="modal fade" id="deleteCamp" tabindex="-1" role="dialog" aria-labelledby="modalCamp" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCamp">Delete Camp</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure want to delete this camp?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <form action="{{ route('camps.destroy', $camp->id) }}" method="post">
+                        @csrf
+                        @method('delete')
+                        <button class="btn btn-primary" type="submit">Delete</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

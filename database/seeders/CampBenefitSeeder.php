@@ -46,6 +46,22 @@ class CampBenefitSeeder extends Seeder
                 "camp_id" => 2,
                 "name" => "Mengenal Design Pattern",
             ],
+            // [
+            //     "camp_id" => 3,
+            //     "name" => "Apa itu Vue",
+            // ],
+            // [
+            //     "camp_id" => 3,
+            //     "name" => "Mengenal Vue CLI",
+            // ],
+            // [
+            //     "camp_id" => 3,
+            //     "name" => "Mengenal Vue Router",
+            // ],
+            // [
+            //     "camp_id" => 3,
+            //     "name" => "Mengenal Vuex",
+            // ],
         ];
         CampBenefit::insert($camp_benefit);
     }

@@ -46,6 +46,21 @@ class CampSeeder extends Seeder
                 //     ],
                 // ],
             ],
+            [
+                "title" => "Expert Vue Camp",
+                "slug" => "expert-vue-camp",
+                "tagline" => "Belajar Laravel lanjutan ahli di bidangnya",
+                "price" => 300,
+                "description" => fake()->paragraph(5),
+                // "benefits" => [
+                //     [
+                //         "title" => "Camp 2 benefit 1",
+                //     ],
+                //     [
+                //         "title" => "Camp 2 benefit 2",
+                //     ],
+                // ],
+            ],
         ];
 
         foreach ($camps as $camp) {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Camp;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CampController extends Controller
 {
@@ -30,7 +31,11 @@ class CampController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $data["slug"] = Str::slug($request->title);
+        // return $data;
+        Camp::create($data);
+        return back();
     }
 
     /**
@@ -46,7 +51,7 @@ class CampController extends Controller
      */
     public function edit(Camp $camp)
     {
-        //
+        return view("dashboard.camps.edit", compact("camp"));
     }
 
     /**
@@ -54,7 +59,10 @@ class CampController extends Controller
      */
     public function update(Request $request, Camp $camp)
     {
-        //
+        $data = $request->all();
+        $data["slug"] = Str::slug($request->title);
+        $camp->update($data);
+        return redirect()->route("camps.index");
     }
 
     /**
@@ -62,6 +70,7 @@ class CampController extends Controller
      */
     public function destroy(Camp $camp)
     {
-        //
+        $camp->delete();
+        return back();
     }
 }
