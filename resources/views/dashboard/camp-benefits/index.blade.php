@@ -18,7 +18,7 @@
                         <tr>
                             <th>No</th>
                             <th>Title Camps</th>
-                            <th>Active</th>
+                            <th>Min Camp Active</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -28,6 +28,8 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $benefit->title }}</td>
                                 <td>
+                                    Punya 4 benefits jika ingin camp active</td>
+                                {{-- <td>
                                     @if ($benefit->benefits->count() == 0)
                                         <span style='font-size: 13px;'
                                             class='badge rounded-pill px-2 text-white bg-danger'>inactive</span>
@@ -35,17 +37,25 @@
                                         <span style='font-size: 13px;'
                                             class='badge rounded-pill px-2 text-white bg-success'>active</span>
                                     @endif
-                                </td>
+                                </td> --}}
                                 <td>
                                     <div class="d-inline-flex align-items-center">
                                         <a href="{{ route('camp-benefits.show', $benefit->id) }}"
                                             class="btn btn-sm mr-4 btn-primary position-relative">
                                             Detail
-                                            <span
-                                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                                {{ $benefit->benefits->count() }}
-                                                <span class="visually-hidden"></span>
-                                            </span>
+                                            @if ($benefit->benefits->count() == 4)
+                                                <span
+                                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                                                    {{ $benefit->benefits->count() }}
+                                                    <span class="visually-hidden"></span>
+                                                </span>
+                                            @else
+                                                <span
+                                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                                    {{ $benefit->benefits->count() }}
+                                                    <span class="visually-hidden"></span>
+                                                </span>
+                                            @endif
                                         </a>
                                     </div>
                                 </td>
