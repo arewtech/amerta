@@ -1,11 +1,12 @@
 @extends('layouts.admin')
+@section('title', '| Detail Camp Benefits')
 @section('content')
     <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <div class="d-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Table List Benefits ( {{ $campBenefits->title }} :
             {{ $campBenefits->benefits->count() == 4 ? 'Active' : 'Inactive' }} )</h1>
-        <a href="{{ route('camp-benefits.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                class="fas fa-download fa-sm text-white-50"></i> Create camp benefits </a>
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createCampBenefitsModal"><i
+                class="fas fa-plus-circle"></i></button>
     </div>
 
     <!-- Content Row -->
@@ -32,9 +33,9 @@
                                 <td>
                                     <div class="d-inline-flex">
                                         <a href="{{ route('camp-benefits.edit', $benefit->id) }}"
-                                            class="btn btn-warning btn-sm mr-2">Edit</a>
+                                            class="btn btn-warning btn-sm mx-2"><i class="far fa-edit"></i></a>
                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                            data-target="#deleteCampBenefits">Delete</button>
+                                            data-target="#deleteCampBenefits"><i class="far fa-trash-alt"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -45,6 +46,43 @@
                         @endforelse
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Camp Benefits Modal-->
+    <div class="modal fade" id="createCampBenefitsModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabelCampBenefits" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabelCampBenefits">Create Camp Amerta</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="{{ route('camp-benefits.store') }}" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <select class="form-select form-control" name="camp_id" aria-label="Default select example">
+                                <option selected disabled>Select your camps</option>
+                                @foreach ($camps as $camp)
+                                    <option value="{{ $camp->id }}">{{ $camp->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name Benefits</label>
+                            <input type="text" name="name" class="form-control" id="name"
+                                aria-describedby="emailHelp" placeholder="Your Name Benefit">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Create</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

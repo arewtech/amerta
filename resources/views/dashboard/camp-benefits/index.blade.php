@@ -1,10 +1,11 @@
 @extends('layouts.admin')
+@section('title', '| Camp Benefits')
 @section('content')
     <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <div class="d-sm-flex align-items-center justify-content-between mb-2">
         <h1 class="h3 mb-0 text-gray-800">Table Camp Benefits</h1>
     </div>
-
+    <p><span style="font-weight: 700">PS :</span> Punya 4 benefits jika ingin camp active</p>
     <!-- Content Row -->
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -18,7 +19,7 @@
                         <tr>
                             <th>No</th>
                             <th>Title Camps</th>
-                            <th>Min Camp Active</th>
+                            {{-- <th>Min Camp Active</th> --}}
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -27,8 +28,8 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $benefit->title }}</td>
-                                <td>
-                                    Punya 4 benefits jika ingin camp active</td>
+                                {{-- <td>
+                                    Punya 4 benefits jika ingin camp active</td> --}}
                                 {{-- <td>
                                     @if ($benefit->benefits->count() == 0)
                                         <span style='font-size: 13px;'
@@ -42,7 +43,7 @@
                                     <div class="d-inline-flex align-items-center">
                                         <a href="{{ route('camp-benefits.show', $benefit->id) }}"
                                             class="btn btn-sm mr-4 btn-primary position-relative">
-                                            Detail
+                                            Detail Benefits
                                             @if ($benefit->benefits->count() == 4)
                                                 <span
                                                     class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">

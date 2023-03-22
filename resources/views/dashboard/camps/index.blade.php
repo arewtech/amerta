@@ -1,11 +1,13 @@
 @extends('layouts.admin')
+@section('title', '| Camps')
 @section('content')
     <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <div class="d-flex align-items-center justify-content-between mb-2">
         <h1 class="h3 mb-0 text-gray-800">Table Camp : {{ $camps->count() }}</h1>
-        <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal"
-            data-target="#createCampModal"><i class="fas fa-download fa-sm text-white-50"></i> Create Camp</button>
+        <button type="button" class="d-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal"
+            data-target="#createCampModal"><i class="fas fa-plus-circle"></i></button>
     </div>
+    <p><span style="font-weight: 700">PS :</span> Punya 4 benefits jika ingin camp active</p>
 
     <!-- Content Row -->
     <!-- DataTales Example -->
@@ -45,9 +47,9 @@
                                 <td>
                                     <div class="d-inline-flex">
                                         <a href="{{ route('camps.edit', $camp->id) }}"
-                                            class="btn btn-warning btn-sm mr-2">Edit</a>
+                                            class="btn btn-warning btn-sm mx-2"><i class="far fa-edit"></i></a>
                                         <button type="button" data-toggle="modal" data-target="#deleteCamp"
-                                            class="btn btn-danger btn-sm">Delete</button>
+                                            class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -110,7 +112,8 @@
     </div>
 
     <!-- Delete Camp Modal-->
-    <div class="modal fade" id="deleteCamp" tabindex="-1" role="dialog" aria-labelledby="modalCamp" aria-hidden="true">
+    <div class="modal fade" id="deleteCamp" tabindex="-1" role="dialog" aria-labelledby="modalCamp"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

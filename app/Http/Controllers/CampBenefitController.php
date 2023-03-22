@@ -15,12 +15,8 @@ class CampBenefitController extends Controller
      */
     public function index()
     {
-        // dd($camp);
         $benefits = Camp::with("benefits")->get();
-
-        // return $camp;
         // return $benefits;
-
         return view("dashboard.camp-benefits.index", compact("benefits"));
     }
 
@@ -29,9 +25,7 @@ class CampBenefitController extends Controller
      */
     public function create()
     {
-        $camps = Camp::all();
-        // return $camps;
-        return view("dashboard.camp-benefits.create", compact("camps"));
+        //
     }
 
     /**
@@ -55,12 +49,15 @@ class CampBenefitController extends Controller
      */
     public function show(CampBenefit $campBenefit)
     {
-        // return $campBenefit;
+        $camps = Camp::all();
         $campBenefits = Camp::with("benefits")
             ->where("id", $campBenefit->id)
             ->firstOrFail();
         // return $campBenefits;
-        return view("dashboard.camp-benefits.show", compact("campBenefits"));
+        return view(
+            "dashboard.camp-benefits.show",
+            compact("campBenefits", "camps")
+        );
     }
 
     /**
