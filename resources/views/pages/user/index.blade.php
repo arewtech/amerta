@@ -130,12 +130,12 @@
                                 @if ($item->is_paid != 1)
                                     <div class="flex items-center">
                                         <div class="mr-2 h-2.5 w-2.5 rounded-full bg-orange-500"></div>
-                                        Payment Pending
+                                        Pending Payment
                                     </div>
                                 @else
                                     <div class="flex items-center">
                                         <div class="mr-2 h-2.5 w-2.5 rounded-full bg-green-500"></div>
-                                        Payment Success
+                                        Success Payment
                                     </div>
                                 @endif
                             </td>

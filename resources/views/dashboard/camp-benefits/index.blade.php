@@ -50,6 +50,12 @@
                                                     {{ $benefit->benefits->count() }}
                                                     <span class="visually-hidden"></span>
                                                 </span>
+                                            @elseif($benefit->benefits->count() >= 1)
+                                                <span
+                                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
+                                                    {{ $benefit->benefits->count() }}
+                                                    <span class="visually-hidden"></span>
+                                                </span>
                                             @else
                                                 <span
                                                     class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">

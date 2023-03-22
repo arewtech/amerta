@@ -3,6 +3,7 @@
 use App\Http\Controllers\CampBenefitController;
 use App\Http\Controllers\CampController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\EnsureTokenIsValid;
@@ -34,9 +35,9 @@ Route::controller(CheckoutController::class)
 Route::prefix("dashboard")
     ->middleware(["auth", EnsureTokenIsValid::class])
     ->group(function () {
-        Route::get("/", function () {
-            return view("dashboard.index");
-        })->name("dashboard");
+        Route::get("/", [DashboardController::class, "index"])->name(
+            "dashboard"
+        );
         Route::resource("/camps", CampController::class);
         Route::resource("/camp-benefits", CampBenefitController::class);
     });
