@@ -48,6 +48,8 @@
                                 <td>{{ $checkout->updated_at->format('D, Y-m') }}</td>
                                 <td>
                                     <div class="d-inline-flex">
+                                        <a href="{{ route('checkouts.show', $checkout->id) }}"
+                                            class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
                                         <a href="{{ route('checkouts.edit', $checkout->id) }}"
                                             class="btn btn-warning btn-sm mx-2"><i class="far fa-edit"></i></a>
                                         <form
