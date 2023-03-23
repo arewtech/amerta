@@ -64,7 +64,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{ route('checkouts.index') }}">
             <i class="fas fa-shopping-basket"></i>
             <span>Checkouts</span></a>
     </li>

@@ -12,7 +12,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         // check apakah user sudah terdaftar di camp ini atau belum
         // check juga berdasarkan user yang login

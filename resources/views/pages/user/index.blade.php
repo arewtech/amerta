@@ -87,9 +87,11 @@
                                 clip-rule="evenodd"></path>
                         </svg>
                     </div>
-                    <input type="text" id="table-search-users"
+                    {{-- <form action="{{ route('report.index') }}" method="get"> --}}
+                    <input type="search" name="search" id="table-search-users"
                         class="block w-80 rounded-lg border border-gray-300 bg-gray-50 p-2 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
                         placeholder="Search for users" />
+                    {{-- </form> --}}
                 </div>
             </div>
             <table class="w-full text-left text-sm text-gray-500">
@@ -98,6 +100,7 @@
                         <th scope="col" class="p-4">No</th>
                         <th scope="col" class="px-6 py-3">Name</th>
                         <th scope="col" class="px-6 py-3">Bootcamp</th>
+                        <th scope="col" class="px-6 py-3">Checkout Camp</th>
                         <th scope="col" class="px-6 py-3">Expired</th>
                         <th scope="col" class="px-6 py-3">Price</th>
                         <th scope="col" class="px-6 py-3">Status</th>
@@ -120,6 +123,7 @@
                                 </div>
                             </th>
                             <td class="px-6 py-4">{{ $item->camp->title }}</td>
+                            <td class="px-6 py-4">{{ $item->created_at->format('D, Y-m') }}</td>
                             <td class="px-6 py-4">
                                 {{ $item->expired }}
                             </td>

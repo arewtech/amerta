@@ -14,6 +14,10 @@ class CheckoutController extends Controller
      */
     public function index()
     {
+        $checkouts = Checkout::with("camp", "user")
+            ->orderBy("id", "DESC")
+            ->get();
+        return view("dashboard.checkouts.index", compact("checkouts"));
     }
 
     /**
@@ -52,8 +56,6 @@ class CheckoutController extends Controller
     {
         $expiredDateValidation = date("Y-m", time());
         $request->validate([
-            // "camp_id" => ["required", "exists:camps,id"],
-            // "user_id" => ["required", "exists:users,id"],
             "name" => "required|min:3|max:255|string",
             "email" =>
                 "required|email|exists:users,email|unique:users,email," .
@@ -93,7 +95,8 @@ class CheckoutController extends Controller
      */
     public function edit(Checkout $checkout)
     {
-        //
+        $checkout = Checkout::with("camp", "user")->findOrFail($checkout->id);
+        return view("dashboard.checkouts.edit", compact("checkout"));
     }
 
     /**
@@ -101,7 +104,16 @@ class CheckoutController extends Controller
      */
     public function update(Request $request, Checkout $checkout)
     {
-        //
+        $request->validate([
+            "is_paid" => "boolean|nullable",
+        ]);
+        if ($checkout->is_paid) {
+            $checkout->is_paid = false;
+        } else {
+            $checkout->is_paid = true;
+        }
+        $checkout->save();
+        return redirect()->route("checkouts.index");
     }
 
     /**
@@ -109,6 +121,8 @@ class CheckoutController extends Controller
      */
     public function destroy(Checkout $checkout)
     {
-        //
+        // return $checkout;
+        $checkout->delete();
+        return redirect()->route("checkouts.index");
     }
 }

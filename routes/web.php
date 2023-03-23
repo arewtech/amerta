@@ -39,6 +39,7 @@ Route::prefix("dashboard")
             "dashboard"
         );
         Route::resource("/camps", CampController::class);
+        Route::resource("/checkouts", CheckoutController::class);
         Route::resource("/camp-benefits", CampBenefitController::class);
     });
 
