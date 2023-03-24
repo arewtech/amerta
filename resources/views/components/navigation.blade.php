@@ -230,7 +230,7 @@
                                         class="block hover:bg-gray-100 px-4 py-2 text-sm text-gray-700" role="menuitem"
                                         tabindex="-1" id="user-menu-item-0">Admin Dashboard</a>
                                 @else
-                                    <a href="{{ route('report.index') }}"
+                                    <a href="{{ route('user.index') }}"
                                         class="block hover:bg-gray-100 px-4 py-2 text-sm text-gray-700" role="menuitem"
                                         tabindex="-1" id="user-menu-item-0">My Dashboard</a>
                                 @endif
@@ -376,7 +376,7 @@
                                                     role="menuitem" tabindex="-1" id="user-menu-item-0">Admin
                                                     Dashboard</a>
                                             @else
-                                                <a href="{{ route('report.index') }}"
+                                                <a href="{{ route('user.index') }}"
                                                     class="block hover:bg-gray-100 px-4 py-2 text-sm text-gray-700"
                                                     role="menuitem" tabindex="-1" id="user-menu-item-0">My Dashboard</a>
                                             @endif

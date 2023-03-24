@@ -18,7 +18,7 @@
             <div class="m-auto mt-4 max-w-sm">
                 Terima kasih telah checkout di Loka.com, silahkan cek email kamu untuk
                 mendapatkan informasi lebih lanjut, kembali ke
-                <a href="{{ route('report.index') }}" class="text-sm font-medium underline hover:no-underline">Dashboard
+                <a href="{{ route('user.index') }}" class="text-sm font-medium underline hover:no-underline">Dashboard
                     🤙🏻</a>
             </div>
         </div>

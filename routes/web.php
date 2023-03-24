@@ -43,8 +43,6 @@ Route::prefix("dashboard")
         Route::resource("/camp-benefits", CampBenefitController::class);
     });
 
-Route::prefix("user")
-    ->middleware("auth")
-    ->group(function () {
-        Route::resource("/report", UserController::class);
-    });
+Route::middleware("auth")->group(function () {
+    Route::resource("dashboard/user", UserController::class);
+});

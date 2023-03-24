@@ -144,7 +144,9 @@
                                 @endif
                             </td>
                             <td class="px-6 py-4">
-                                <a href="#" class="font-medium text-blue-600 hover:underline">Detail</a>
+                                {{-- detail --}}
+                                <a href="{{ route('user.show', $item->id) }}"
+                                    class="text-blue-500 hover:text-blue-700">Detail</a>
                             </td>
                         </tr>
                     @empty

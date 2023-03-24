@@ -63,7 +63,7 @@
             <span>Camp Benefits</span></a>
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item {{ Request::url() == url('/dashboard/checkouts') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('checkouts.index') }}">
             <i class="fas fa-shopping-basket"></i>
             <span>Checkouts</span></a>

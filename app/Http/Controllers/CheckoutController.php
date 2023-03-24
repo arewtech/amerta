@@ -32,11 +32,8 @@ class CheckoutController extends Controller
         if ($camp->is_registered) {
             // kalau sudah maka redirect ke halaman dashboard payment
             return redirect()
-                ->route("report.index")
-                ->with(
-                    "success",
-                    "kamu sudah terdaftar di $camp->title ini!, silahkan lanjutkan pembayaran."
-                );
+                ->route("user.index")
+                ->with("success", "kamu sudah terdaftar di $camp->title ini!");
         }
         // kalau belum maka tampilkan halaman checkout / create
         return view("pages.checkout.create", compact("camp"));
@@ -87,8 +84,8 @@ class CheckoutController extends Controller
      */
     public function show(Checkout $checkout)
     {
+        return $checkout;
         $checkout = Checkout::with("camp", "user")->findOrFail($checkout->id);
-        // return $checkout;
         return view("dashboard.checkouts.show", compact("checkout"));
     }
 

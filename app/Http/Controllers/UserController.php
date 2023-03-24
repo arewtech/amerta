@@ -12,7 +12,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
         // check apakah user sudah terdaftar di camp ini atau belum
         // check juga berdasarkan user yang login
@@ -20,6 +20,7 @@ class UserController extends Controller
             ->where("user_id", auth()->user()->id)
             ->orderBy("id", "DESC")
             ->get();
+        // $user["slug"] = $request->slug;
         // return $user;
         return view("pages.user.index", compact("user"));
     }
@@ -45,7 +46,10 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        $user = Checkout::with("user", "camp")
+            ->where("user_id", auth()->user()->id)
+            ->findOrFail($user->id);
+        return view("pages.user.show", compact("user"));
     }
 
     /**
