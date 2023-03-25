@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CampBenefitController;
 use App\Http\Controllers\CampController;
 use App\Http\Controllers\CheckoutController;
@@ -41,6 +42,7 @@ Route::prefix("dashboard")
         Route::resource("/camps", CampController::class);
         Route::resource("/checkouts", CheckoutController::class);
         Route::resource("/camp-benefits", CampBenefitController::class);
+        Route::get("/users", [AdminController::class, "index"])->name("admin");
     });
 
 Route::middleware("auth")->group(function () {

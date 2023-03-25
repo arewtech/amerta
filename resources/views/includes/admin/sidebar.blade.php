@@ -69,8 +69,8 @@
             <span>Checkouts</span></a>
     </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+    <li class="nav-item {{ Request::url() == url('/dashboard/users') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin') }}">
             <i class="fas fa-users"></i>
             <span>Users</span></a>
     </li>

@@ -84,7 +84,7 @@ class CheckoutController extends Controller
      */
     public function show(Checkout $checkout)
     {
-        return $checkout;
+        // return $checkout;
         $checkout = Checkout::with("camp", "user")->findOrFail($checkout->id);
         return view("dashboard.checkouts.show", compact("checkout"));
     }
