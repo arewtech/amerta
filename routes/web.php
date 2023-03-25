@@ -47,4 +47,7 @@ Route::prefix("dashboard")
 
 Route::middleware("auth")->group(function () {
     Route::resource("dashboard/user", UserController::class);
+    Route::get("/update-profile", function () {
+        return view("pages.profile.index");
+    })->name("update-profile");
 });
