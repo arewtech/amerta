@@ -34,8 +34,8 @@
         <h2 class="mb-4 text-2xl font-semibold leading-none tracking-tight text-gray-900">User Setting</h2>
 
         <!-- profile -->
-        <div class='flex items-start gap-4'>
-            <div class='basis-1/3'>
+        <div class='flex flex-wrap lg:flex-nowrap md:justify-center items-start gap-4'>
+            <div class='lg:basis-1/3 md:basis-2/5 basis-full'>
                 <!-- user profile -->
                 <div x-data="{ open: false }" class="w-full mb-4 bg-white border border-gray-200 rounded-lg shadow">
                     <div class="flex relative justify-end px-4 pt-4">
@@ -53,7 +53,7 @@
                         </button>
                         <!-- Dropdown menu -->
                         <div id="dropdown" :class="{ 'block': open, 'hidden': !open }"
-                            class="z-10 hidden absolute top-16 -right-14 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-40">
+                            class="z-10 hidden absolute top-16 md:-right-14 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-40">
                             <ul class="py-2" aria-labelledby="dropdownButton">
                                 <li>
                                     <button type="submit"
@@ -111,11 +111,11 @@
                 </div>
             </div>
 
-            <div class='basis-4/6'>
+            <div class='lg:basis-4/6 md:basis-[55%] basis-full'>
                 <div class="w-full mb-4 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
                     <form class="space-y-6" action="#">
                         <h5 class="text-xl font-medium text-gray-900">General information</h5>
-                        <div class="flex gap-4">
+                        <div class="flex gap-4 flex-wrap lg:flex-nowrap">
                             <div class='w-full'>
                                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Your
                                     email</label>
@@ -132,7 +132,7 @@
                                     required>
                             </div>
                         </div>
-                        <div class="flex gap-4">
+                        <div class="flex gap-4 flex-wrap lg:flex-nowrap">
                             <div class='w-full'>
                                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Your
                                     email</label>
@@ -148,7 +148,7 @@
                                     required>
                             </div>
                         </div>
-                        <div class="flex gap-4">
+                        <div class="flex gap-4 flex-wrap lg:flex-nowrap">
                             <div class='w-full'>
                                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Your
                                     email</label>

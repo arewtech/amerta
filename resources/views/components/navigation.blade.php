@@ -188,7 +188,7 @@
                             aria-hidden="true">&rarr;</span></a>
                 </div>
             @else
-                <div class="hidden md:block lg:flex lg:flex-1 lg:justify-end">
+                <div class="hidden lg:flex lg:flex-1 lg:justify-end">
                     <div class="ml-4 flex items-center md:ml-6">
                         <button type="button"
                             class="rounded-full bg-blue-500 p-1 text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-500">
@@ -334,7 +334,7 @@
                                     class="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log
                                     in</a>
                             @else
-                                <div class="ml-4 flex items-center md:ml-6">
+                                <div class="flex items-center">
                                     <button type="button"
                                         class="rounded-full bg-blue-500 p-1 text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-500">
                                         <span class="sr-only">View notifications</span>

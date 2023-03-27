@@ -61,6 +61,10 @@
                                 </td>
                                 <td>
                                     @if ($user->avatar == null)
+                                        {{-- <img src="{{ asset('images/default.png') }}" alt="default"
+                                            class="img-thumbnail img-fluid" width="50"> --}}
+                                        <span class='text-center d-block'>-</span>
+                                    @else
                                         <span class='text-center d-block'>-</span>
                                     @endif
                                 </td>
