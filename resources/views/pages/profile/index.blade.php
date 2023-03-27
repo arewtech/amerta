@@ -69,43 +69,60 @@
                     <div class="flex flex-col items-center pb-10 px-10">
                         <img class="w-24 h-24 mb-3 rounded-full shadow-lg"
                             src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="Bonnie image" />
-                        <h5 class="mb-1 text-xl font-medium text-gray-900">Bonnie Green</h5>
-                        <span class="mb-2 text-sm text-gray-500">Visual Designer</span>
-                        <p class="text-sm text-center text-gray-500">Lorem ipsum dolor sit amet consectetur
-                            modi, quis amet ullam numquam labore aliquam illum id. aliquam illum id.</p>
+                        <h5 class="mb-1 text-xl font-medium text-gray-900">{{ auth()->user()->name }}</h5>
+                        <span class="mb-2 text-sm text-gray-500">{{ auth()->user()->occupation ?? 'Developer' }}</span>
+                        <p class="text-sm text-center text-gray-500">
+                            {{ auth()->user()->bio ?? 'belum menuliskan bio' }}</p>
                     </div>
                 </div>
 
                 <!-- update password -->
                 <div class="w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
-                    <form class="space-y-6" action="#">
-                        <h5 class="text-xl font-medium text-gray-900">Password information</h5>
+                    <h5 class="text-xl mb-5 font-medium text-gray-900">Password information</h5>
+                    @if (session('status'))
+                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+                            role="alert">
+                            <span class="block sm:inline">Your password has been updated.</span>
+                        </div>
+                    @endif
+                    <form class="space-y-5" action="{{ route('user-password.update') }}" method="post">
+                        @csrf
+                        @method('put')
                         <div>
-                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Your
-                                email</label>
-                            <input type="email" name="email" id="email"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                placeholder="name@company.com" required>
+                            <label for="current_password"
+                                class="@error('current_password', 'updatePassword') is-invalid-field @enderror block mb-2 text-sm font-medium text-gray-900">
+                                Current Password</label>
+                            <input type="password" name="current_password" id="current_password"
+                                class="@error('current_password', 'updatePassword') is-invalid-input @enderror bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                placeholder="Current Password">
+                            @error('current_password', 'updatePassword')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div>
-                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Your
-                                password</label>
-                            <input type="password" name="password" id="password" placeholder="••••••••"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                required>
+                            <label for="password"
+                                class="@error('password', 'updatePassword') is-invalid-field @enderror block mb-2 text-sm font-medium text-gray-900">New
+                                Password</label>
+                            <input type="password" name="password" id="password" placeholder="Min. 8 characters"
+                                class="@error('current_password', 'updatePassword') is-invalid-input @enderror bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            @error('password', 'updatePassword')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div>
-                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Your
-                                password</label>
-                            <input type="password" name="password" id="password" placeholder="••••••••"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                required>
+                            <label for="password_confirmation" class="block mb-2 text-sm font-medium text-gray-900">Password
+                                Confirmation</label>
+                            <input type="password" name="password_confirmation" id="password_confirmation"
+                                placeholder="Min. 8 characters"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            @error('password_confirmation', 'updatePassword')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
                         </div>
                         <button type="submit"
                             class="inline-block text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Save
-                            all
                         </button>
                     </form>
                 </div>

@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->text("avatar")->nullable();
             $table->string("occupation")->nullable();
             $table->string("is_admin")->default("users");
+            $table->text("bio")->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
