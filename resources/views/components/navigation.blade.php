@@ -20,7 +20,8 @@
                 </button>
             </div>
             <div class="hidden lg:flex lg:gap-x-12">
-                <a href="{{ route('home') }}" class="text-sm font-semibold leading-6 text-blue-500">Program</a>
+                <a href="{{ route('home') }}"
+                    class="{{ request()->url() == url('/') ? 'text-blue-500 font-semibold' : 'text-gray-900 font-medium' }} text-sm leading-6">Program</a>
                 <a href="#" class="text-sm font-medium leading-6 text-gray-900">Mentor</a>
                 <a href="#" class="text-sm font-medium leading-6 text-gray-900">Pricing</a>
                 <div x-data="{ open: false }" class="relative">
@@ -279,14 +280,14 @@
                     <div class="-my-6 divide-y divide-gray-500/10">
                         <div class="space-y-2 py-6">
                             <a href="{{ route('home') }}"
-                                class="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-blue-500 hover:bg-gray-50">Program</a>
+                                class="{{ request()->url() == url('/') ? 'text-blue-500 font-semibold' : 'text-gray-900 font-medium' }} -mx-3 block rounded-lg py-2 px-3 text-base leading-7 hover:bg-gray-50">Program</a>
                             <a href="#"
-                                class="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Mentor</a>
+                                class="-mx-3 block rounded-lg py-2 px-3 text-base font-medium leading-7 text-gray-900 hover:bg-gray-50">Mentor</a>
                             <a @click="open = false" href="#pricing"
-                                class="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Pricing</a>
+                                class="-mx-3 block rounded-lg py-2 px-3 text-base font-medium leading-7 text-gray-900 hover:bg-gray-50">Pricing</a>
                             <div x-data="{ open: false }" class="-mx-3">
                                 <button @click="open = !open" type="button"
-                                    class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50"
+                                    class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-medium leading-7 hover:bg-gray-50"
                                     aria-controls="disclosure-1" aria-expanded="false">
                                     Business
                                     <!--

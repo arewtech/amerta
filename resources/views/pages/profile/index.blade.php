@@ -79,10 +79,21 @@
                 <!-- update password -->
                 <div class="w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
                     <h5 class="text-xl mb-5 font-medium text-gray-900">Password information</h5>
-                    @if (session('status'))
-                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+                    @if (session('status') == 'password-updated')
+                        <!-- alert -->
+                        <div x-data="{ open: true }" :class="{ 'hidden': !open }"
+                            class="bg-green-100 mt-4 text-sm border border-green-400 text-green-700 px-4 py-3 rounded relative"
                             role="alert">
-                            <span class="block sm:inline">Your password has been updated.</span>
+                            <strong class="font-semibold">Password, </strong>
+                            <span class="block sm:inline">berhasil di ubah!</span>
+                            <button @click="open = false" class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                                <svg class="fill-current h-6 w-6 text-green-500" role="button"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <title>Close</title>
+                                    <path
+                                        d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+                                </svg>
+                            </button>
                         </div>
                     @endif
                     <form class="space-y-5" action="{{ route('user-password.update') }}" method="post">
@@ -127,58 +138,100 @@
                     </form>
                 </div>
             </div>
-
+            <!-- update profile -->
             <div class='lg:basis-4/6 md:basis-[55%] basis-full'>
                 <div class="w-full mb-4 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
-                    <form class="space-y-6" action="#">
-                        <h5 class="text-xl font-medium text-gray-900">General information</h5>
+                    <h5 class="text-xl font-medium text-gray-900">General information</h5>
+                    <p class="text-sm mt-1 mb-5 text-gray-500">Use a permanent address where you can receive mail.</p>
+                    @if (session('status') == 'profile-information-updated')
+                        <!-- alert -->
+                        <div x-data="{ open: true }" :class="{ 'hidden': !open }"
+                            class="bg-green-100 text-sm border border-green-400 text-green-700 px-4 py-3 rounded relative"
+                            role="alert">
+                            <strong class="font-semibold">Profile, </strong>
+                            <span class="block sm:inline">berhasil di ubah!</span>
+                            <button @click="open = false" class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                                <svg class="fill-current h-6 w-6 text-green-500" role="button"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <title>Close</title>
+                                    <path
+                                        d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+                                </svg>
+                            </button>
+                        </div>
+                    @endif
+                    <form class="space-y-5" action="{{ route('user-profile-information.update') }}" method="post">
+                        @csrf
+                        @method('put')
                         <div class="flex gap-4 flex-wrap lg:flex-nowrap">
                             <div class='w-full'>
-                                <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Your
-                                    email</label>
-                                <input type="email" name="email" id="email"
+                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900">
+                                    Name</label>
+                                <input type="text" name="name" id="name" value="{{ auth()->user()->name }}"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    placeholder="name@company.com" required>
+                                    placeholder="Your Name">
                             </div>
 
                             <div class='w-full'>
-                                <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Your
-                                    password</label>
-                                <input type="password" name="password" id="password" placeholder="••••••••"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    required>
+                                <label for="email" class="block mb-2 text-sm font-medium text-gray-900">
+                                    Email</label>
+                                <input type="email" name="email" id="password" value="{{ auth()->user()->email }}"
+                                    placeholder="amerta@gmail.com"
+                                    class="border bg-slate-200/70 pointer-events-none border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                             </div>
                         </div>
                         <div class="flex gap-4 flex-wrap lg:flex-nowrap">
                             <div class='w-full'>
-                                <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Your
-                                    email</label>
-                                <input type="email" name="email" id="email"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    placeholder="name@company.com" required>
+                                <label for="occupation"
+                                    class="block mb-2 text-sm font-medium text-gray-900">Occupation</label>
+                                <select id="countries" name="occupation"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option selected disabled>Select Position</option>
+                                    <option {{ auth()->user()->occupation == 'CEO' ? 'selected' : '' }} value="CEO">CEO
+                                    </option>
+                                    <option {{ auth()->user()->occupation == 'Founder' ? 'selected' : '' }}
+                                        value="Founder">Founder</option>
+                                    <option {{ auth()->user()->occupation == 'Staf' ? 'selected' : '' }} value="Staf">
+                                        Staf</option>
+                                    <option {{ auth()->user()->occupation == 'Product Manager' ? 'selected' : '' }}
+                                        value="Product Manager">Product Manager</option>
+                                </select>
                             </div>
                             <div class='w-full'>
-                                <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Your
-                                    password</label>
-                                <input type="password" name="password" id="password" placeholder="••••••••"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    required>
+                                @if (auth()->user()->email_verified_at == null)
+                                    <label for="email_verified_at"
+                                        class="block mb-2 text-sm font-medium text-gray-900">Email
+                                        Verified</label>
+                                    <input type="email" name="email_verified_at" id="email_verified_at"
+                                        class="border bg-slate-200/70 placeholder:text-gray-900 pointer-events-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        placeholder="not verified">
+                                @else
+                                    <label for="email"
+                                        class="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">Email
+                                        Verified</label>
+                                    <input type="email" id="email"
+                                        class="bg-green-50 border pointer-events-none border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100 dark:border-green-400"
+                                        placeholder="verified">
+                                @endif
                             </div>
                         </div>
                         <div class="flex gap-4 flex-wrap lg:flex-nowrap">
                             <div class='w-full'>
-                                <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Your
-                                    email</label>
-                                <input type="email" name="email" id="email"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    placeholder="name@company.com" required>
+                                <label for="message" class="block mb-2 text-sm font-medium text-gray-900">Your
+                                    Bio</label>
+                                <textarea id="message" rows="4" name="bio"
+                                    class="block p-2.5 w-full text-sm text-left text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="Write your thoughts here...">
+                                    {{ auth()->user()->bio ?? 'artinya apa bang messi?' }}
+                                </textarea>
                             </div>
-                            <div class='w-full'>
-                                <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Your
-                                    password</label>
-                                <input type="password" name="password" id="password" placeholder="••••••••"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    required>
+                            <div class='w-full order-first lg:order-none'>
+                                <label for="status" class="block mb-2 text-sm font-medium text-gray-900">
+                                    Status</label>
+                                <input type="status" name="is_admin" id="status"
+                                    value="{{ auth()->user()->is_admin }}"
+                                    class="bg-slate-200/70 pointer-events-none border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    placeholder="Roles">
                             </div>
                         </div>
                         <button type="submit"
