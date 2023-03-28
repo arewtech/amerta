@@ -51,15 +51,16 @@ class CheckoutController extends Controller
      */
     public function store(Request $request, Camp $camp)
     {
+        // $expiredDateValidation = date("Y-m", strtotime("+1 month"));
         $expiredDateValidation = date("Y-m", time());
         $request->validate([
             "name" => "required|min:3|max:255|string",
             "email" =>
-                "required|email|exists:users,email|unique:users,email," .
-                Auth::id() .
-                ",id",
-            "card_number" => "required|numeric",
-            "expired" => "required|date|date_format:Y-m|after_or_equal:'.$expiredDateValidation",
+                "required|email|unique:users,email," . auth()->user()->id,
+            // email:rfc,dns = validasi email dengan rfc dan dns
+            "occupation" => "required|string",
+            "card_number" => "required|numeric|digits_between:8,16",
+            "expired" => "required|date|date_format:Y-m|after_or_equal:$expiredDateValidation",
             "cvc" => "required|numeric|digits:3",
         ]);
         $camps = $request->all();

@@ -75,9 +75,9 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 "name" => $input["name"],
                 "email" => $input["email"],
                 "email_verified_at" => null,
-                "occupation" => $input["occupation"],
-                "bio" => $input["bio"],
-                "avatar" => $input["avatar"],
+                "occupation" => $input["occupation"] ?? null,
+                "bio" => $input["bio"] ?? null,
+                "avatar" => $input["avatar"] ?? null,
             ])
             ->save();
         $user->sendEmailVerificationNotification();

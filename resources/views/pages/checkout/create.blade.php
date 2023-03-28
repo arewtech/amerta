@@ -21,10 +21,6 @@
 
         <!-- content checkout -->
         <div class="mt-14">
-            <!--
-                                                                                                                                                                                  This example requires some changes to your config:
-                                                                                                                                                                                        -->
-
             <div class="my-10 sm:mt-0">
                 <div class="md:grid md:grid-cols-4 md:gap-6">
                     <div class="flex items-center md:col-span-2">
@@ -53,28 +49,32 @@
                                 <div class="bg-white px-4 py-5 sm:p-6">
                                     <div class="grid grid-cols-6 gap-6">
                                         <div class="col-span-6 sm:col-span-4 md:col-span-6 lg:col-span-4">
-                                            <label for="email-address"
-                                                class="block text-sm font-medium leading-6 text-gray-900">Email
-                                                address</label>
-                                            <input type="text" name="email" value="{{ auth()->user()->email }}"
-                                                id="email-address" autocomplete="email" placeholder="Your Email"
-                                                class="mt-2 block bg-slate-100 pointer-events-none w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-sm placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6" />
+                                            <label for="full-name"
+                                                class="block text-sm font-medium leading-6 text-green-900">Name</label>
+                                            <input type="text" name="name" value="{{ auth()->user()->name }}"
+                                                id="full-name" autocomplete="given-name" placeholder="Your Name"
+                                                class="mt-2 block w-full bg-green-50 pointer-events-none rounded-md border border-green-500 py-1.5 text-green-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-sm placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6" />
+                                            <span class="text-green-600 text-xs italic">Nama sudah terintegrasi dari
+                                                login, secara otomatis.</span>
                                         </div>
 
                                         <div class="col-span-6 sm:col-span-4 md:col-span-6 lg:col-span-4">
-                                            <label for="full-name"
-                                                class="block text-sm font-medium leading-6 text-gray-900">Name</label>
-                                            <input type="text" name="name" value="{{ auth()->user()->name }}"
-                                                id="full-name" autocomplete="given-name" placeholder="Your Name"
-                                                class="mt-2 block w-full bg-slate-100 pointer-events-none rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-sm placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6" />
+                                            <label for="email-address"
+                                                class="block text-sm font-medium leading-6 text-green-900">Email
+                                                address</label>
+                                            <input type="text" name="email" value="{{ auth()->user()->email }}"
+                                                id="email-address" autocomplete="email" placeholder="Your Email"
+                                                class="mt-2 block bg-green-50 pointer-events-none w-full rounded-md border border-green-500 py-1.5 text-green-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-sm placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6" />
+                                            <span class="text-green-600 text-xs italic">Email sudah terintegrasi dari login,
+                                                secara otomatis.</span>
                                         </div>
 
                                         <div class="col-span-6 sm:col-span-4 md:col-span-6 lg:col-span-4">
                                             <label for="occupation"
-                                                class="block text-sm font-medium leading-6 text-gray-900">Occupation</label>
+                                                class="@error('occupation') is-invalid-field @enderror block text-sm font-medium leading-6 text-gray-900">Occupation</label>
                                             <select id="occupation" name="occupation" autocomplete="country-name"
-                                                class="mt-2 block w-full rounded-md border-0 bg-white py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-sm focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6">
-                                                <option selected>Select Position</option>
+                                                class="@error('occupation') is-invalid-input @enderror mt-2 block w-full rounded-md border-0 bg-white py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-sm focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6">
+                                                <option selected disabled>Select Position</option>
                                                 <option {{ auth()->user()->occupation == 'CEO' ? 'selected' : '' }}
                                                     value="CEO">CEO</option>
                                                 <option {{ auth()->user()->occupation == 'Founder' ? 'selected' : '' }}
@@ -85,33 +85,45 @@
                                                     {{ auth()->user()->occupation == 'Product Manager' ? 'selected' : '' }}
                                                     value="Product Manager">Product Manager</option>
                                             </select>
+                                            @error('occupation')
+                                                <span class="text-red-500 text-xs italic">{{ $message }}</span>
+                                            @enderror
                                         </div>
 
                                         <div class="col-span-6 sm:col-span-4 md:col-span-6 lg:col-span-4">
                                             <label for="card-number"
-                                                class="block text-sm font-medium leading-6 text-gray-900">Card
+                                                class="@error('card_number') is-invalid-field @enderror block text-sm font-medium leading-6 text-gray-900">Card
                                                 Number</label>
-                                            <input type="number" name="card_number"
-                                                value="{{ auth()->user()->card_number }}" id="card-number"
-                                                autocomplete="card-number" placeholder="Your Card Number"
-                                                class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-sm placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6" />
+                                            <input type="number" name="card_number" value="{{ old('card_number') }}"
+                                                id="card-number" placeholder="Your Card Number"
+                                                class="@error('card_number') is-invalid-input @enderror mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-sm placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6" />
+                                            @error('card_number')
+                                                <span class="text-red-500 text-xs italic">{{ $message }}</span>
+                                            @enderror
                                         </div>
 
                                         <div class="col-span-6 sm:col-span-3 lg:col-span-3">
                                             <label for="date"
-                                                class="block text-sm font-medium leading-6 text-gray-900">Expired</label>
+                                                class="@error('expired') is-invalid-field @enderror block text-sm font-medium leading-6 text-gray-900">Expired</label>
                                             <input type="month" name="expired" id="date"
-                                                autocomplete="address-level1"
-                                                class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-sm placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6" />
+                                                value="{{ old('expired') }}"
+                                                class="@error('expired') is-invalid-input @enderror mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-sm placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6" />
+                                            @error('expired')
+                                                <span class="text-red-500 text-xs italic">{{ $message }}</span>
+                                            @enderror
                                         </div>
 
                                         <div class="col-span-6 sm:col-span-3 lg:col-span-3">
                                             <label for="cvc"
-                                                class="block text-sm font-medium leading-6 text-gray-900">Postal code /
+                                                class="@error('cvc') is-invalid-field @enderror block text-sm font-medium leading-6 text-gray-900">Postal
+                                                code /
                                                 CVC</label>
-                                            <input type="number" name="cvc" id="cvc" autocomplete="cvc"
+                                            <input type="number" name="cvc" id="cvc" value="{{ old('cvc') }}"
                                                 placeholder="Your CVC"
-                                                class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-sm placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6" />
+                                                class="@error('cvc') is-invalid-input @enderror mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-sm placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6" />
+                                            @error('cvc')
+                                                <span class="text-red-500 text-xs italic">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
