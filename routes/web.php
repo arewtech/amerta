@@ -8,6 +8,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\EnsureTokenIsValid;
+use App\Models\Camp;
+use App\Models\Checkout;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,6 +50,11 @@ Route::prefix("dashboard")
 Route::middleware("auth")->group(function () {
     Route::resource("dashboard/user", UserController::class);
     Route::get("/profile-information", function () {
-        return view("pages.profile.index");
+        $camp = Checkout::with("camp")
+            ->where("user_id", auth()->id())
+            ->latest()
+            ->get();
+        // return $camp;
+        return view("pages.profile.index", compact("camp"));
     })->name("update-profile");
 });

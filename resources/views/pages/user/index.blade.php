@@ -113,7 +113,7 @@
                             <td class="w-4 p-4 text-center">{{ $loop->iteration }}</td>
                             <th scope="row" class="flex items-center whitespace-nowrap px-6 py-4 text-gray-900">
                                 <img class="h-10 w-10 rounded-full"
-                                    src="https://flowbite.com/docs/images/people/profile-picture-1.jpg"
+                                    src="{{ auth()->user()->avatar !== null ? asset('storage/' . auth()->user()->avatar) : 'https://ui-avatars.com/api/?name=' . auth()->user()->name . '&color=7F9CF5&background=EBF4FF' }}"
                                     alt="Jese image" />
                                 <div class="pl-3">
                                     <div class="text-base font-semibold">{{ $item->user->name }}</div>
