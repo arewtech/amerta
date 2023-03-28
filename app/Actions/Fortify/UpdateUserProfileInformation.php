@@ -4,9 +4,11 @@ namespace App\Actions\Fortify;
 
 use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
+use Termwind\Components\Dd;
 
 class UpdateUserProfileInformation implements UpdatesUserProfileInformation
 {
@@ -19,7 +21,6 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     {
         Validator::make($input, [
             "name" => ["required", "string", "max:255"],
-
             "email" => [
                 "required",
                 "string",
@@ -29,6 +30,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             ],
             "occupation" => ["string", "max:255", "nullable"],
             "bio" => ["string", "max:255", "nullable"],
+            "avatar" => "image|mimes:jpeg,png,jpg,gif,svg|max:2048|nullable",
         ])->validateWithBag("updateProfileInformation");
 
         if (
@@ -37,12 +39,19 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         ) {
             $this->updateVerifiedUser($user, $input);
         } else {
+            if (request()->hasFile("avatar")) {
+                Storage::delete("public/" . $user->avatar);
+                $input["avatar"] = request()
+                    ->file("avatar")
+                    ->store("images", "public");
+            }
             $user
                 ->forceFill([
                     "name" => $input["name"],
                     "email" => $input["email"],
                     "occupation" => $input["occupation"] ?? null,
-                    "bio" => $input["bio"],
+                    "bio" => $input["bio"] ?? null,
+                    "avatar" => $input["avatar"] ?? null,
                 ])
                 ->save();
         }
@@ -55,14 +64,22 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      */
     protected function updateVerifiedUser(User $user, array $input): void
     {
+        if (request()->hasFile("avatar")) {
+            Storage::delete("public/" . $user->avatar);
+            $input["avatar"] = request()
+                ->file("avatar")
+                ->store("images", "public");
+        }
         $user
             ->forceFill([
                 "name" => $input["name"],
                 "email" => $input["email"],
                 "email_verified_at" => null,
+                "occupation" => $input["occupation"],
+                "bio" => $input["bio"],
+                "avatar" => $input["avatar"],
             ])
             ->save();
-
         $user->sendEmailVerificationNotification();
     }
 }

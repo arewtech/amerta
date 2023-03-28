@@ -59,16 +59,21 @@
                                     <button type="submit"
                                         class="relative w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Change
                                         picture
-                                        <input class='absolute inset-0 opacity-0' type="file" name=""
-                                            id="">
+                                        {{-- <form action="{{ route('user-profile-information.update') }}" method="post"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            @method('PUT') --}}
+                                        <input class='absolute inset-0 opacity-0' type="file" name="avatar">
+                                        {{-- </form> --}}
                                     </button>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="flex flex-col items-center pb-10 px-10">
-                        <img class="w-24 h-24 mb-3 rounded-full shadow-lg"
-                            src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="Bonnie image" />
+                        <img class="lg:h-20 lg:w-20 h-16 w-16 object-cover rounded-full"
+                            src="{{ auth()->user()->avatar !== null ? asset('storage/' . auth()->user()->avatar) : 'https://ui-avatars.com/api/?name=' . auth()->user()->name . '&color=7F9CF5&background=EBF4FF' }}"
+                            alt="Current profile photo" />
                         <h5 class="mb-1 text-xl font-medium text-gray-900">{{ auth()->user()->name }}</h5>
                         <span class="mb-2 text-sm text-gray-500">{{ auth()->user()->occupation ?? 'Developer' }}</span>
                         <p class="text-sm text-center text-gray-500">
@@ -160,7 +165,8 @@
                             </button>
                         </div>
                     @endif
-                    <form class="space-y-5" action="{{ route('user-profile-information.update') }}" method="post">
+                    <form class="space-y-5" action="{{ route('user-profile-information.update') }}" method="post"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <div class="flex gap-4 flex-wrap lg:flex-nowrap">
@@ -206,11 +212,10 @@
                                         class="border bg-slate-200/70 placeholder:text-gray-900 pointer-events-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         placeholder="not verified">
                                 @else
-                                    <label for="email"
-                                        class="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">Email
+                                    <label for="email" class="block mb-2 text-sm font-medium text-green-700">Email
                                         Verified</label>
                                     <input type="email" id="email"
-                                        class="bg-green-50 border pointer-events-none border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100 dark:border-green-400"
+                                        class="bg-green-50 border pointer-events-none border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
                                         placeholder="verified">
                                 @endif
                             </div>
@@ -225,13 +230,35 @@
                                     {{ auth()->user()->bio ?? 'artinya apa bang messi?' }}
                                 </textarea>
                             </div>
-                            <div class='w-full order-first lg:order-none'>
+                            {{-- <div class='w-full order-first lg:order-none'>
                                 <label for="status" class="block mb-2 text-sm font-medium text-gray-900">
                                     Status</label>
                                 <input type="status" name="is_admin" id="status"
                                     value="{{ auth()->user()->is_admin }}"
                                     class="bg-slate-200/70 pointer-events-none border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="Roles">
+                            </div> --}}
+                            <div class='w-full order-first lg:order-none'>
+                                <label for="status" class="block mb-2 text-sm font-medium text-gray-900">
+                                    Change Image</label>
+                                <div class="flex items-center space-x-6">
+                                    <div class="shrink-0">
+                                        <img class="lg:h-16 lg:w-16 h-12 w-12 object-cover rounded-full"
+                                            src="{{ auth()->user()->avatar !== null ? asset('storage/' . auth()->user()->avatar) : 'https://ui-avatars.com/api/?name=' . auth()->user()->name . '&color=7F9CF5&background=EBF4FF' }}"
+                                            alt="Current profile photo" />
+                                    </div>
+                                    <label class="block">
+                                        <span class="sr-only">Choose profile photo</span>
+                                        <input type="file" name="avatar"
+                                            class="block w-full text-sm text-slate-500
+                                                file:mr-4 file:py-2 file:px-4
+                                                file:rounded-full file:border-0
+                                                file:text-sm file:font-semibold
+                                                file:bg-blue-50 file:text-blue-700
+                                                hover:file:bg-blue-100
+                                                " />
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <button type="submit"
@@ -285,7 +312,6 @@
                                 web components and interactive elements built on top of Tailwind CSS.</p>
                         </li>
                     </ol>
-
                 </div>
             </div>
         </div>

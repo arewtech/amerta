@@ -202,14 +202,14 @@
                         </button>
 
                         <!-- Profile dropdown -->
-                        <div x-data="{ open: false }" class="relative ml-3">
+                        <div x-data="{ open: false }" class="relative ml-2">
                             <div>
                                 <button @click="open = !open" type="button"
                                     class="flex max-w-xs items-center rounded-full bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600"
                                     id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                     <span class="sr-only">Open user menu</span>
                                     <img class="h-7 w-7 rounded-full"
-                                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                        src="{{ auth()->user()->avatar !== null ? asset('storage/' . auth()->user()->avatar) : 'https://ui-avatars.com/api/?name=' . auth()->user()->name . '&color=7F9CF5&background=EBF4FF' }}"
                                         alt="">
                                     <span class='mx-3 font-medium'>
                                         {{ Auth::user()->name }}
@@ -354,7 +354,7 @@
                                                 id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                                 <span class="sr-only">Open user menu</span>
                                                 <img class="h-7 w-7 rounded-full"
-                                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                                    src="{{ auth()->user()->avatar !== null ? asset('storage/' . auth()->user()->avatar) : 'https://ui-avatars.com/api/?name=' . auth()->user()->name . '&color=7F9CF5&background=EBF4FF' }}"
                                                     alt="">
                                                 <span class='mx-3 font-medium'>
                                                     {{ Auth::user()->name }}

@@ -44,8 +44,6 @@ class FortifyServiceProvider extends ServiceProvider
             return view("auth.register");
         });
 
-        // update user password using
-
         RateLimiter::for("login", function (Request $request) {
             $email = (string) $request->email;
 
