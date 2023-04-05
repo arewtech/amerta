@@ -15,7 +15,9 @@ class CampBenefitController extends Controller
      */
     public function index()
     {
-        $benefits = Camp::with("benefits")->get();
+        $benefits = Camp::with("benefits")
+            ->orderBy("created_at", "DESC")
+            ->get();
         // return $benefits;
         return view("dashboard.camp-benefits.index", compact("benefits"));
     }
@@ -40,7 +42,6 @@ class CampBenefitController extends Controller
         $data = $request->all();
         $data["camp_id"] = $request->camp_id;
         CampBenefit::create($data);
-        // dd($yo);
         return redirect()->route("camp-benefits.show", $request->camp_id);
     }
 

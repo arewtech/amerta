@@ -27,7 +27,7 @@
                         @forelse ($benefits as $benefit)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $benefit->title }}</td>
+                                <td class='text-capitalize'>{{ $benefit->title }}</td>
                                 {{-- <td>
                                     Punya 4 benefits jika ingin camp active</td> --}}
                                 {{-- <td>

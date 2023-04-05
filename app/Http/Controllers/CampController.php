@@ -13,7 +13,9 @@ class CampController extends Controller
      */
     public function index()
     {
-        $camps = Camp::with("benefits")->get();
+        $camps = Camp::with("benefits")
+            ->orderBy("created_at", "DESC")
+            ->get();
         // return $camps;
         return view("dashboard.camps.index", compact("camps"));
     }
@@ -60,7 +62,7 @@ class CampController extends Controller
     public function update(Request $request, Camp $camp)
     {
         $data = $request->all();
-        $data["slug"] = Str::slug($request->title);
+        $data["slug"] = null;
         $camp->update($data);
         return redirect()->route("camps.index");
     }

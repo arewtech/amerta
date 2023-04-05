@@ -6,11 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
-
+use Cviebrock\EloquentSluggable\Sluggable;
 class Camp extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory, SoftDeletes, Sluggable;
 
     protected $fillable = ["title", "slug", "tagline", "price", "description"];
 
@@ -30,11 +29,6 @@ class Camp extends Model
             ->exists();
     }
 
-    // public function getRouteKeyName()
-    // {
-    //     return "slug";
-    // }
-
     public function benefits()
     {
         return $this->hasMany(CampBenefit::class);
@@ -45,8 +39,12 @@ class Camp extends Model
         return "slug";
     }
 
-    // public function checkouts()
-    // {
-    //     return $this->hasMany(Checkout::class);
-    // }
+    public function sluggable(): array
+    {
+        return [
+            "slug" => [
+                "source" => "title",
+            ],
+        ];
+    }
 }

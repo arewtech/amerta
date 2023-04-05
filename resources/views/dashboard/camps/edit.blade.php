@@ -14,7 +14,7 @@
         </div>
 
         <div class="card-body">
-            <form action="{{ route('camps.update', $camp->id) }}" method="post">
+            <form action="{{ route('camps.update', $camp->slug) }}" method="post">
                 @csrf
                 @method('PUT')
                 <div class="mb-3">
@@ -24,8 +24,8 @@
                 </div>
                 <div class="mb-3">
                     <label for="slug" class="form-label">Camp slug</label>
-                    <input type="text" name="slug" value="{{ $camp->slug }}" class="form-control" id="slug"
-                        placeholder="your-camp-slug">
+                    <input type="text" disabled name="slug" value="{{ $camp->slug }}" class="form-control"
+                        id="slug" placeholder="your-camp-slug">
                 </div>
                 <div class="mb-3">
                     <label for="tagline" class="form-label">Camp Tagline</label>

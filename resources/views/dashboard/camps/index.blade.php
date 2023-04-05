@@ -48,8 +48,37 @@
                                     <div class="d-inline-flex">
                                         <a href="{{ route('camps.edit', $camp->slug) }}"
                                             class="btn btn-warning btn-sm mx-2"><i class="far fa-edit"></i></a>
-                                        <button type="button" data-toggle="modal" data-target="#deleteCamp"
-                                            class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+                                        <button type="button" data-toggle="modal"
+                                            data-target="#deleteCamp{{ $camp->slug }}" class="btn btn-danger btn-sm"><i
+                                                class="far fa-trash-alt"></i></button>
+                                        <div class="modal fade" id="deleteCamp{{ $camp->slug }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="modalCamp" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="modalCamp">Delete Camp</h5>
+                                                        <button class="close" type="button" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Are you sure want to delete this
+                                                            {{ $camp->title }}?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-secondary" type="button"
+                                                            data-dismiss="modal">Cancel</button>
+                                                        <form action="{{ route('camps.destroy', $camp->slug) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button class="btn btn-primary" type="submit">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -83,11 +112,11 @@
                             <input type="text" name="title" class="form-control" id="title"
                                 placeholder="Camp title">
                         </div>
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="slug" class="form-label">Camp slug</label>
                             <input type="text" name="slug" class="form-control" id="slug"
                                 placeholder="your-camp-slug">
-                        </div>
+                        </div> --}}
                         <div class="mb-3">
                             <label for="tagline" class="form-label">Camp Tagline</label>
                             <input type="text" name="tagline" class="form-control" id="tagline"
@@ -112,28 +141,4 @@
     </div>
 
     <!-- Delete Camp Modal-->
-    <div class="modal fade" id="deleteCamp" tabindex="-1" role="dialog" aria-labelledby="modalCamp"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalCamp">Delete Camp</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Are you sure want to delete this camp?</p>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <form action="{{ route('camps.destroy', $camp->id) }}" method="post">
-                        @csrf
-                        @method('delete')
-                        <button class="btn btn-primary" type="submit">Delete</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
