@@ -11,9 +11,10 @@ class Navigation extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    // public $notification;
+    public function __construct($notification = null)
     {
-        //
+        // $this->notification = $notification;
     }
 
     /**
@@ -21,6 +22,6 @@ class Navigation extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.navigation');
+        return view("components.navigation");
     }
 }

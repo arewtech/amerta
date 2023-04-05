@@ -42,6 +42,18 @@
                         <dt class="text-sm font-medium text-gray-500">Email address</dt>
                         <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ $user->user->email }}</dd>
                     </div>
+                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt class="text-sm font-medium text-gray-500">Status Program</dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                            @if ($user->status == 'on going')
+                                <span class='bg-yellow-500 text-slate-50 px-2.5 text-xs py-1 rounded-xl'>on going</span>
+                            @else
+                                <span class='bg-green-500  text-slate-50 px-2.5 text-xs py-1 rounded-xl'>
+                                    finished
+                                </span>
+                            @endif
+                        </dd>
+                    </div>
                     <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="text-sm font-medium text-gray-500">Card Number</dt>
                         <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ $user->card_number }}</dd>

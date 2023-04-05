@@ -6,6 +6,7 @@ use App\Http\Controllers\CampController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\EnsureTokenIsValid;
 use App\Models\Camp;
@@ -41,6 +42,10 @@ Route::prefix("dashboard")
         Route::get("/", [DashboardController::class, "index"])->name(
             "dashboard"
         );
+        Route::get("/checkouts/search", [
+            CheckoutController::class,
+            "searchCheckout",
+        ])->name("checkouts.search");
         Route::resource("/camps", CampController::class);
         Route::resource("/checkouts", CheckoutController::class);
         Route::resource("/camp-benefits", CampBenefitController::class);
@@ -48,10 +53,27 @@ Route::prefix("dashboard")
     });
 
 Route::middleware("auth")->group(function () {
-    Route::resource("dashboard/user", UserController::class);
+    // route search
+    // Route::get("/search", function () {
+    //     $search = request()->query("search");
+    //     $camps = Camp::search($search)->get();
+    //     return view("pages.search", compact("camps"));
+    // })->name("search");
+    Route::get("/dashboard/user/search", [
+        UserController::class,
+        "search",
+    ])->name("search");
+    Route::get("dashboard/user", [PreviewController::class, "index"])->name(
+        "preview"
+    );
+    Route::get("dashboard/user/{camp:slug}", [
+        PreviewController::class,
+        "show",
+    ])->name("preview.show");
     Route::get("/profile-information", function () {
         $camp = Checkout::with("camp")
             ->where("user_id", auth()->id())
+            ->whereStatus("finished")
             ->latest()
             ->get();
         // return $camp;

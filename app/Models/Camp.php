@@ -25,6 +25,8 @@ class Camp extends Model
 
         return checkout::whereCampId($this->id)
             ->whereUserId(auth()->id())
+            // ->where("expired", ">", now())
+            // ->where("status", "on going")
             ->exists();
     }
 
@@ -36,6 +38,11 @@ class Camp extends Model
     public function benefits()
     {
         return $this->hasMany(CampBenefit::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return "slug";
     }
 
     // public function checkouts()

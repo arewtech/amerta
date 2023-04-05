@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Camp;
 use App\Models\Checkout;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,9 +18,15 @@ class CheckoutController extends Controller
         $checkouts = Checkout::with("camp", "user")
             ->orderBy("id", "DESC")
             ->get();
+        // return $checkouts;
         return view("dashboard.checkouts.index", compact("checkouts"));
     }
 
+    public function searchCheckout(Request $request)
+    {
+        $checkouts = Checkout::search($request->q)->get();
+        return view("dashboard.checkouts.index", compact("checkouts"));
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -32,7 +39,7 @@ class CheckoutController extends Controller
         if ($camp->is_registered) {
             // kalau sudah maka redirect ke halaman dashboard payment
             return redirect()
-                ->route("user.index")
+                ->route("preview")
                 ->with("success", "kamu sudah terdaftar di $camp->title ini!");
         }
         // kalau belum maka tampilkan halaman checkout / create

@@ -192,13 +192,17 @@
                 <div class="hidden lg:flex lg:flex-1 lg:justify-end">
                     <div class="ml-4 flex items-center md:ml-6">
                         <button type="button"
-                            class="rounded-full bg-blue-500 p-1 text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-500">
+                            class="relative rounded-full bg-blue-500 p-1 text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-500">
                             <span class="sr-only">View notifications</span>
                             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
                             </svg>
+                            <div
+                                class="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2">
+                                2
+                            </div>
                         </button>
 
                         <!-- Profile dropdown -->
@@ -231,7 +235,7 @@
                                         class="block hover:bg-gray-100 px-4 py-2 text-sm text-gray-700" role="menuitem"
                                         tabindex="-1" id="user-menu-item-0">Admin Dashboard</a>
                                 @else
-                                    <a href="{{ route('user.index') }}"
+                                    <a href="{{ route('preview') }}"
                                         class="block hover:bg-gray-100 px-4 py-2 text-sm text-gray-700" role="menuitem"
                                         tabindex="-1" id="user-menu-item-0">My Dashboard</a>
                                 @endif
@@ -258,9 +262,9 @@
         <div x-show="open" @click.away="open = false" class="lg:hidden" role="dialog" aria-modal="true">
             <!-- Background backdrop, show/hide based on slide-over state. -->
             <!-- <div
-                                              :class="{ 'backdrop-invert-0 bg-white/50': open }"
-                                              class="fixed inset-0 z-10"
-                                            ></div> -->
+                                                  :class="{ 'backdrop-invert-0 bg-white/50': open }"
+                                                  class="fixed inset-0 z-10"
+                                                ></div> -->
             <div class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 shadow sm:max-w-sm">
                 <div class="flex items-center justify-between">
                     <a href="{{ route('home') }}" class="-m-1.5 p-1.5">
@@ -291,10 +295,10 @@
                                     aria-controls="disclosure-1" aria-expanded="false">
                                     Business
                                     <!--
-                                                      Expand/collapse icon, toggle classes based on menu open state.
+                                                          Expand/collapse icon, toggle classes based on menu open state.
 
-                                                      Open: "rotate-180", Closed: ""
-                                                    -->
+                                                          Open: "rotate-180", Closed: ""
+                                                        -->
                                     <svg :class="{ 'rotate-180': open }" class="h-5 w-5 flex-none" viewBox="0 0 20 20"
                                         fill="currentColor" aria-hidden="true">
                                         <path fill-rule="evenodd"
@@ -337,15 +341,17 @@
                             @else
                                 <div class="flex items-center">
                                     <button type="button"
-                                        class="rounded-full bg-blue-500 p-1 text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-500">
+                                        class="relative rounded-full bg-blue-500 p-1 text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-500">
                                         <span class="sr-only">View notifications</span>
                                         <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                             stroke="currentColor" aria-hidden="true">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
                                         </svg>
+                                        <div
+                                            class="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2">
+                                            3</div>
                                     </button>
-
                                     <!-- Profile dropdown -->
                                     <div x-data="{ open: false }" class="relative ml-3">
                                         <div>
@@ -378,7 +384,7 @@
                                                     role="menuitem" tabindex="-1" id="user-menu-item-0">Admin
                                                     Dashboard</a>
                                             @else
-                                                <a href="{{ route('user.index') }}"
+                                                <a href="{{ route('preview') }}"
                                                     class="block hover:bg-gray-100 px-4 py-2 text-sm text-gray-700"
                                                     role="menuitem" tabindex="-1" id="user-menu-item-0">My Dashboard</a>
                                             @endif

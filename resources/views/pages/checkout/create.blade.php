@@ -43,7 +43,7 @@
                                 <span class="block sm:inline">{{ $error }}</span>
                             </div>
                         @endforeach
-                        <form action="{{ route('checkout.store', $camp->id) }}" method="POST">
+                        <form action="{{ route('checkout.store', $camp->slug) }}" method="POST">
                             @csrf
                             <div class="overflow-hidden shadow sm:rounded-md">
                                 <div class="bg-white px-4 py-5 sm:p-6">

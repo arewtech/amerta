@@ -46,7 +46,7 @@
                                 <td>${{ $camp->price }}</td>
                                 <td>
                                     <div class="d-inline-flex">
-                                        <a href="{{ route('camps.edit', $camp->id) }}"
+                                        <a href="{{ route('camps.edit', $camp->slug) }}"
                                             class="btn btn-warning btn-sm mx-2"><i class="far fa-edit"></i></a>
                                         <button type="button" data-toggle="modal" data-target="#deleteCamp"
                                             class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>

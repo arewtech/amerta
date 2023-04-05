@@ -283,7 +283,7 @@
                                 <h3 class="text-lg font-semibold text-gray-900">{{ $item->camp->title }}</h3>
                                 <p class="mb-4 text-base font-normal text-gray-500">
                                     {{ $item->camp->tagline }}</p>
-                                <a href="{{ route('user.index') }}"
+                                <a href="{{ route('preview') }}"
                                     class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700">Learn
                                     more <svg class="w-3 h-3 ml-2" fill="currentColor" viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg">

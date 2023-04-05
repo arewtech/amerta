@@ -4,6 +4,10 @@
     <!-- Page Heading -->
     <div class="d-flex align-items-center justify-content-between mb-2">
         <h1 class="h3 mb-0 text-gray-800">Table Checkouts : {{ $checkouts->count() }}</h1>
+        <form action="{{ route('checkouts.search') }}" class="d-flex" role="search" method="get">
+            <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search" name="q">
+            <button class="btn btn-outline-primary" type="submit">Search</button>
+        </form>
     </div>
     <p>Checkout terbaru masuk pada tanggal<span style="font-weight: 700"> ( --- ) </span></p>
 
@@ -23,6 +27,7 @@
                             <th>Title Camp</th>
                             <th>Tanggal Checkout</th>
                             <th>Price</th>
+                            <th>CVC</th>
                             <th>Status</th>
                             <th>Update Terbaru</th>
                             <th>Action</th>
@@ -36,6 +41,7 @@
                                 <td>{{ $checkout->camp->title }}</td>
                                 <td>{{ $checkout->created_at->format('D, Y-m') }}</td>
                                 <td>${{ $checkout->camp->price }}</td>
+                                <td>{{ $checkout->cvc }}</td>
                                 <td>
                                     @if ($checkout->is_paid !== 0)
                                         <span style='font-size: 13px;'

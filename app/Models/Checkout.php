@@ -2,14 +2,18 @@
 
 namespace App\Models;
 
+use GuzzleHttp\Promise\Is;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 
 class Checkout extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use Searchable;
 
     protected $fillable = [
         "camp_id",
@@ -19,6 +23,33 @@ class Checkout extends Model
         "cvc",
         "is_paid",
     ];
+
+    protected $with = ["camp", "user"];
+    // public function searchableAs()
+    // {
+    //     return "users_index";
+    // }
+
+    public function toSearchableArray()
+    {
+        return [
+            "cvc" => $this->cvc,
+        ];
+    }
+
+    // protected function makeAllSearchableUsing(Builder $query)
+    // {
+    //     return $query->with("camp", "user");
+    // }
+
+    // search scout with relation
+    // public function toSearchableArray()
+    // {
+    //     $array = $this->toArray();
+    //     $array["title"] = $this->camp->title;
+    //     $array["user"] = $this->user->name;
+    //     return $array;
+    // }
 
     public function setExpiredAttribute($value)
     {

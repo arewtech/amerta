@@ -87,11 +87,12 @@
                                 clip-rule="evenodd"></path>
                         </svg>
                     </div>
-                    {{-- <form action="{{ route('report.index') }}" method="get"> --}}
-                    <input type="search" name="search" id="table-search-users"
-                        class="block w-80 rounded-lg border border-gray-300 bg-gray-50 p-2 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
-                        placeholder="Search for users" />
-                    {{-- </form> --}}
+                    <form action="{{ route('search') }}" method="get">
+                        <input type="search" name="q" id="table-search-users"
+                            class="block w-80 rounded-lg border border-gray-300 bg-gray-50 p-2 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+                            placeholder="Search for users" />
+                        {{-- <button type="submit">search</button> --}}
+                    </form>
                 </div>
             </div>
             <table class="w-full text-left text-sm text-gray-500">
@@ -103,7 +104,8 @@
                         <th scope="col" class="px-6 py-3">Checkout Camp</th>
                         <th scope="col" class="px-6 py-3">Expired</th>
                         <th scope="col" class="px-6 py-3">Price</th>
-                        <th scope="col" class="px-6 py-3">Status</th>
+                        <th scope="col" class="px-6 py-3">Status Payment</th>
+                        <th scope="col" class="px-6 py-3">Status Program</th>
                         <th scope="col" class="px-6 py-3">Action</th>
                     </tr>
                 </thead>
@@ -144,14 +146,27 @@
                                 @endif
                             </td>
                             <td class="px-6 py-4">
+                                @if ($item->status == 'on going')
+                                    <div class="flex items-center">
+                                        <div class="mr-2 h-2.5 w-2.5 rounded-full bg-orange-500"></div>
+                                        on going
+                                    </div>
+                                @else
+                                    <div class="flex items-center">
+                                        <div class="mr-2 h-2.5 w-2.5 rounded-full bg-green-500"></div>
+                                        finished
+                                    </div>
+                                @endif
+                            </td>
+                            <td class="px-6 py-4">
                                 {{-- detail --}}
-                                <a href="{{ route('user.show', $item->id) }}"
+                                <a href="{{ route('preview.show', $item->camp->slug) }}"
                                     class="text-blue-500 hover:text-blue-700">Detail</a>
                             </td>
                         </tr>
                     @empty
                         <tr class="border-b bg-white hover:bg-gray-50">
-                            <td colspan="7" class="w-4 p-4 text-center">
+                            <td colspan="9" class="w-4 p-4 text-center">
                                 Tidak ada data transaksi yang ditemukan!
                             </td>
                         </tr>

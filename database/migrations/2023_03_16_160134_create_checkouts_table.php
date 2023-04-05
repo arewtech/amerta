@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->date("expired");
             $table->string("cvc");
             $table->boolean("is_paid")->default(false);
+            $table->string("status")->default("on going");
             $table->timestamps();
             $table->softDeletes();
         });
