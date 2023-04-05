@@ -22,6 +22,9 @@ class Checkout extends Model
         "expired",
         "cvc",
         "is_paid",
+        "discount_id",
+        "discount_percentage",
+        "total",
     ];
 
     protected $with = ["camp", "user"];
@@ -30,12 +33,12 @@ class Checkout extends Model
     //     return "users_index";
     // }
 
-    public function toSearchableArray()
-    {
-        return [
-            "cvc" => $this->cvc,
-        ];
-    }
+    // public function toSearchableArray()
+    // {
+    //     return [
+    //         "cvc" => $this->cvc,
+    //     ];
+    // }
 
     // protected function makeAllSearchableUsing(Builder $query)
     // {
