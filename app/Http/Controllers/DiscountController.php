@@ -12,7 +12,8 @@ class DiscountController extends Controller
      */
     public function index()
     {
-        //
+        $discounts = Discount::orderBy("created_at", "DESC")->get();
+        return view("dashboard.discounts.index", compact("discounts"));
     }
 
     /**
@@ -28,7 +29,14 @@ class DiscountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "name" => ["required", "string"],
+            "code" => ["required", "string", "unique:discounts"],
+            "percentage" => ["required", "integer", "min:1", "max:100"],
+            "description" => ["nullable", "string"],
+        ]);
+        Discount::create($request->all());
+        return back();
     }
 
     /**
@@ -44,7 +52,8 @@ class DiscountController extends Controller
      */
     public function edit(Discount $discount)
     {
-        //
+        // return $discount;
+        return view("dashboard.discounts.edit", compact("discount"));
     }
 
     /**
@@ -52,7 +61,18 @@ class DiscountController extends Controller
      */
     public function update(Request $request, Discount $discount)
     {
-        //
+        $request->validate([
+            "name" => ["required", "string"],
+            "code" => [
+                "required",
+                "string",
+                "unique:discounts,code," . $discount->id,
+            ],
+            "percentage" => ["required", "integer", "min:1", "max:100"],
+            "description" => ["nullable", "string"],
+        ]);
+        $discount->update($request->all());
+        return redirect()->route("discounts.index");
     }
 
     /**
@@ -60,6 +80,7 @@ class DiscountController extends Controller
      */
     public function destroy(Discount $discount)
     {
-        //
+        $discount->delete();
+        return back();
     }
 }

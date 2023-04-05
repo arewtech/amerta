@@ -69,6 +69,12 @@
             <span>Checkouts</span></a>
     </li>
 
+    <li class="nav-item {{ Request::url() == url('/dashboard/discounts') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('discounts.index') }}">
+            <i class="fas fa-percentage"></i>
+            <span>Discounts</span></a>
+    </li>
+
     <li class="nav-item {{ Request::url() == url('/dashboard/users') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('admin') }}">
             <i class="fas fa-users"></i>

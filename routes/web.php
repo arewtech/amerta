@@ -5,6 +5,7 @@ use App\Http\Controllers\CampBenefitController;
 use App\Http\Controllers\CampController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\UserController;
@@ -49,6 +50,7 @@ Route::prefix("dashboard")
         Route::resource("/camps", CampController::class);
         Route::resource("/checkouts", CheckoutController::class);
         Route::resource("/camp-benefits", CampBenefitController::class);
+        Route::resource("/discounts", DiscountController::class);
         Route::get("/users", [AdminController::class, "index"])->name("admin");
     });
 
