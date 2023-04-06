@@ -280,7 +280,11 @@
                                 </div>
                                 <time
                                     class="mb-1 text-sm font-normal leading-none text-gray-400">{{ $item->expired }}</time>
-                                <h3 class="text-lg font-semibold text-gray-900">{{ $item->camp->title }}</h3>
+                                <h3 class="text-lg font-semibold text-gray-900">{{ $item->camp->title }}
+                                    <span class='bg-green-500  text-slate-50 px-2.5 text-xs py-1 rounded-xl'>
+                                        finished
+                                    </span>
+                                </h3>
                                 <p class="mb-4 text-base font-normal text-gray-500">
                                     {{ $item->camp->tagline }}</p>
                                 <a href="{{ route('preview') }}"

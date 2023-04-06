@@ -18,11 +18,11 @@ class Checkout extends Model
     protected $fillable = [
         "camp_id",
         "user_id",
+        "discount_id",
         "card_number",
         "expired",
         "cvc",
         "is_paid",
-        "discount_id",
         "discount_percentage",
         "total",
     ];
@@ -67,5 +67,10 @@ class Checkout extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function discount()
+    {
+        return $this->belongsTo(Discount::class);
     }
 }

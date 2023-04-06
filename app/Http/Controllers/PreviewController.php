@@ -11,10 +11,11 @@ class PreviewController extends Controller
 {
     public function index()
     {
-        $user = Checkout::with("camp", "user")
+        $user = Checkout::with("camp", "user", "discount")
             ->where("user_id", auth()->user()->id)
             ->orderBy("created_at", "DESC")
             ->get();
+        // return $user;
         return view("pages.user.index", compact("user"));
     }
 

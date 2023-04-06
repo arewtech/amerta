@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Camp;
 use App\Models\Checkout;
+use App\Models\Discount;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -58,6 +59,7 @@ class CheckoutController extends Controller
      */
     public function store(Request $request, Camp $camp)
     {
+        // return $request->all();
         // $expiredDateValidation = date("Y-m", strtotime("+1 month"));
         $expiredDateValidation = date("Y-m", time());
         $request->validate([
@@ -69,6 +71,13 @@ class CheckoutController extends Controller
             "card_number" => "required|numeric|digits_between:8,16",
             "expired" => "required|date|date_format:Y-m|after_or_equal:$expiredDateValidation",
             "cvc" => "required|numeric|digits:3",
+            // ketika ada discount maka akan di cek apakah discount tersebut ada di database
+            // dan apakah discount tersebut sudah di hapus atau belum
+            // jika sudah di hapus maka akan muncul pesan error
+            // jika tidak maka akan di lanjutkan ke proses selanjutnya
+            // dan jika tidak ada discount maka akan di lanjutkan ke proses selanjutnya
+            "discount" =>
+                "nullable|string|exists:discounts,code,deleted_at,NULL",
         ]);
         $camps = $request->all();
         $camps["camp_id"] = $camp->id;
@@ -81,8 +90,27 @@ class CheckoutController extends Controller
         $user->email = $request->email;
         $user->occupation = $request->occupation;
         $user->save();
+
+        // check apakah ada discount
+        // jika ada maka akan di simpan ke database
+        // dan jika tidak maka akan di lanjutkan ke proses selanjutnya
+        if ($request->discount) {
+            $discount = Discount::where("code", $request->discount)->first();
+            // return $discount;
+            $camps["discount_id"] = $discount->id;
+            $camps["discount_percentage"] = $discount->percentage;
+            // harga camp
+            $price = $camp->price;
+            // berapa persen yang akan di potong, contoh 10%
+            $discountPercentage = $discount->percentage;
+            // berapa yang akan di potong, contoh 10% dari 100000 = 10000, 10000 akan di potong dari 100000
+            $discountPrice = ($price * $discountPercentage) / 100;
+            // total yang harus di bayar
+            $camps["total"] = $price - $discountPrice;
+            // return $camps;
+        }
+
         Checkout::create($camps);
-        // dd($camps);
         // return "success";
         return redirect()->route("checkout.success", $camp->slug);
     }

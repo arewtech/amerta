@@ -271,8 +271,8 @@
                                 {{ $item->title }}
                             </h5>
                             <div class="flex items-baseline text-gray-900">
-                                <span class="text-3xl font-semibold">$</span>
-                                <span class="text-5xl font-extrabold tracking-tight">{{ $item->price }}</span>
+                                <span class="text-3xl font-semibold">Rp. </span>
+                                <span class="text-5xl font-extrabold tracking-tight">@currency($item->price)</span>
                                 <span class="ml-1 text-xl font-normal text-gray-500">/month</span>
                             </div>
                             <p class="mt-4 text-sm text-gray-600 md:text-base">

@@ -99,13 +99,12 @@
                 <thead class="bg-gray-50 text-xs uppercase text-gray-700">
                     <tr>
                         <th scope="col" class="p-4">No</th>
-                        <th scope="col" class="px-6 py-3">Name</th>
                         <th scope="col" class="px-6 py-3">Bootcamp</th>
                         <th scope="col" class="px-6 py-3">Checkout Camp</th>
                         <th scope="col" class="px-6 py-3">Expired</th>
                         <th scope="col" class="px-6 py-3">Price</th>
+                        <th scope="col" class="px-6 py-3">Total</th>
                         <th scope="col" class="px-6 py-3">Status Payment</th>
-                        <th scope="col" class="px-6 py-3">Status Program</th>
                         <th scope="col" class="px-6 py-3">Action</th>
                     </tr>
                 </thead>
@@ -113,29 +112,46 @@
                     @forelse ($user as $item)
                         <tr class="border-b bg-white hover:bg-gray-50">
                             <td class="w-4 p-4 text-center">{{ $loop->iteration }}</td>
-                            <th scope="row" class="flex items-center whitespace-nowrap px-6 py-4 text-gray-900">
-                                <img class="h-10 w-10 rounded-full"
-                                    src="{{ auth()->user()->avatar !== null ? asset('storage/' . auth()->user()->avatar) : 'https://ui-avatars.com/api/?name=' . auth()->user()->name . '&color=7F9CF5&background=EBF4FF' }}"
-                                    alt="Jese image" />
-                                <div class="pl-3">
-                                    <div class="text-base font-semibold">{{ $item->user->name }}</div>
-                                    <div class="font-normal text-gray-500">
-                                        {{ $item->user->email }}
+                            <td class="px-6 py-4">
+                                @if ($item->status == 'on going')
+                                    <div class="flex items-center">
+                                        <div class="mr-2 h-2.5 w-2.5 rounded-full bg-yellow-400"></div>
+                                        {{ $item->camp->title }}
                                     </div>
-                                </div>
-                            </th>
-                            <td class="px-6 py-4">{{ $item->camp->title }}</td>
+                                @else
+                                    <div class="flex items-center">
+                                        <div class="mr-2 h-2.5 w-2.5 rounded-full bg-green-500"></div>
+                                        {{ $item->camp->title }}
+                                    </div>
+                                @endif
+                            </td>
                             <td class="px-6 py-4">{{ $item->created_at->format('D, Y-m') }}</td>
                             <td class="px-6 py-4">
                                 {{ $item->expired }}
                             </td>
                             <td class="px-6 py-4">
-                                ${{ $item->camp->price }}
+                                Rp. @currency($item->camp->price)
+                                @if ($item->discount != null)
+                                    <span
+                                        class='bg-green-500 font-medium text-slate-50 px-2.5 text-xs py-1 rounded-xl'>{{ $item->discount->percentage }}%</span>
+                                @elseif($item->discount_percentage != null)
+                                    <span
+                                        class='bg-green-500 font-medium text-slate-50 px-2.5 text-xs py-1 rounded-xl'>{{ $item->discount_percentage }}%</span>
+                                @endif
+                            </td>
+                            <td class="px-6 py-4">
+                                @if ($item->discount != null)
+                                    Rp. @currency($item->total)
+                                @elseif($item->discount_percentage != null)
+                                    Rp. @currency($item->total)
+                                @else
+                                    Rp. @currency($item->camp->price)
+                                @endif
                             </td>
                             <td class="px-6 py-4">
                                 @if ($item->is_paid != 1)
                                     <div class="flex items-center">
-                                        <div class="mr-2 h-2.5 w-2.5 rounded-full bg-orange-500"></div>
+                                        <div class="mr-2 h-2.5 w-2.5 rounded-full bg-yellow-400"></div>
                                         Pending Payment
                                     </div>
                                 @else
@@ -146,20 +162,6 @@
                                 @endif
                             </td>
                             <td class="px-6 py-4">
-                                @if ($item->status == 'on going')
-                                    <div class="flex items-center">
-                                        <div class="mr-2 h-2.5 w-2.5 rounded-full bg-orange-500"></div>
-                                        on going
-                                    </div>
-                                @else
-                                    <div class="flex items-center">
-                                        <div class="mr-2 h-2.5 w-2.5 rounded-full bg-green-500"></div>
-                                        finished
-                                    </div>
-                                @endif
-                            </td>
-                            <td class="px-6 py-4">
-                                {{-- detail --}}
                                 <a href="{{ route('preview.show', $item->camp->slug) }}"
                                     class="text-blue-500 hover:text-blue-700">Detail</a>
                             </td>

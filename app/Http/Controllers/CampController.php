@@ -34,8 +34,6 @@ class CampController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $data["slug"] = Str::slug($request->title);
-        // return $data;
         Camp::create($data);
         return back();
     }

@@ -43,7 +43,7 @@
                                             class='badge rounded-pill px-2 text-white bg-success'>active</span>
                                     @endif
                                 </td>
-                                <td>${{ $camp->price }}</td>
+                                <td>Rp. @currency($camp->price)</td>
                                 <td>
                                     <div class="d-inline-flex">
                                         <a href="{{ route('camps.edit', $camp->slug) }}"
