@@ -12,7 +12,8 @@ class PreviewController extends Controller
     public function index(Request $request)
     {
         if ($request->q) {
-            $user = Checkout::with("camp")
+            $user = Checkout::with("camp", "user", "discount")
+                ->where("user_id", auth()->user()->id)
                 ->whereHas("camp", function ($query) use ($request) {
                     $query->where("title", "LIKE", "%$request->q%");
                 })

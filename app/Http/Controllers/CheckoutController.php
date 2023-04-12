@@ -143,11 +143,9 @@ class CheckoutController extends Controller
         $request->validate([
             "is_paid" => "boolean|nullable",
         ]);
-        $data = $request->all();
-        $data["is_paid"] = $request->is_paid ? true : false;
-        $data["user_id"] = auth()->user()->id;
-        $data["camp_id"] = $checkout->camp_id;
-        $checkout->update($data);
+        $checkout->update([
+            "is_paid" => $request->is_paid ? true : false,
+        ]);
         return redirect()->route("checkouts.index");
     }
 

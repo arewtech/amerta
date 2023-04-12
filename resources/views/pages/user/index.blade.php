@@ -114,14 +114,18 @@
                             <td class="w-4 p-4 text-center">{{ $loop->iteration }}</td>
                             <td class="px-6 py-4">
                                 @if ($item->status == 'on going')
-                                    <div class="flex items-center">
-                                        <div class="mr-2 h-2.5 w-2.5 rounded-full bg-yellow-400"></div>
-                                        {{ $item->camp->title }}
+                                    <div class="tooltip tooltip-warning" data-tip="on going">
+                                        <div class="flex items-center">
+                                            <div class="mr-2 h-2.5 w-2.5 rounded-full bg-yellow-400"></div>
+                                            {{ $item->camp->title }}
+                                        </div>
                                     </div>
                                 @else
-                                    <div class="flex items-center">
-                                        <div class="mr-2 h-2.5 w-2.5 rounded-full bg-green-500"></div>
-                                        {{ $item->camp->title }}
+                                    <div class="tooltip tooltip-success" data-tip="finished">
+                                        <div class="flex items-center">
+                                            <div class="mr-2 h-2.5 w-2.5 rounded-full bg-green-500"></div>
+                                            {{ $item->camp->title }}
+                                        </div>
                                     </div>
                                 @endif
                             </td>
@@ -150,14 +154,18 @@
                             </td>
                             <td class="px-6 py-4">
                                 @if ($item->is_paid != 1)
-                                    <div class="flex items-center">
-                                        <div class="mr-2 h-2.5 w-2.5 rounded-full bg-yellow-400"></div>
-                                        Pending Payment
+                                    <div class="tooltip tooltip-warning" data-tip="pending payment">
+                                        <div class="flex items-center">
+                                            <div class="mr-2 h-2.5 w-2.5 rounded-full bg-yellow-400"></div>
+                                            Pending
+                                        </div>
                                     </div>
                                 @else
-                                    <div class="flex items-center">
-                                        <div class="mr-2 h-2.5 w-2.5 rounded-full bg-green-500"></div>
-                                        Success Payment
+                                    <div class="tooltip tooltip-success" data-tip="success payment">
+                                        <div class="flex items-center">
+                                            <div class="mr-2 h-2.5 w-2.5 rounded-full bg-green-500"></div>
+                                            Paid
+                                        </div>
                                     </div>
                                 @endif
                             </td>

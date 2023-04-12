@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class='scroll-smooth' lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html data-theme="light" class='scroll-smooth' lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     @include('includes.style')
