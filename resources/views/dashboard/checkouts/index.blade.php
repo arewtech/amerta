@@ -27,9 +27,8 @@
                             <th>Title Camp</th>
                             <th>Tanggal Checkout</th>
                             <th>Price</th>
-                            <th>CVC</th>
                             <th>Status</th>
-                            <th>Update Terbaru</th>
+                            {{-- <th>Total</th> --}}
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -40,8 +39,23 @@
                                 <td>{{ $checkout->user->name }}</td>
                                 <td>{{ $checkout->camp->title }}</td>
                                 <td>{{ $checkout->created_at->format('D, Y-m') }}</td>
-                                <td>${{ $checkout->camp->price }}</td>
-                                <td>{{ $checkout->cvc }}</td>
+                                <td>
+                                    <div class='position-relative'>
+                                        Rp. @currency($checkout->camp->price)
+                                        @if ($checkout->discount != null)
+                                            <span style='font-size: 10px;'
+                                                class="position-absolute text-white top-0 start-100 translate-middle badge rounded-pill bg-success">
+                                                {{ $checkout->discount->percentage }}%
+                                            </span>
+                                        @elseif($checkout->discount_percentage != null)
+                                            <span style='font-size: 10px;'
+                                                class="position-absolute text-white top-0 start-100 translate-middle badge rounded-pill bg-success">
+                                                {{ $checkout->discount_percentage }}%
+                                            </span>
+                                        @endif
+                                    </div>
+                                </td>
+                                {{-- <td>{{ $checkout->cvc }}</td> --}}
                                 <td>
                                     @if ($checkout->is_paid !== 0)
                                         <span style='font-size: 13px;'
@@ -51,7 +65,15 @@
                                             class='badge rounded-pill px-2 text-white bg-warning'>Pending Payment</span>
                                     @endif
                                 </td>
-                                <td>{{ $checkout->updated_at->format('D, Y-m') }}</td>
+                                {{-- <td>
+                                    @if ($checkout->discount != null)
+                                        Rp. @currency($checkout->total)
+                                    @elseif($checkout->discount_percentage != null)
+                                        Rp. @currency($checkout->total)
+                                    @else
+                                        Rp. @currency($checkout->camp->price)
+                                    @endif
+                                </td> --}}
                                 <td>
                                     <div class="d-inline-flex">
                                         <a href="{{ route('checkouts.show', $checkout->id) }}"

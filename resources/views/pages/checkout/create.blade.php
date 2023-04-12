@@ -137,6 +137,12 @@
                                             @error('discount')
                                                 <span class="text-red-500 text-xs italic">{{ $message }}</span>
                                             @enderror
+                                            @if ($discount)
+                                                <div class="text-gray-400 mt-0.5 text-xs italic">Gunakan code discount
+                                                    <span
+                                                        class='text-green-500 font-semibold'>{{ $discount->code }}</span>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

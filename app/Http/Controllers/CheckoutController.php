@@ -16,7 +16,7 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        $checkouts = Checkout::with("camp", "user")
+        $checkouts = Checkout::with("camp", "user", "discount")
             ->orderBy("id", "DESC")
             ->get();
         // return $checkouts;
@@ -33,6 +33,7 @@ class CheckoutController extends Controller
      */
     public function create(Camp $camp)
     {
+        $discount = Discount::latest()->first();
         // bisa langsung bind camp nya atau mau cari secara manual menggunakan where.
         // $checkoutCamp = Camp::where("slug", $slug)->firstOrFail();
         // return $checkout;
@@ -44,7 +45,7 @@ class CheckoutController extends Controller
                 ->with("success", "kamu sudah terdaftar di $camp->title ini!");
         }
         // kalau belum maka tampilkan halaman checkout / create
-        return view("pages.checkout.create", compact("camp"));
+        return view("pages.checkout.create", compact("camp", "discount"));
     }
 
     public function success(Camp $camp)

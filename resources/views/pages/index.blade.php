@@ -267,12 +267,18 @@
                 @if (count($item->benefits) >= 4)
                     <div class="w-full basis-11/12 rounded-3xl bg-white p-2 shadow md:basis-2/5 lg:basis-2/6">
                         <div class="p-8 sm:p-8">
-                            <h5 class="mb-4 text-xl font-medium text-blue-500">
+                            <h5 class="mb-4 text-xl inline-block relative font-medium text-blue-500">
                                 {{ $item->title }}
+                                @if ($discount)
+                                    <span
+                                        class='animate-bounce bg-blue-400 absolute -top-3 -right-10 font-semibold text-slate-50 px-2.5 text-xs py-1 rounded-xl'>{{ $discount->percentage }}%</span>
+                                @endif
                             </h5>
                             <div class="flex items-baseline text-gray-900">
                                 <span class="text-3xl font-semibold">Rp. </span>
-                                <span class="text-5xl font-extrabold tracking-tight">@currency($item->price)</span>
+                                <span class="text-5xl font-extrabold tracking-tight">
+                                    @currency($item->price)
+                                </span>
                                 <span class="ml-1 text-xl font-normal text-gray-500">/month</span>
                             </div>
                             <p class="mt-4 text-sm text-gray-600 md:text-base">
