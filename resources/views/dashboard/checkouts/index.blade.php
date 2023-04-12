@@ -36,7 +36,21 @@
                         @forelse ($checkouts as $checkout)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $checkout->user->name }}</td>
+                                <td>
+                                    <div class='position-relative'>
+                                        {{ $checkout->user->name }}
+                                        @if ($checkout->status == 'on going')
+                                            <span style='left: -10px;'
+                                                class="position-absolute top-0 translate-middle p-1 bg-warning border border-light rounded-circle">
+                                                <span class="visually-hidden"></span>
+                                            </span>
+                                        @else
+                                            <span style='left: -10px;'
+                                                class="position-absolute top-0 translate-middle p-1 bg-success border border-light rounded-circle">
+                                                <span class="visually-hidden"></span>
+                                        @endif
+                                    </div>
+                                </td>
                                 <td>{{ $checkout->camp->title }}</td>
                                 <td>{{ $checkout->created_at->format('D, Y-m') }}</td>
                                 <td>

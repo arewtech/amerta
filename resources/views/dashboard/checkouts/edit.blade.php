@@ -30,7 +30,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="select" class="form-label">Update Payment</label>
-                    <select class="form-select form-control" name="camp_id" aria-label="Default select example">
+                    <select class="form-select form-control" name="is_paid" aria-label="Default select example">
                         <option selected disabled>Select your payment</option>
                         <option {{ $checkout->is_paid == 0 ? 'selected' : '' }} value="0">
                             Pending Payment</option>

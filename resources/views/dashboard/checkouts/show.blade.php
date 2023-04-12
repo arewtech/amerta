@@ -22,6 +22,7 @@
                             <th>Title Camp</th>
                             <th>Tanggal Checkout</th>
                             <th>Price</th>
+                            <th>Camp</th>
                             <th>Status</th>
                             <th>Total</th>
                             {{-- <th>Update Terbaru</th> --}}
@@ -41,6 +42,16 @@
                                     <span style='font-size: 10px;'
                                         class="position-absolute text-white top-0 start-100 translate-middle badge rounded-pill bg-success">
                                         {{ $checkout->discount_percentage }}%
+                                    </span>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($checkout->status == 'on going')
+                                    <span style='font-size: 13px;' class='badge rounded-pill px-2 text-white bg-warning'>on
+                                        going</span>
+                                @else
+                                    <span style='font-size: 13px;' class='badge rounded-pill px-2 text-white bg-success'>
+                                        finished
                                     </span>
                                 @endif
                             </td>

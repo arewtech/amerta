@@ -12,8 +12,16 @@ return new class extends Migration {
     {
         Schema::create("checkouts", function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id")->constrained("users");
-            $table->foreignId("camp_id")->constrained("camps");
+            $table
+                ->foreignId("user_id")
+                ->constrained("users")
+                ->onUpdate("cascade")
+                ->onDelete("cascade");
+            $table
+                ->foreignId("camp_id")
+                ->constrained("camps")
+                ->onUpdate("cascade")
+                ->onDelete("cascade");
             $table->string("card_number");
             $table->date("expired");
             $table->string("cvc");
