@@ -9,12 +9,22 @@ use Illuminate\Http\Request;
 
 class PreviewController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $user = Checkout::with("camp", "user", "discount")
-            ->where("user_id", auth()->user()->id)
-            ->orderBy("created_at", "DESC")
-            ->get();
+        if ($request->q) {
+            $user = Checkout::with("camp")
+                ->whereHas("camp", function ($query) use ($request) {
+                    $query->where("title", "LIKE", "%$request->q%");
+                })
+                ->orderBy("created_at", "DESC")
+                ->get();
+            // return $camp;
+        } else {
+            $user = Checkout::with("camp", "user", "discount")
+                ->where("user_id", auth()->user()->id)
+                ->orderBy("created_at", "DESC")
+                ->get();
+        }
         // return $user;
         return view("pages.user.index", compact("user"));
     }

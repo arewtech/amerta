@@ -87,7 +87,7 @@
                                 clip-rule="evenodd"></path>
                         </svg>
                     </div>
-                    <form action="{{ route('search') }}" method="get">
+                    <form action="" method="get">
                         <input type="search" name="q" id="table-search-users"
                             class="block w-80 rounded-lg border border-gray-300 bg-gray-50 p-2 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
                             placeholder="Search for users" />
