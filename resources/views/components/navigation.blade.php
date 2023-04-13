@@ -249,8 +249,8 @@
                                 <form action="{{ route('logout') }}" method="post">
                                     @csrf
                                     <button type="submit"
-                                        class="block w-full text-left hover:bg-gray-100 px-4 py-2 text-sm text-gray-700"
-                                        role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</button>
+                                        class="block w-full text-left hover:bg-gray-100 px-4 py-2 text-sm text-gray-700">Sign
+                                        out</button>
                                 </form>
                             </div>
                         </div>
@@ -260,11 +260,6 @@
         </nav>
         <!-- Mobile menu, show/hide based on menu open state. -->
         <div x-show="open" @click.away="open = false" class="lg:hidden" role="dialog" aria-modal="true">
-            <!-- Background backdrop, show/hide based on slide-over state. -->
-            <!-- <div
-                                                  :class="{ 'backdrop-invert-0 bg-white/50': open }"
-                                                  class="fixed inset-0 z-10"
-                                                ></div> -->
             <div class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 shadow sm:max-w-sm">
                 <div class="flex items-center justify-between">
                     <a href="{{ route('home') }}" class="-m-1.5 p-1.5">
@@ -399,8 +394,7 @@
                                             <form action="{{ route('logout') }}" method="post">
                                                 @csrf
                                                 <button type="submit"
-                                                    class="block w-full text-left hover:bg-gray-100 px-4 py-2 text-sm text-gray-700"
-                                                    role="menuitem" tabindex="-1" id="user-menu-item-2">Sign
+                                                    class="block w-full text-left hover:bg-gray-100 px-4 py-2 text-sm text-gray-700">Sign
                                                     out</button>
                                             </form>
                                         </div>

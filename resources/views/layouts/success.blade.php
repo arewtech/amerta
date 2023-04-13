@@ -30,6 +30,7 @@
 
     <!-- js -->
     @include('includes.script')
+    @stack('image-preview')
 </body>
 
 </html>

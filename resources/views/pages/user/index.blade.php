@@ -103,8 +103,8 @@
                         <th scope="col" class="px-6 py-3">Checkout Camp</th>
                         <th scope="col" class="px-6 py-3">Expired</th>
                         <th scope="col" class="px-6 py-3">Price</th>
-                        <th scope="col" class="px-6 py-3">Total</th>
                         <th scope="col" class="px-6 py-3">Status Payment</th>
+                        <th scope="col" class="px-6 py-3">Total</th>
                         <th scope="col" class="px-6 py-3">Action</th>
                     </tr>
                 </thead>
@@ -144,15 +144,6 @@
                                 @endif
                             </td>
                             <td class="px-6 py-4">
-                                @if ($item->discount != null)
-                                    Rp. @currency($item->total)
-                                @elseif($item->discount_percentage != null)
-                                    Rp. @currency($item->total)
-                                @else
-                                    Rp. @currency($item->camp->price)
-                                @endif
-                            </td>
-                            <td class="px-6 py-4">
                                 @if ($item->is_paid != 1)
                                     <div class="tooltip tooltip-warning" data-tip="pending payment">
                                         <div class="flex items-center">
@@ -167,6 +158,15 @@
                                             Paid
                                         </div>
                                     </div>
+                                @endif
+                            </td>
+                            <td class="px-6 py-4">
+                                @if ($item->discount != null)
+                                    Rp. @currency($item->total)
+                                @elseif($item->discount_percentage != null)
+                                    Rp. @currency($item->total)
+                                @else
+                                    Rp. @currency($item->camp->price)
                                 @endif
                             </td>
                             <td class="px-6 py-4">

@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col items-center pb-10 px-10">
-                        <img class="lg:h-20 lg:w-20 h-16 w-16 object-cover rounded-full"
+                        <img id='img-live-preview' class="lg:h-20 lg:w-20 h-16 w-16 object-cover rounded-full"
                             src="{{ auth()->user()->avatar !== null ? asset('storage/' . auth()->user()->avatar) : 'https://ui-avatars.com/api/?name=' . auth()->user()->name . '&color=7F9CF5&background=EBF4FF' }}"
                             alt="Current profile photo" />
                         <h5 class="mb-1 text-xl font-medium text-gray-900">{{ auth()->user()->name }}</h5>
@@ -181,7 +181,7 @@
                             <div class='w-full'>
                                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900">
                                     Email</label>
-                                <input type="email" name="email" id="password" value="{{ auth()->user()->email }}"
+                                <input type="email" name="email" id="email" value="{{ auth()->user()->email }}"
                                     placeholder="amerta@gmail.com"
                                     class="border bg-slate-200/70 pointer-events-none border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                             </div>
@@ -212,9 +212,10 @@
                                         class="border bg-slate-200/70 placeholder:text-gray-900 pointer-events-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         placeholder="not verified">
                                 @else
-                                    <label for="email" class="block mb-2 text-sm font-medium text-green-700">Email
+                                    <label for="email_verified_at"
+                                        class="block mb-2 text-sm font-medium text-green-700">Email
                                         Verified</label>
-                                    <input type="email" id="email"
+                                    <input type="email" id="email_verified_at"
                                         class="bg-green-50 border pointer-events-none border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
                                         placeholder="verified">
                                 @endif
@@ -230,35 +231,20 @@
                                     {{ auth()->user()->bio ?? 'artinya apa bang messi?' }}
                                 </textarea>
                             </div>
-                            {{-- <div class='w-full order-first lg:order-none'>
-                                <label for="status" class="block mb-2 text-sm font-medium text-gray-900">
-                                    Status</label>
-                                <input type="status" name="is_admin" id="status"
-                                    value="{{ auth()->user()->is_admin }}"
-                                    class="bg-slate-200/70 pointer-events-none border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    placeholder="Roles">
-                            </div> --}}
                             <div class='w-full order-first lg:order-none'>
                                 <label for="status" class="block mb-2 text-sm font-medium text-gray-900">
                                     Change Image</label>
-                                <div class="flex items-center space-x-6">
-                                    <div class="shrink-0">
-                                        <img class="lg:h-16 lg:w-16 h-12 w-12 object-cover rounded-full"
-                                            src="{{ auth()->user()->avatar !== null ? asset('storage/' . auth()->user()->avatar) : 'https://ui-avatars.com/api/?name=' . auth()->user()->name . '&color=7F9CF5&background=EBF4FF' }}"
-                                            alt="Current profile photo" />
-                                    </div>
-                                    <label class="block">
-                                        <span class="sr-only">Choose profile photo</span>
-                                        <input type="file" name="avatar"
-                                            class="block w-full text-sm text-slate-500
+                                <label class="block">
+                                    <span class="sr-only">Choose profile photo</span>
+                                    <input type="file" name="avatar" onchange="previewImage(this)"
+                                        class="block w-full text-sm text-slate-500
                                                 file:mr-4 file:py-2 file:px-4
                                                 file:rounded-full file:border-0
                                                 file:text-sm file:font-semibold
                                                 file:bg-blue-50 file:text-blue-700
                                                 hover:file:bg-blue-100
                                                 " />
-                                    </label>
-                                </div>
+                                </label>
                             </div>
                         </div>
                         <button type="submit"
@@ -314,3 +300,14 @@
     </div>
     <!-- end hero section -->
 @endsection
+@push('image-preview')
+    <script>
+        // preview object URL
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                var url = URL.createObjectURL(input.files[0]);
+                document.getElementById('img-live-preview').src = url;
+            }
+        }
+    </script>
+@endpush

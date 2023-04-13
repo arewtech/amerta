@@ -45,15 +45,21 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                     ->file("avatar")
                     ->store("images", "public");
             }
+
             $user
                 ->forceFill([
                     "name" => $input["name"],
                     "email" => $input["email"],
-                    "occupation" => $input["occupation"] ?? null,
-                    "bio" => $input["bio"] ?? null,
-                    "avatar" => $input["avatar"] ?? null,
+                    "occupation" => $input["occupation"] ?? $user->occupation,
+                    "bio" => $input["bio"],
+                    "avatar" => $input["avatar"] ?? $user->avatar,
+                    // bisa juga seperti ini:
+                    // "avatar" => !empty($input["avatar"])
+                    //     ? $input["avatar"]
+                    //     : $user->avatar,
                 ])
                 ->save();
+            // dd($input);
         }
     }
 
@@ -75,9 +81,9 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 "name" => $input["name"],
                 "email" => $input["email"],
                 "email_verified_at" => null,
-                "occupation" => $input["occupation"] ?? null,
-                "bio" => $input["bio"] ?? null,
-                "avatar" => $input["avatar"] ?? null,
+                "occupation" => $input["occupation"] ?? $user->occupation,
+                "bio" => $input["bio"],
+                "avatar" => $input["avatar"] ?? $user->avatar,
             ])
             ->save();
         $user->sendEmailVerificationNotification();
