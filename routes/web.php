@@ -6,6 +6,7 @@ use App\Http\Controllers\CampController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DiscountController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\UserController;
@@ -65,6 +66,10 @@ Route::middleware("auth")->group(function () {
         UserController::class,
         "search",
     ])->name("search");
+    Route::get("dashboard/user/histories", [
+        HistoryController::class,
+        "index",
+    ])->name("histories");
     Route::get("dashboard/user", [PreviewController::class, "index"])->name(
         "preview"
     );

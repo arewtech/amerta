@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->string("tagline");
             $table->integer("price");
             $table->text("description");
+            $table->string("status")->default("active");
             $table->softDeletes();
             $table->timestamps();
         });

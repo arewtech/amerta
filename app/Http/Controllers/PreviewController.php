@@ -14,6 +14,7 @@ class PreviewController extends Controller
         if ($request->q) {
             $user = Checkout::with("camp", "user", "discount")
                 ->where("user_id", auth()->user()->id)
+                ->whereStatus("on going")
                 ->whereHas("camp", function ($query) use ($request) {
                     $query->where("title", "LIKE", "%$request->q%");
                 })
@@ -23,6 +24,7 @@ class PreviewController extends Controller
         } else {
             $user = Checkout::with("camp", "user", "discount")
                 ->where("user_id", auth()->user()->id)
+                ->whereStatus("on going")
                 ->orderBy("created_at", "DESC")
                 ->get();
         }
@@ -37,6 +39,7 @@ class PreviewController extends Controller
         $user = Checkout::with("camp", "user")
             ->where("user_id", auth()->user()->id)
             ->where("camp_id", $camp->id)
+            ->whereStatus("on going")
             ->first();
         // return $user;
         return view("pages.user.show", compact("user"));

@@ -239,6 +239,9 @@
                                         class="block hover:bg-gray-100 px-4 py-2 text-sm text-gray-700" role="menuitem"
                                         tabindex="-1" id="user-menu-item-0">My Dashboard</a>
                                 @endif
+                                <a href="{{ route('histories') }}"
+                                    class="block hover:bg-gray-100 px-4 py-2 text-sm text-gray-700" role="menuitem"
+                                    tabindex="-1" id="user-menu-item-0">History Camps</a>
 
                                 <a href="{{ route('update-profile') }}"
                                     class="block hover:bg-gray-100 px-4 py-2 text-sm text-gray-700" role="menuitem"
@@ -246,6 +249,7 @@
 
                                 <a href="#" class="block hover:bg-gray-100 px-4 py-2 text-sm text-gray-700"
                                     role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
+
                                 <form action="{{ route('logout') }}" method="post">
                                     @csrf
                                     <button type="submit"
@@ -383,6 +387,9 @@
                                                     class="block hover:bg-gray-100 px-4 py-2 text-sm text-gray-700"
                                                     role="menuitem" tabindex="-1" id="user-menu-item-0">My Dashboard</a>
                                             @endif
+                                            <a href="{{ route('histories') }}"
+                                                class="block hover:bg-gray-100 px-4 py-2 text-sm text-gray-700"
+                                                role="menuitem" tabindex="-1" id="user-menu-item-0">History Camps</a>
 
                                             <a href="{{ route('update-profile') }}"
                                                 class="block hover:bg-gray-100 px-4 py-2 text-sm text-gray-700"

@@ -21,11 +21,19 @@ class Camp extends Model
             return false;
         }
         // check jika user sudah login maka return true
-
         return checkout::whereCampId($this->id)
             ->whereUserId(auth()->id())
             // ->where("expired", ">", now())
-            // ->where("status", "on going")
+            ->where("status", "on going")
+            ->exists();
+    }
+
+    public function GetIsFinishedAttribute()
+    {
+        return checkout::whereCampId($this->id)
+            ->whereUserId(auth()->id())
+            // ->where("expired", "<", now())
+            ->where("status", "finished")
             ->exists();
     }
 

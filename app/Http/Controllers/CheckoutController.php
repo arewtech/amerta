@@ -44,6 +44,17 @@ class CheckoutController extends Controller
                 ->route("preview")
                 ->with("success", "kamu sudah terdaftar di $camp->title ini!");
         }
+
+        // check apakah camp sudah selesai, jika sudah maka tidak bisa mendaftar
+        if ($camp->is_finished) {
+            // kalau sudah maka redirect ke halaman dashboard payment
+            return redirect()
+                ->route("histories")
+                ->with(
+                    "finished",
+                    "kamu sudah menyelesaikan $camp->title ini, tidak bisa mendaftar lagi!"
+                );
+        }
         // kalau belum maka tampilkan halaman checkout / create
         return view("pages.checkout.create", compact("camp", "discount"));
     }

@@ -13,7 +13,7 @@ class HomeController extends Controller
     {
         $discount = Discount::latest()->first();
         $camps = Camp::with("benefits")->get();
-        // return $discount;
+        // return $camps;
         return view("pages.index", compact("camps", "discount"));
     }
 }
