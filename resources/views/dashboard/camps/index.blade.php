@@ -7,7 +7,7 @@
         <button type="button" class="d-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal"
             data-target="#createCampModal"><i class="fas fa-plus-circle"></i></button>
     </div>
-    <p><span style="font-weight: 700">PS :</span> Punya 4 benefits jika ingin camp active</p>
+    <p><span style="font-weight: 700">PS :</span> default camp inactive, update camp jika ingin menjadi active</p>
 
     <!-- Content Row -->
     <!-- DataTales Example -->
@@ -35,12 +35,13 @@
                                 <td>{{ $camp->title }}</td>
                                 <td>{{ $camp->tagline }}</td>
                                 <td>
-                                    @if ($camp->benefits->count() !== 4)
-                                        <span style='font-size: 13px;'
-                                            class='badge rounded-pill px-2 text-white bg-danger'>inactive</span>
-                                    @else
+                                    {{-- @if ($camp->benefits->count() !== 4) --}}
+                                    @if ($camp->status == 'active')
                                         <span style='font-size: 13px;'
                                             class='badge rounded-pill px-2 text-white bg-success'>active</span>
+                                    @else
+                                        <span style='font-size: 13px;'
+                                            class='badge rounded-pill px-2 text-white bg-danger'>inactive</span>
                                     @endif
                                 </td>
                                 <td>Rp. @currency($camp->price)</td>

@@ -5,7 +5,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-2">
         <h1 class="h3 mb-0 text-gray-800">Table Camp Benefits</h1>
     </div>
-    <p><span style="font-weight: 700">PS :</span> Punya 4 benefits jika ingin camp active</p>
+    <p><span style="font-weight: 700">PS :</span> Min 4 - 8 benefits untuk di tampilkan di website!</p>
     <!-- Content Row -->
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -18,8 +18,8 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Title Camps</th>
-                            {{-- <th>Min Camp Active</th> --}}
+                            <th>Title Camp</th>
+                            <th>Status Camp</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -28,8 +28,15 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td class='text-capitalize'>{{ $benefit->title }}</td>
-                                {{-- <td>
-                                    Punya 4 benefits jika ingin camp active</td> --}}
+                                <td>
+                                    @if ($benefit->status == 'active')
+                                        <span style='font-size: 13px;'
+                                            class='badge rounded-pill px-2 text-white bg-success'>active</span>
+                                    @else
+                                        <span style='font-size: 13px;'
+                                            class='badge rounded-pill px-2 text-white bg-danger'>inactive</span>
+                                    @endif
+                                </td>
                                 {{-- <td>
                                     @if ($benefit->benefits->count() == 0)
                                         <span style='font-size: 13px;'

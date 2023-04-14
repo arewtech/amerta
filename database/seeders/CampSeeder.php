@@ -21,6 +21,7 @@ class CampSeeder extends Seeder
                     "Belajar Laravel dari dasar hingga mahir dengan para mentor yang berpengalaman",
                 "price" => 130000,
                 "description" => fake()->paragraph(5),
+                "status" => "active",
                 // "benefits" => [
                 //     [
                 //         "title" => "Camp 1 benefit 1",
@@ -37,29 +38,16 @@ class CampSeeder extends Seeder
                     "Belajar Laravel lanjutan dari para mentor yang berpengalaman dan ahli di bidangnya",
                 "price" => 360000,
                 "description" => fake()->paragraph(5),
-                // "benefits" => [
-                //     [
-                //         "title" => "Camp 2 benefit 1",
-                //     ],
-                //     [
-                //         "title" => "Camp 2 benefit 2",
-                //     ],
-                // ],
+                "status" => "active",
             ],
             [
                 "title" => "Expert Vue Camp",
                 "slug" => "expert-vue-camp",
-                "tagline" => "Belajar Laravel lanjutan ahli di bidangnya",
-                "price" => 300,
+                "tagline" =>
+                    "Belajar vue js masse, langsung aja masse kita sat set belajarnya digidaw",
+                "price" => 127000,
                 "description" => fake()->paragraph(5),
-                // "benefits" => [
-                //     [
-                //         "title" => "Camp 2 benefit 1",
-                //     ],
-                //     [
-                //         "title" => "Camp 2 benefit 2",
-                //     ],
-                // ],
+                "status" => "inactive",
             ],
         ];
 

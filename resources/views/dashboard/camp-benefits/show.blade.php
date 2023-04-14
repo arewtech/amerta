@@ -4,7 +4,7 @@
     <!-- Page Heading -->
     <div class="d-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Table List Benefits ( {{ $campBenefits->title }} :
-            {{ $campBenefits->benefits->count() == 4 ? 'Active' : 'Inactive' }} )</h1>
+            {{ $campBenefits->status }} )</h1>
         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createCampBenefitsModal"><i
                 class="fas fa-plus-circle"></i></button>
     </div>

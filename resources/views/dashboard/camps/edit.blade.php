@@ -38,6 +38,23 @@
                         placeholder="Price">
                 </div>
                 <div class="mb-3">
+                    <label for="status" class="form-label">Status Camp</label>
+                    <select class="form-select form-control" name="status" id='status'
+                        aria-label="Default select example">
+                        <option selected disabled>Select actived camps</option>
+                        {{-- @foreach ($camps as $camp) --}}
+                        <option {{ $camp->status == 'active' ? 'selected' : '' }} value="active">active
+                        </option>
+                        <option {{ $camp->status == 'inactive' ? 'selected' : '' }} value="inactive">inactive</option>
+                        {{-- @endforeach --}}
+                    </select>
+                    @if ($camp->status == 'active')
+                        <div class="form-text text-success" id="status">active camp pada website!</div>
+                    @else
+                        <div class="form-text text-danger" id="status">inactive camp pada website!</div>
+                    @endif
+                </div>
+                <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
                     <textarea class="form-control" name="description" placeholder="Your desc.." id="description" rows="3">
                         {{ $camp->description }}

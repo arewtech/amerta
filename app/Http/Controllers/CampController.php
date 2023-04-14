@@ -61,6 +61,7 @@ class CampController extends Controller
     {
         $data = $request->all();
         $data["slug"] = null;
+        // return $data;
         $camp->update($data);
         return redirect()->route("camps.index");
     }

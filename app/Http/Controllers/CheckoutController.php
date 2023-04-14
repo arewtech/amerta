@@ -47,7 +47,7 @@ class CheckoutController extends Controller
 
         // check apakah camp sudah selesai, jika sudah maka tidak bisa mendaftar
         if ($camp->is_finished) {
-            // kalau sudah maka redirect ke halaman dashboard payment
+            // kalau sudah maka redirect ke halaman histories
             return redirect()
                 ->route("histories")
                 ->with(

@@ -11,7 +11,14 @@ class Camp extends Model
 {
     use HasFactory, SoftDeletes, Sluggable;
 
-    protected $fillable = ["title", "slug", "tagline", "price", "description"];
+    protected $fillable = [
+        "title",
+        "slug",
+        "tagline",
+        "price",
+        "status",
+        "description",
+    ];
 
     public function getIsRegisteredAttribute()
     {

@@ -157,7 +157,7 @@
                         </dt>
                         <dd class="mt-2 text-base leading-7 text-gray-600">
                             Kamu bisa mendapatkan pekerjaan sesuai dengan keahlian yang kamu
-                            pelajari selama mentoring di Loka.com
+                            pelajari selama mentoring di Amerta.com
                         </dd>
                     </div>
                 </dl>
@@ -246,7 +246,7 @@
         <!-- title pricing -->
         <div class="pt-36 text-center">
             <h1 class="mb-4 flex items-center justify-center text-4xl font-extralight text-slate-100">
-                Loka.com<span
+                Amerta.com<span
                     class="mr-2 ml-2 rounded bg-blue-100 px-2.5 py-0.5 text-base font-semibold text-blue-800">PRO</span>
             </h1>
 
@@ -254,7 +254,7 @@
                 Invest duit lu buat ini aja brader 🫶🏻
             </h1>
             <p class="text-lg font-normal text-slate-200 sm:px-16 lg:text-xl xl:px-48">
-                Di Loka.com kita udah menyediakan beberapa paket yang bisa kalian
+                Di Amerta.com kita udah menyediakan beberapa paket yang bisa kalian
                 pilih - pilih dlu eaaa, harga bersahabat dan juga banefit yang di
                 dapat lumayan untuk jangka panjang, jadi tunggu apa lagi ayo gabung
                 cok!
