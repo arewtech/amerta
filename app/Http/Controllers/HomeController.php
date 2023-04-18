@@ -14,7 +14,7 @@ class HomeController extends Controller
         $discount = Discount::latest()->first();
         $camps = Camp::with("benefits")
             ->whereStatus("active")
-            ->limit(3)
+            ->limit(2)
             ->latest()
             ->get();
         // return $camps;

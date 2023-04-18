@@ -62,14 +62,18 @@ Route::middleware("auth")->group(function () {
     //     $camps = Camp::search($search)->get();
     //     return view("pages.search", compact("camps"));
     // })->name("search");
-    Route::get("/dashboard/user/search", [
-        UserController::class,
-        "search",
-    ])->name("search");
+    // Route::get("/dashboard/user/search", [
+    //     UserController::class,
+    //     "search",
+    // ])->name("search");
     Route::get("dashboard/user/histories", [
         HistoryController::class,
         "index",
     ])->name("histories");
+    Route::get("dashboard/user/histories/{camp:slug}", [
+        HistoryController::class,
+        "show",
+    ])->name("histories.show");
     Route::get("dashboard/user", [PreviewController::class, "index"])->name(
         "preview"
     );
