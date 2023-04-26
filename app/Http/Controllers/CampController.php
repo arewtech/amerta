@@ -13,9 +13,7 @@ class CampController extends Controller
      */
     public function index()
     {
-        $camps = Camp::with("benefits")
-            ->orderBy("created_at", "DESC")
-            ->get();
+        $camps = Camp::orderBy("created_at", "DESC")->get();
         // return $camps;
         return view("dashboard.camps.index", compact("camps"));
     }

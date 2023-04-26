@@ -22,7 +22,6 @@
                         <tr>
                             <th>No</th>
                             <th>Title Camp</th>
-                            <th>Tagline</th>
                             <th>Status</th>
                             <th>Price</th>
                             <th>Action</th>
@@ -33,9 +32,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $camp->title }}</td>
-                                <td>{{ $camp->tagline }}</td>
                                 <td>
-                                    {{-- @if ($camp->benefits->count() !== 4) --}}
                                     @if ($camp->status == 'active')
                                         <span style='font-size: 13px;'
                                             class='badge rounded-pill px-2 text-white bg-success'>active</span>
