@@ -34,6 +34,7 @@ class CheckoutController extends Controller
     public function create(Camp $camp)
     {
         $discount = Discount::latest()->first();
+        // return $discount;
         // bisa langsung bind camp nya atau mau cari secara manual menggunakan where.
         // $checkoutCamp = Camp::where("slug", $slug)->firstOrFail();
         // return $checkout;

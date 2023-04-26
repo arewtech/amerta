@@ -24,6 +24,7 @@
                             <th>Title Camp</th>
                             <th>Status</th>
                             <th>Price</th>
+                            <th class='text-center'>Image</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -42,6 +43,11 @@
                                     @endif
                                 </td>
                                 <td>Rp. @currency($camp->price)</td>
+                                <td class='text-center'>
+                                    <img style="width: 50px; height: 50px; object-fit: cover; object-position: center;"
+                                        class="img-profile rounded-circle"
+                                        src="{{ $camp->image !== null ? asset('storage/' . $camp->image) : 'https://ui-avatars.com/api/?name=' . $camp->title . '&color=7F9CF5&background=EBF4FF' }}">
+                                </td>
                                 <td>
                                     <div class="d-inline-flex">
                                         <a href="{{ route('camps.edit', $camp->slug) }}"
@@ -102,7 +108,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="{{ route('camps.store') }}" method="post">
+                <form action="{{ route('camps.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
@@ -110,11 +116,6 @@
                             <input type="text" name="title" class="form-control" id="title"
                                 placeholder="Camp title">
                         </div>
-                        {{-- <div class="mb-3">
-                            <label for="slug" class="form-label">Camp slug</label>
-                            <input type="text" name="slug" class="form-control" id="slug"
-                                placeholder="your-camp-slug">
-                        </div> --}}
                         <div class="mb-3">
                             <label for="tagline" class="form-label">Camp Tagline</label>
                             <input type="text" name="tagline" class="form-control" id="tagline"
@@ -122,7 +123,12 @@
                         </div>
                         <div class="mb-3">
                             <label for="price" class="form-label">Price</label>
-                            <input type="number" name="price" class="form-control" id="price" placeholder="Price">
+                            <input type="number" name="price" class="form-control" id="price"
+                                placeholder="Price">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Image</label>
+                            <input class="form-control" name="image" type="file" id="formFile">
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>

@@ -32,6 +32,12 @@ class CampController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        if ($request->file("image")) {
+            $data["image"] = $request
+                ->file("image")
+                ->store("assets/camp", "public");
+        }
+        // return $data;
         Camp::create($data);
         return back();
     }

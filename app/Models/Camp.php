@@ -17,6 +17,7 @@ class Camp extends Model
         "tagline",
         "price",
         "status",
+        "image",
         "description",
     ];
 
