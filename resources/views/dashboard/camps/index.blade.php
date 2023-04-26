@@ -113,26 +113,54 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="title" class="form-label">Camp Title</label>
-                            <input type="text" name="title" class="form-control" id="title"
-                                placeholder="Camp title">
+                            <input type="text" name="title" class="form-control @error('title') is-invalid @enderror"
+                                id="title" placeholder="Camp title">
+                            @error('title')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="tagline" class="form-label">Camp Tagline</label>
-                            <input type="text" name="tagline" class="form-control" id="tagline"
-                                placeholder="Camp tagline">
+                            <input type="text" name="tagline" class="form-control @error('tagline') is-invalid @enderror"
+                                id="tagline" placeholder="Camp tagline">
+                            @error('tagline')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="price" class="form-label">Price</label>
-                            <input type="number" name="price" class="form-control" id="price"
+                            <input type="number" name="price"
+                                class="form-control @error('price') is-invalid @enderror" id="price"
                                 placeholder="Price">
+                            @error('price')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="formFile" class="form-label">Image</label>
-                            <input class="form-control" name="image" type="file" id="formFile">
+                            <input class="form-control @error('image') is-invalid @enderror" name="image"
+                                type="file" id="formFile">
+                            @error('image')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control" name="description" placeholder="Your desc.." id="description" rows="3"></textarea>
+                            <textarea class="form-control @error('description') is-invalid @enderror" name="description"
+                                placeholder="Your desc.." id="description" rows="3"></textarea>
+                            @error('description')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -145,4 +173,19 @@
     </div>
 
     <!-- Delete Camp Modal-->
+    @push('modal-js')
+        @if ($errors->any())
+            <script>
+                var myModal = new bootstrap.Modal(document.getElementById('createCampModal'), {
+                    keyboard: false
+                })
+                // refresh page
+                myModal.show()
+                // $('.modal').on('hidden.bs.modal', function() {
+                //     window.location.reload();
+                // });
+                // refresh page
+            </script>
+        @endif
+    @endpush
 @endsection

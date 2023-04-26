@@ -32,6 +32,13 @@ class CampController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            "title" => "required|max:255",
+            "tagline" => "required|max:255",
+            "price" => "required|integer",
+            "description" => "required",
+            "image" => "nullable|image|mimes:jpg,jpeg,png,svg",
+        ]);
         $data = $request->all();
         if ($request->file("image")) {
             $data["image"] = $request
