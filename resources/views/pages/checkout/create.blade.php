@@ -26,7 +26,9 @@
                     <div class="flex items-center md:col-span-2">
                         <div class="px-4 text-center sm:px-0">
                             <img class="m-auto w-3/4 drop-shadow-md md:w-8/12 lg:w-7/12"
-                                src="{{ asset('frontend') }}/assets/images/lara.svg" alt="laravel" />
+                                src="{{ $camp->image !== null ? asset('storage/' . $camp->image) : asset('frontend/assets/images/optional.svg') }}"
+                                alt="laravel" />
+                            {{-- {{ asset('frontend') }}/assets/images/lara.svg --}}
                             <h3 class="mt-6 text-xl font-semibold leading-6 text-gray-900 md:mt-8 md:text-lg lg:text-xl">
                                 {{ $camp->title }}
                             </h3>

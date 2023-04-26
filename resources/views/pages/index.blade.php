@@ -1,5 +1,9 @@
 @extends('layouts.app')
 @section('content')
+    @if (session('error'))
+        @include('includes.alert-error')
+    @endif
+    {{-- @include('includes.alert-error') --}}
     <!-- main content -->
     <!-- section hero content -->
     <div class="xl:w-12/12 mx-auto w-full px-10 lg:px-12 2xl:w-10/12">

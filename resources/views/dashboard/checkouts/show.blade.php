@@ -30,7 +30,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{{ $checkout->camp->title }}</td>
+                            <td>{{ $checkout->camp->title }}
+                            </td>
                             <td>{{ $checkout->created_at->format('D, Y-m') }}</td>
                             <td> Rp. @currency($checkout->camp->price)
                                 @if ($checkout->discount != null)

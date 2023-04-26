@@ -44,6 +44,13 @@ class Camp extends Model
             ->where("status", "finished")
             ->exists();
     }
+    // get is inactive attribute
+    public function getIsInactiveAttribute()
+    {
+        return camp::whereId($this->id)
+            ->where("status", "inactive")
+            ->exists();
+    }
 
     public function benefits()
     {
