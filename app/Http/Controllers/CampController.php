@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Camp;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class CampController extends Controller
@@ -65,6 +66,12 @@ class CampController extends Controller
     {
         $data = $request->all();
         $data["slug"] = null;
+        if ($request->hasFile("image")) {
+            Storage::delete("public/" . $camp->image);
+            $data["image"] = $request
+                ->file("image")
+                ->store("assets/camp", "public");
+        }
         // return $data;
         $camp->update($data);
         return redirect()->route("camps.index");
@@ -75,6 +82,9 @@ class CampController extends Controller
      */
     public function destroy(Camp $camp)
     {
+        if ($camp->image) {
+            Storage::delete("public/" . $camp->image);
+        }
         $camp->delete();
         return back();
     }

@@ -14,7 +14,7 @@
         </div>
 
         <div class="card-body">
-            <form action="{{ route('camps.update', $camp->slug) }}" method="post">
+            <form action="{{ route('camps.update', $camp->slug) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="mb-3">
@@ -59,6 +59,18 @@
                     <textarea class="form-control" name="description" placeholder="Your desc.." id="description" rows="3">
                         {{ $camp->description }}
                     </textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image</label>
+                    <div class='d-flex align-items-center'>
+                        <img style="width: 50px; height: 50px; object-fit: cover; object-position: center;"
+                            class="img-profile rounded-circle mr-3"
+                            src="{{ $camp->image !== null ? asset('storage/' . $camp->image) : 'https://ui-avatars.com/api/?name=' . $camp->title . '&color=7F9CF5&background=EBF4FF' }}">
+                        <div>
+                            <input type="file" name="image" value="{{ $camp->image }}" class="form-control"
+                                id="image" placeholder="Image">
+                        </div>
+                    </div>
                 </div>
                 {{-- create button cencel --}}
                 <div class="d-inline-flex">
