@@ -34,8 +34,8 @@
                 </div>
                 <div class="mb-3">
                     <label for="price" class="form-label">Price</label>
-                    <input type="number" name="price" value="{{ $camp->price }}" class="form-control" id="price"
-                        placeholder="Price">
+                    <input type="text" name="price" value="{{ $camp->price }}" class="form-control rupiah"
+                        id="price" placeholder="Price">
                 </div>
                 <div class="mb-3">
                     <label for="status" class="form-label">Status Camp</label>

@@ -133,8 +133,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="price" class="form-label">Price</label>
-                            <input type="number" name="price"
-                                class="form-control @error('price') is-invalid @enderror" id="price"
+                            <input type="text" name="price"
+                                class="form-control rupiah @error('price') is-invalid @enderror" id="price"
                                 placeholder="Price">
                             @error('price')
                                 <div class="invalid-feedback">

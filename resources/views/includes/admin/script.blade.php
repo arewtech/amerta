@@ -14,4 +14,10 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('backend') }}/assets/js/demo/chart-area-demo.js"></script>
     <script src="{{ asset('backend') }}/assets/js/demo/chart-pie-demo.js"></script>
+    <script src="{{ asset('frontend/assets/js/jquery.mask.min.js') }}"></script>
+    <script>
+        $('.rupiah').mask("#.##0", {
+            reverse: true
+        });
+    </script>
     @stack('modal-js')

@@ -32,6 +32,10 @@ class CampController extends Controller
      */
     public function store(Request $request)
     {
+        $request->merge([
+            "price" => str_replace(".", "", $request->price),
+        ]);
+
         $request->validate([
             "title" => "required|max:255",
             "tagline" => "required|max:255",
@@ -71,6 +75,10 @@ class CampController extends Controller
      */
     public function update(Request $request, Camp $camp)
     {
+        $request->merge([
+            "price" => str_replace(".", "", $request->price),
+        ]);
+
         $data = $request->all();
         $data["slug"] = null;
         if ($request->hasFile("image")) {

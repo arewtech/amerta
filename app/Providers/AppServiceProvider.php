@@ -20,6 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // function boot() ini untuk apa ?
+        // untuk membuat directive baru di blade, jadi kita bisa membuat directive sendiri,
+        // misal kita membuat directive baru dengan nama currency, maka kita bisa menggunakan directive tersebut di blade dengan cara @currency($expression)
         Blade::directive("currency", function ($expression) {
             return "<?php echo number_format($expression, 0, ',', '.'); ?>";
         });

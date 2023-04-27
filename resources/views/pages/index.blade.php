@@ -352,11 +352,6 @@
                                         class="inline-flex w-full justify-center rounded-lg bg-blue-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-200">
                                         You can choose this plan
                                     </a>
-                                    {{-- @elseif($item->status == 'inactive')
-                                    <a href="#"
-                                        class="inline-flex w-full cursor-not-allowed  justify-center rounded-lg bg-gray-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-600 focus:outline-none focus:ring-4 focus:ring-gray-200">
-                                        You can't choose this plan
-                                    </a> --}}
                                 @else
                                     <a href="#"
                                         class="inline-flex w-full cursor-not-allowed  justify-center rounded-lg bg-gray-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-600 focus:outline-none focus:ring-4 focus:ring-gray-200">
