@@ -4,8 +4,9 @@
     <!-- Page Heading -->
     <div class="d-flex align-items-center justify-content-between mb-2">
         <h1 class="h3 mb-0 text-gray-800">Table Checkouts : {{ $checkouts->count() }}</h1>
-        <form action="{{ route('checkouts.search') }}" class="d-flex" role="search" method="get">
-            <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search" name="q">
+        <form action="" class="d-flex" role="search" method="get">
+            <input class="form-control mr-2" type="search" autofocus value="{{ request()->q }}" placeholder="Search"
+                aria-label="Search" name="q">
             <button class="btn btn-outline-primary" type="submit">Search</button>
         </form>
     </div>

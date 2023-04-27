@@ -14,12 +14,22 @@ class CheckoutController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $checkouts = Checkout::with("camp", "user", "discount")
-            ->orderBy("id", "DESC")
-            ->get();
-        // return $checkouts;
+        if ($request->has("q")) {
+            $checkouts = Checkout::with("camp", "user", "discount")
+                ->whereHas("camp", function ($query) use ($request) {
+                    $query->where("title", "LIKE", "%" . $request->q . "%");
+                    // ->orWhere("is_paid", "LIKE", "%" . $request->q . "%");
+                })
+                ->orderBy("id", "DESC")
+                ->get();
+            // return $checkouts;
+        } else {
+            $checkouts = Checkout::with("camp", "user", "discount")
+                ->orderBy("id", "DESC")
+                ->get();
+        }
         return view("dashboard.checkouts.index", compact("checkouts"));
     }
 
