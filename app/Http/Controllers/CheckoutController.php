@@ -16,19 +16,21 @@ class CheckoutController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->has("q")) {
+        if ($request->has("q") || $request->paid) {
             $checkouts = Checkout::with("camp", "user", "discount")
+                // filter berdasarkan is_paid
+                ->where("is_paid", "LIKE", "%" . $request->paid . "%")
                 ->whereHas("camp", function ($query) use ($request) {
                     $query->where("title", "LIKE", "%" . $request->q . "%");
                     // ->orWhere("is_paid", "LIKE", "%" . $request->q . "%");
                 })
                 ->orderBy("id", "DESC")
                 ->get();
-            // return $checkouts;
         } else {
             $checkouts = Checkout::with("camp", "user", "discount")
                 ->orderBy("id", "DESC")
                 ->get();
+            // return $checkouts;
         }
         return view("dashboard.checkouts.index", compact("checkouts"));
     }

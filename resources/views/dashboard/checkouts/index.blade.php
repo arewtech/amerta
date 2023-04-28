@@ -5,6 +5,12 @@
     <div class="d-flex align-items-center justify-content-between mb-2">
         <h1 class="h3 mb-0 text-gray-800">Table Checkouts : {{ $checkouts->count() }}</h1>
         <form action="" class="d-flex" role="search" method="get">
+            <select class="form-select form-control mr-2" name="paid" aria-label="Default select example">
+                <option selected disabled>Filter by paid</option>
+                <option value="0">Payment Pending</option>
+                <option value="1">Payment Success</option>
+                {{-- <option value="3">Three</option> --}}
+            </select>
             <input class="form-control mr-2" type="search" autofocus value="{{ request()->q }}" placeholder="Search"
                 aria-label="Search" name="q">
             <button class="btn btn-outline-primary" type="submit">Search</button>
