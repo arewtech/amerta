@@ -1,5 +1,5 @@
     <!-- navigation -->
-    <header x-data="{ open: false }" class="bg-transparent">
+    <header x-data="{ open: false }" class="bg-transparent print:hidden">
         <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
                 <a href="{{ route('home') }}" class="-m-1.5 p-1.5">
