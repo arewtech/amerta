@@ -45,6 +45,10 @@ Preview Camps
 
 ![amerta](/public/design/preview-camp.png)
 
+Preview Histories
+
+![amerta](/public/design/history.png)
+
 ### satset
 
 ```bash
