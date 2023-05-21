@@ -12,9 +12,10 @@ class HistoryController extends Controller
     {
         $camps = Checkout::with("camp")
             ->where("user_id", auth()->id())
-            ->whereStatus("finished")
+            ->where("status", "finished")
             ->latest()
             ->get();
+        // return $camps;
         return view("pages.histories.index", compact("camps"));
     }
 
