@@ -26,10 +26,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get("/", [HomeController::class, "index"])->name("home");
+Route::get("/", [HomeController::class, "index"])
+    ->name("home")
+    ->middleware(["auth"]);
 
 Route::controller(CheckoutController::class)
-    ->middleware("auth")
+    ->middleware(["auth", "verified"])
     ->group(function () {
         Route::get("/checkout/q/{camp:slug}/checkout-success", "success")->name(
             "checkout.success"
@@ -39,7 +41,7 @@ Route::controller(CheckoutController::class)
     });
 
 Route::prefix("dashboard")
-    ->middleware(["auth", EnsureTokenIsValid::class])
+    ->middleware(["auth", "verified", EnsureTokenIsValid::class])
     ->group(function () {
         Route::get("/", [DashboardController::class, "index"])->name(
             "dashboard"
@@ -55,17 +57,7 @@ Route::prefix("dashboard")
         Route::get("/users", [AdminController::class, "index"])->name("admin");
     });
 
-Route::middleware("auth")->group(function () {
-    // route search
-    // Route::get("/search", function () {
-    //     $search = request()->query("search");
-    //     $camps = Camp::search($search)->get();
-    //     return view("pages.search", compact("camps"));
-    // })->name("search");
-    // Route::get("/dashboard/user/search", [
-    //     UserController::class,
-    //     "search",
-    // ])->name("search");
+Route::middleware(["auth", "verified"])->group(function () {
     Route::get("dashboard/user/histories", [
         HistoryController::class,
         "index",
