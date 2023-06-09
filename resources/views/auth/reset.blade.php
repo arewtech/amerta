@@ -9,20 +9,17 @@
                 </a>
                 <div class="w-full bg-white border border-slate-50 rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 ">
                     <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                        @if (session('status'))
-                            <div class="my-2 font-medium text-sm text-center text-success">
-                                Password reset has successfully, you can login now.
-                            </div>
-                        @endif
                         <h1 class="text-xl font-semibold leading-tight tracking-tight text-gray-900 md:text-2xl ">
-                            Sign in to Amerta
+                            Reset Password
                         </h1>
-                        <form action="{{ route('login') }}" method="post" class="space-y-4 md:space-y-6" action="#">
+                        <form action="{{ route('password.update') }}" method="post" class="space-y-4 md:space-y-6">
                             @csrf
+                            <input type="hidden" name="token" value="{{ request()->route('token') }}">
                             <div>
                                 <label for="email"
                                     class="@error('email') is-invalid-field @enderror block mb-2 text-sm font-medium text-gray-900 ">Email</label>
                                 <input type="email" autocomplete="off" name="email" id="email"
+                                    value="{{ old('email', request()->query('email')) }}"
                                     class="@error('email') is-invalid-input @enderror bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 "
                                     placeholder="nomads@company.com">
                                 @error('email')
@@ -42,23 +39,21 @@
                                     </div>
                                 @enderror
                             </div>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-start">
-                                    <div class="flex items-center h-5">
-                                        <input id="remember" aria-describedby="remember" type="checkbox"
-                                            class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300">
+                            <div>
+                                <label for="password_confirmation"
+                                    class="@error('password_confirmation') is-invalid-field @enderror block mb-2 text-sm font-medium text-gray-900 ">Password
+                                    Confirmation</label>
+                                <input type="password" name="password_confirmation" id="password" placeholder="••••••••"
+                                    class="@error('password_confirmation') is-invalid-input @enderror bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 ">
+                                @error('password_confirmation')
+                                    <div class="text-red-500 text-sm mt-2">
+                                        {{ $message }}
                                     </div>
-                                    <div class="ml-3 text-sm">
-                                        <label for="remember" class="text-gray-500 ">Remember me</label>
-                                    </div>
-                                </div>
-                                <a href="{{ route('password.request') }}"
-                                    class="text-sm font-medium text-blue-600 hover:underline">Forgot
-                                    password?</a>
+                                @enderror
                             </div>
                             <button type="submit"
-                                class="w-full text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign
-                                in</button>
+                                class="w-full text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Reset
+                                Password</button>
                             <p class="text-sm font-light text-gray-500">
                                 Don’t have an account yet? <a href="{{ route('register') }}"
                                     class="font-medium text-blue-600 hover:underline ">Sign up</a>
