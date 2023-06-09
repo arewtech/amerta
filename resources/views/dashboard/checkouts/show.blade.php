@@ -6,8 +6,9 @@
         <h1 class="h3 mb-0 text-gray-800">Detail Table Checkouts : {{ $checkout->user->name }}</h1>
     </div>
     <p>Update detail checkout terbaru masuk pada tanggal<span style="font-weight: 700"> (
-            {{ $checkout->updated_at->format('D, Y-m | H:i:s') }} ) </span></p>
-
+            {{ $checkout->updated_at->translatedFormat('l, m - Y | H:i:s') }} ) </span></p>
+    {{-- $checkout->updated_at->format('D, Y-m | H:i:s' --}}
+    {{-- created_at->translatedFormat('l, m - Y | H:i:s') --}}
     <!-- Content Row -->
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -32,7 +33,7 @@
                         <tr>
                             <td>{{ $checkout->camp->title }}
                             </td>
-                            <td>{{ $checkout->created_at->format('D, Y-m') }}</td>
+                            <td>{{ $checkout->created_at->translatedFormat('l, m - Y') }}</td>
                             <td> Rp. @currency($checkout->camp->price)
                                 @if ($checkout->discount != null)
                                     <span style='font-size: 10px;'
@@ -108,7 +109,7 @@
                             <td>{{ $checkout->user->occupation }}</td>
                             <td>{{ $checkout->card_number }}</td>
                             <td>{{ $checkout->cvc }}</td>
-                            <td>{{ $checkout->expired }}</td>
+                            <td>{{ $checkout->expired->translatedFormat('l, m - Y') }}</td>
                         </tr>
                     </tbody>
                 </table>

@@ -59,7 +59,7 @@
                                     </div>
                                 </td>
                                 <td>{{ $checkout->camp->title }}</td>
-                                <td>{{ $checkout->created_at->format('D, Y-m') }}</td>
+                                <td>{{ $checkout->created_at->translatedFormat('l, m - Y') }}</td>
                                 <td>
                                     <div class='position-relative'>
                                         Rp. @currency($checkout->camp->price)

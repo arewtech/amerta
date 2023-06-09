@@ -28,6 +28,9 @@ class Checkout extends Model
     ];
 
     protected $with = ["camp", "user"];
+    protected $casts = [
+        "expired" => "date",
+    ];
     // public function searchableAs()
     // {
     //     return "users_index";
