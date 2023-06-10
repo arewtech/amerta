@@ -9,18 +9,18 @@ PS: website Amerta ini akan selalu di update kedepannya.
 ## Features
 
 -   Authentication ( Fortify ) ✅
--   Update profile ✅
+-   Update Profile ✅
 -   Forgot Password ✅
--   Email verification ( use Mailtrap ) ✅
+-   Email Verification ( use Mailtrap ) ✅
 
 ## Features & Design ( Coming soon )
 
 -   Charts
+-   Notification
 -   Redesign Carousel
 -   Redesign Halaman Checkout Camps
 -   Redesign Halaman Login & Register
 -   Update Schema Database ( Camps, Checkouts )
--   dll
 
 ## Dashboard ( Admin )
 
