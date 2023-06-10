@@ -62,6 +62,11 @@ class Camp extends Model
         return "slug";
     }
 
+    public function checkout()
+    {
+        return $this->hasMany(Checkout::class);
+    }
+
     public function sluggable(): array
     {
         return [

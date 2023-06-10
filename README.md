@@ -8,17 +8,18 @@ PS: website Amerta ini akan selalu di update kedepannya.
 
 ## Features
 
--   Authentication ( Fortify )
--   Password reset
--   Update profile
+-   Authentication ( Fortify ) ✅
+-   Update profile ✅
+-   Forgot Password ✅
+-   Email verification ( use Mailtrap ) ✅
 
 ## Features & Design ( Coming soon )
 
--   Forgot Password
--   Email verification
 -   Charts
 -   Redesign Carousel
+-   Redesign Halaman Checkout Camps
 -   Redesign Halaman Login & Register
+-   Update Schema Database ( Camps, Checkouts )
 -   dll
 
 ## Dashboard ( Admin )
@@ -58,7 +59,7 @@ composer install
 cp .env.example .env
 php artisan key:generate
 php artisan migrate:fresh --seed
-npm run dev
+npm i && npm run dev
 php artisan serve
 ```
 

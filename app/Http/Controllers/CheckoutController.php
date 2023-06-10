@@ -45,6 +45,10 @@ class CheckoutController extends Controller
      */
     public function create(Camp $camp)
     {
+        $camp = Camp::with("checkout")
+            ->where("slug", $camp->slug)
+            ->first();
+        // return $camp;
         $discount = Discount::latest()->first();
 
         if ($camp->is_inactive) {
