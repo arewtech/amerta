@@ -27,7 +27,7 @@ class Checkout extends Model
         "total",
     ];
 
-    protected $with = ["camp", "user"];
+    // protected $with = ["camp", "user"];
     protected $casts = [
         "expired" => "date",
     ];

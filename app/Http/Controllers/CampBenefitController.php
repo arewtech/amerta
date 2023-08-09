@@ -42,6 +42,7 @@ class CampBenefitController extends Controller
         $data = $request->all();
         $data["camp_id"] = $request->camp_id;
         CampBenefit::create($data);
+        sweetalert()->addSuccess("Berhasil menambahkan data camp benefit");
         return redirect()->route("camp-benefits.show", $request->camp_id);
     }
 
@@ -51,13 +52,13 @@ class CampBenefitController extends Controller
     public function show(CampBenefit $campBenefit)
     {
         $camps = Camp::all();
-        $campBenefits = Camp::with("benefits")
+        $campBenefit = Camp::with("benefits")
             ->where("id", $campBenefit->id)
-            ->firstOrFail();
-        // return $campBenefits;
+            ->first();
+        // return $campBenefit;
         return view(
             "dashboard.camp-benefits.show",
-            compact("campBenefits", "camps")
+            compact("campBenefit", "camps")
         );
     }
 
@@ -87,6 +88,7 @@ class CampBenefitController extends Controller
         $data = $request->all();
         $data["camp_id"] = $request->camp_id;
         $campBenefit->update($data);
+        sweetalert()->addSuccess("Berhasil mengubah data camp benefit");
         // return $campBenefit;
         return redirect()->route("camp-benefits.show", $request->camp_id);
     }
@@ -97,6 +99,7 @@ class CampBenefitController extends Controller
     public function destroy(CampBenefit $campBenefit)
     {
         $campBenefit->delete();
-        return back();
+        sweetalert()->addSuccess("Berhasil menghapus data camp benefit");
+        return redirect()->route("camp-benefits.index");
     }
 }

@@ -3,9 +3,9 @@
 @section('content')
     <!-- Page Heading -->
     <div class="d-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Table List Benefits ( {{ $campBenefits->title }} :
-            {{ $campBenefits->status }} )</h1>
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createCampBenefitsModal"><i
+        <h1 class="h3 mb-0 text-gray-800">Table List Benefits ( {{ $campBenefit->title }} :
+            {{ $campBenefit->status }} )</h1>
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createCampBenefitModal"><i
                 class="fas fa-plus-circle"></i></button>
     </div>
 
@@ -21,12 +21,12 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Benefit Camps ( {{ $campBenefits->title }} )</th>
+                            <th>Benefit Camps ( {{ $campBenefit->title }} )</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($campBenefits->benefits as $benefit)
+                        @forelse ($campBenefit->benefits as $benefit)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $benefit->name }}</td>
@@ -35,7 +35,41 @@
                                         <a href="{{ route('camp-benefits.edit', $benefit->id) }}"
                                             class="btn btn-warning btn-sm mx-2"><i class="far fa-edit"></i></a>
                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                            data-target="#deleteCampBenefits"><i class="far fa-trash-alt"></i></button>
+                                            data-target="#deleteCampBenefit{{ $benefit->id }}"><i
+                                                class="far fa-trash-alt"></i></button>
+                                    </div>
+
+                                    <!-- Delete Camp Benefit Modal-->
+                                    <div class="modal fade" id="deleteCampBenefit{{ $benefit->id }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLabelCampBenefit" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabelCampBenefit">Delete List
+                                                        {{ $campBenefit->title }}
+                                                    </h5>
+                                                    <button class="close" type="button" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                @isset($benefit)
+                                                    <div class="modal-body">
+                                                        <p>Are you sure want to delete this camp {{ $benefit->title }}?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-secondary" type="button"
+                                                            data-dismiss="modal">Cancel</button>
+                                                        <form action="{{ route('camp-benefits.destroy', $benefit->id) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button class="btn btn-primary" type="submit">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                @endisset
+                                            </div>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -51,12 +85,12 @@
     </div>
 
     <!-- Create Camp Benefits Modal-->
-    <div class="modal fade" id="createCampBenefitsModal" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabelCampBenefits" aria-hidden="true">
+    <div class="modal fade" id="createCampBenefitModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabelCampBenefit" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabelCampBenefits">Create Camp Amerta</h5>
+                    <h5 class="modal-title" id="exampleModalLabelCampBenefit">Create Camp Amerta</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -87,32 +121,4 @@
         </div>
     </div>
 
-    <!-- Delete Camp Benefit Modal-->
-    <div class="modal fade" id="deleteCampBenefits" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabelCampBenefits" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabelCampBenefits">Delete List {{ $campBenefits->title }}
-                    </h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                @isset($benefit)
-                    <div class="modal-body">
-                        <p>Are you sure want to delete this camp {{ $benefit->title }}?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <form action="{{ route('camp-benefits.destroy', $benefit->id) }}" method="post">
-                            @csrf
-                            @method('delete')
-                            <button class="btn btn-primary" type="submit">Delete</button>
-                        </form>
-                    </div>
-                @endisset
-            </div>
-        </div>
-    </div>
 @endsection

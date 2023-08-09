@@ -51,6 +51,7 @@ class CampController extends Controller
         }
         // return $data;
         Camp::create($data);
+        sweetalert()->addSuccess("Berhasil menambahkan data camp");
         return back();
     }
 
@@ -89,6 +90,7 @@ class CampController extends Controller
         }
         // return $data;
         $camp->update($data);
+        sweetalert()->addSuccess("Berhasil mengubah data camp");
         return redirect()->route("camps.index");
     }
 
@@ -101,6 +103,7 @@ class CampController extends Controller
             Storage::delete("public/" . $camp->image);
         }
         $camp->delete();
+        sweetalert()->addSuccess("Berhasil menghapus data camp");
         return back();
     }
 }

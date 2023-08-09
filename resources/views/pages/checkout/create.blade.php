@@ -38,13 +38,13 @@
                         </div>
                     </div>
                     <div class="mt-10 md:col-span-2 md:mt-0">
-                        @foreach ($errors->all() as $error)
+                        {{-- @foreach ($errors->all() as $error)
                             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
                                 role="alert">
                                 <strong class="font-bold">Error!</strong>
                                 <span class="block sm:inline">{{ $error }}</span>
                             </div>
-                        @endforeach
+                        @endforeach --}}
                         <form action="{{ route('checkout.store', $camp->slug) }}" method="POST">
                             @csrf
                             <div class="overflow-hidden shadow sm:rounded-md">
@@ -141,8 +141,7 @@
                                             @enderror
                                             @if ($discount)
                                                 <div class="text-gray-400 mt-0.5 text-xs italic">Gunakan code discount
-                                                    <span
-                                                        class='text-green-500 font-semibold'>{{ $discount->code }}</span>
+                                                    <span class='text-green-500 font-semibold'>{{ $discount->code }}</span>
                                                 </div>
                                             @endif
                                         </div>

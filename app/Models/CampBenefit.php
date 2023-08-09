@@ -12,6 +12,7 @@ class CampBenefit extends Model
     use SoftDeletes;
 
     protected $fillable = ["camp_id", "name"];
+    // protected $with = ["camp"];
 
     public function camp()
     {

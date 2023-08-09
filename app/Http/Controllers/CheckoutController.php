@@ -16,6 +16,13 @@ class CheckoutController extends Controller
      */
     public function index(Request $request)
     {
+        // dd(date("d/m/y", strtotime("+1 month")));
+        // $expiredDateValidation = date("Y-m", strtotime("+1 month"));
+        // if (date("Y-m", strtotime("+1 month ")) > $expiredDateValidation) {
+        //     return "expired";
+        // } else {
+        //     return "not expired";
+        // }
         if ($request->has("q") || $request->paid) {
             $checkouts = Checkout::with("camp", "user", "discount")
                 // filter berdasarkan is_paid
@@ -96,9 +103,8 @@ class CheckoutController extends Controller
     public function store(Request $request, Camp $camp)
     {
         // return $request->all();
-        // $expiredDateValidation = date("Y-m", strtotime("+1 month"));
         $expiredDateValidation = date("Y-m", time());
-        $request->validate([
+        $camps = $request->validate([
             "name" => "required|min:3|max:255|string",
             "email" =>
                 "required|email|unique:users,email," . auth()->user()->id,
@@ -106,7 +112,7 @@ class CheckoutController extends Controller
             "occupation" => "required|string",
             "card_number" => "required|numeric|digits_between:8,16",
             "expired" => "required|date|date_format:Y-m|after_or_equal:$expiredDateValidation",
-            "cvc" => "required|numeric|digits:3",
+            "cvc" => ["required", "numeric", "digits:3"],
             // ketika ada discount maka akan di cek apakah discount tersebut ada di database
             // dan apakah discount tersebut sudah di hapus atau belum
             // jika sudah di hapus maka akan muncul pesan error
@@ -115,7 +121,7 @@ class CheckoutController extends Controller
             "discount" =>
                 "nullable|string|exists:discounts,code,deleted_at,NULL",
         ]);
-        $camps = $request->all();
+        // $camps = $request->all();
         $camps["camp_id"] = $camp->id;
         $camps["user_id"] = auth()->user()->id;
         $camps["is_paid"] = false;
@@ -126,7 +132,9 @@ class CheckoutController extends Controller
         $user->email = $request->email;
         $user->occupation = $request->occupation;
         $user->save();
-
+        // if () {
+        //     # code...
+        // }
         // check apakah ada discount
         // jika ada maka akan di simpan ke database
         // dan jika tidak maka akan di lanjutkan ke proses selanjutnya

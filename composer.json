@@ -15,9 +15,11 @@
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
         "laravel/scout": "^10.0",
-        "laravel/tinker": "^2.8"
+        "laravel/tinker": "^2.8",
+        "php-flasher/flasher-sweetalert-laravel": "^1.15"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.8",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
