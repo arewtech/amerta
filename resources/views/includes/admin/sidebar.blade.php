@@ -57,11 +57,11 @@
             <span>Camps</span></a>
     </li>
 
-    <li class="nav-item {{ Request::url() == url('/dashboard/camp-benefits') ? 'active' : '' }}">
+    {{-- <li class="nav-item {{ Request::url() == url('/dashboard/camp-benefits') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('camp-benefits.index') }}">
             <i class="fas fa-list-alt"></i>
             <span>Camp Benefits</span></a>
-    </li>
+    </li> --}}
 
     <li class="nav-item {{ Request::url() == url('/dashboard/checkouts') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('checkouts.index') }}">

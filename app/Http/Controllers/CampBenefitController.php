@@ -13,12 +13,10 @@ class CampBenefitController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Camp $camp)
     {
-        $benefits = Camp::with("benefits")
-            ->orderBy("created_at", "DESC")
-            ->get();
-        // return $benefits;
+        $benefits = CampBenefit::whereCampId($camp->id)->get();
+        return $benefits;
         return view("dashboard.camp-benefits.index", compact("benefits"));
     }
 

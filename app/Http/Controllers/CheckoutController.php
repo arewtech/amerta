@@ -148,9 +148,9 @@ class CheckoutController extends Controller
             // berapa persen yang akan di potong, contoh 10%
             $discountPercentage = $discount->percentage;
             // berapa yang akan di potong, contoh 10% dari 100000 = 10000, 10000 akan di potong dari 100000
-            $discountPrice = ($price * $discountPercentage) / 100;
+            $discountPrice = ($price * $discountPercentage) / 100; // 10000
             // total yang harus di bayar
-            $camps["total"] = $price - $discountPrice;
+            $camps["total"] = $price - $discountPrice; // 90000
             // return $camps;
         }
 

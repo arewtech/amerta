@@ -35,10 +35,6 @@
             </div>
             <!-- End of Main Content -->
 
-            <!-- Footer -->
-            @include('includes.admin.footer')
-            <!-- End of Footer -->
-
         </div>
         <!-- End of Content Wrapper -->
 

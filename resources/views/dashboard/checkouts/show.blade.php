@@ -7,8 +7,6 @@
     </div>
     <p>Update detail checkout terbaru masuk pada tanggal<span style="font-weight: 700"> (
             {{ $checkout->updated_at->translatedFormat('l, m - Y | H:i:s') }} ) </span></p>
-    {{-- $checkout->updated_at->format('D, Y-m | H:i:s' --}}
-    {{-- created_at->translatedFormat('l, m - Y | H:i:s') --}}
     <!-- Content Row -->
     <!-- DataTales Example -->
     <div class="card shadow mb-4">

@@ -20,20 +20,21 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>No</th>
+                            <th class='text-center'>No</th>
                             <th>Title Camp</th>
-                            <th>Status</th>
-                            <th>Price</th>
-                            <th class='text-center'>Image</th>
-                            <th>Action</th>
+                            <th class='text-center'>Price</th>
+                            <th class='text-center'>Status</th>
+                            {{-- <th class='text-center'>Image</th> --}}
+                            <th class='text-center'>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($camps as $camp)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td class='text-center'>{{ $loop->iteration }}</td>
                                 <td>{{ $camp->title }}</td>
-                                <td>
+                                <td class='text-center'>Rp. @currency($camp->price)</td>
+                                <td class='text-center'>
                                     @if ($camp->status == 'active')
                                         <span style='font-size: 13px;'
                                             class='badge rounded-pill px-2 text-white bg-success'>active</span>
@@ -42,19 +43,21 @@
                                             class='badge rounded-pill px-2 text-white bg-danger'>inactive</span>
                                     @endif
                                 </td>
-                                <td>Rp. @currency($camp->price)</td>
-                                <td class='text-center'>
+                                {{-- <td class='text-center'>
                                     <img style="width: 50px; height: 50px; object-fit: cover; object-position: center;"
                                         class="img-profile rounded-circle"
                                         src="{{ $camp->image !== null ? asset('storage/' . $camp->image) : 'https://ui-avatars.com/api/?name=' . $camp->title . '&color=7F9CF5&background=EBF4FF' }}">
-                                </td>
-                                <td>
+                                </td> --}}
+                                <td class='text-center'>
                                     <div class="d-inline-flex">
+                                        <a href="#" class="btn btn-info btn-sm"><i class="far fa-eye"></i></a>
                                         <a href="{{ route('camps.edit', $camp->slug) }}"
-                                            class="btn btn-warning btn-sm mx-2"><i class="far fa-edit"></i></a>
+                                            class="btn btn-warning btn-sm mx-1"><i class="far fa-edit"></i></a>
                                         <button type="button" data-toggle="modal"
                                             data-target="#deleteCamp{{ $camp->slug }}" class="btn btn-danger btn-sm"><i
                                                 class="far fa-trash-alt"></i></button>
+                                        <a href="{{ route('camp-benefits.index', $camp) }}"
+                                            class="btn btn-primary btn-sm mx-1"><i class="far fa-list-alt"></i></a>
                                         <div class="modal fade" id="deleteCamp{{ $camp->slug }}" tabindex="-1"
                                             role="dialog" aria-labelledby="modalCamp" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -123,8 +126,9 @@
                         </div>
                         <div class="mb-3">
                             <label for="tagline" class="form-label">Camp Tagline</label>
-                            <input type="text" name="tagline" class="form-control @error('tagline') is-invalid @enderror"
-                                id="tagline" placeholder="Camp tagline">
+                            <input type="text" name="tagline"
+                                class="form-control @error('tagline') is-invalid @enderror" id="tagline"
+                                placeholder="Camp tagline">
                             @error('tagline')
                                 <div class="invalid-feedback">
                                     {{ $message }}

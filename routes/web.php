@@ -9,22 +9,9 @@ use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PreviewController;
-use App\Http\Controllers\UserController;
 use App\Http\Middleware\EnsureTokenIsValid;
-use App\Models\Camp;
 use App\Models\Checkout;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get("/", [HomeController::class, "index"])
     ->name("home")
@@ -52,7 +39,10 @@ Route::prefix("dashboard")
         ])->name("checkouts.search");
         Route::resource("/camps", CampController::class);
         Route::resource("/checkouts", CheckoutController::class);
-        Route::resource("/camp-benefits", CampBenefitController::class);
+        Route::resource(
+            "/camps/{camp}/camp-benefits",
+            CampBenefitController::class
+        );
         Route::resource("/discounts", DiscountController::class);
         Route::get("/users", [AdminController::class, "index"])->name("admin");
     });
