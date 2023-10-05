@@ -51,17 +51,11 @@
     </div>
 
     <!-- Nav Item - active -->
-    <li class="nav-item {{ Request::url() == url('/dashboard/camps') ? 'active' : '' }}">
+    <li class="nav-item {{ Route::is('camps*') || Route::is('camp-benefits*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('camps.index') }}">
             <i class="fas fa-laptop-code"></i>
             <span>Camps</span></a>
     </li>
-
-    {{-- <li class="nav-item {{ Request::url() == url('/dashboard/camp-benefits') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('camp-benefits.index') }}">
-            <i class="fas fa-list-alt"></i>
-            <span>Camp Benefits</span></a>
-    </li> --}}
 
     <li class="nav-item {{ Request::url() == url('/dashboard/checkouts') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('checkouts.index') }}">

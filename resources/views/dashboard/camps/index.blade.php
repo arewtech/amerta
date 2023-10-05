@@ -35,13 +35,9 @@
                                 <td>{{ $camp->title }}</td>
                                 <td class='text-center'>Rp. @currency($camp->price)</td>
                                 <td class='text-center'>
-                                    @if ($camp->status == 'active')
-                                        <span style='font-size: 13px;'
-                                            class='badge rounded-pill px-2 text-white bg-success'>active</span>
-                                    @else
-                                        <span style='font-size: 13px;'
-                                            class='badge rounded-pill px-2 text-white bg-danger'>inactive</span>
-                                    @endif
+                                    <span style='font-size: 13px;'
+                                        class='badge rounded-pill px-2 text-white {{ $camp->status == 'active' ? 'bg-success' : 'bg-danger' }} '>
+                                        {{ $camp->status == 'active' ? 'active' : 'inactive' }}</span>
                                 </td>
                                 {{-- <td class='text-center'>
                                     <img style="width: 50px; height: 50px; object-fit: cover; object-position: center;"
@@ -57,7 +53,13 @@
                                             data-target="#deleteCamp{{ $camp->slug }}" class="btn btn-danger btn-sm"><i
                                                 class="far fa-trash-alt"></i></button>
                                         <a href="{{ route('camp-benefits.index', $camp) }}"
-                                            class="btn btn-primary btn-sm mx-1"><i class="far fa-list-alt"></i></a>
+                                            class="btn btn-primary btn-sm mx-1 position-relative"><i
+                                                class="far fa-list-alt"></i>
+                                            <span style="top: -8px"
+                                                class="position-absolute start-100 translate-middle badge rounded-pill {{ $camp->benefits->count() >= 4 ? 'bg-success' : 'bg-danger' }}">
+                                                {{ $camp->benefits->count() }}
+                                                <span class="visually-hidden"></span>
+                                            </span></a>
                                         <div class="modal fade" id="deleteCamp{{ $camp->slug }}" tabindex="-1"
                                             role="dialog" aria-labelledby="modalCamp" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -168,8 +170,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary" type="submit">Create</button>
+                        <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary btn-sm" type="submit">Create</button>
                     </div>
                 </form>
             </div>

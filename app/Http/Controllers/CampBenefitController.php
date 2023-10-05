@@ -15,9 +15,13 @@ class CampBenefitController extends Controller
      */
     public function index(Camp $camp)
     {
-        $benefits = CampBenefit::whereCampId($camp->id)->get();
-        return $benefits;
-        return view("dashboard.camp-benefits.index", compact("benefits"));
+        $benefits = CampBenefit::with("camp")
+            ->whereCampId($camp->id)
+            ->get();
+        return view(
+            "dashboard.camp-benefits.index",
+            compact(["benefits", "camp"])
+        );
     }
 
     /**
@@ -31,17 +35,15 @@ class CampBenefitController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Camp $camp)
     {
-        $request->validate([
-            "camp_id" => ["required", "exists:camps,id", "integer"],
+        $data = $request->validate([
             "name" => ["required", "string"],
         ]);
-        $data = $request->all();
-        $data["camp_id"] = $request->camp_id;
+        $data["camp_id"] = $camp->id;
         CampBenefit::create($data);
         sweetalert()->addSuccess("Berhasil menambahkan data camp benefit");
-        return redirect()->route("camp-benefits.show", $request->camp_id);
+        return back();
     }
 
     /**
@@ -94,10 +96,10 @@ class CampBenefitController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CampBenefit $campBenefit)
+    public function destroy(Camp $camp, CampBenefit $campBenefit)
     {
         $campBenefit->delete();
         sweetalert()->addSuccess("Berhasil menghapus data camp benefit");
-        return redirect()->route("camp-benefits.index");
+        return back();
     }
 }
