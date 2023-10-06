@@ -5,44 +5,31 @@
     <div class="d-flex align-items-center justify-content-between mb-2">
         <h1 class="h3 mb-0 text-gray-800">Table Users : {{ $users->count() }}</h1>
     </div>
-    <p>User terbaru masuk pada tanggal<span style="font-weight: 700"> ( --- ) </span></p>
-
     <!-- Content Row -->
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            <h6 class="m-0 font-weight-bold text-primary">User List</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>No</th>
+                            <th class="text-center">No</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Email Verified</th>
-                            <th>Occupation</th>
-                            <th>Status</th>
-                            <th>Image</th>
-                            <th>Action</th>
+                            <th class="text-center">Occupation</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($users as $user)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $loop->iteration }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td class='text-center'>
-                                    @if ($user->email_verified_at !== null)
-                                        <span style='font-size: 13px;'
-                                            class='badge rounded-pill px-2 text-white bg-success'>Verified</span>
-                                    @else
-                                        <span style='font-size: 13px;'
-                                            class='badge rounded-pill px-2 text-white bg-warning'>Unverified</span>
-                                    @endif
-                                </td>
                                 <td>
                                     @if ($user->occupation == null)
                                         <span class='text-center d-block'>-</span>
@@ -60,21 +47,13 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if ($user->avatar == null)
-                                        {{-- <img src="{{ asset('images/default.png') }}" alt="default"
-                                            class="img-thumbnail img-fluid" width="50"> --}}
-                                        <span class='text-center d-block'>-</span>
-                                    @else
-                                        <span class='text-center d-block'>-</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    <div class="d-inline-flex">
-                                        <a href="{{ route('checkouts.edit', $user->id) }}"
-                                            class="btn btn-warning btn-sm mx-2"><i class="far fa-edit"></i></a>
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <a href="#" class="btn btn-info btn-sm"><i class="far fa-eye"></i></a>
+                                        <a href="#" class="btn btn-warning btn-sm mx-1"><i
+                                                class="far fa-edit"></i></a>
                                         <form
                                             onsubmit="return confirm('Apakah anda yakin ingin menghapus user {{ $user->name }}')"
-                                            action="{{ route('checkouts.destroy', $user->id) }}" method="post">
+                                            action="#" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm"><i
