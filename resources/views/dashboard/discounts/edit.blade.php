@@ -38,8 +38,9 @@
                         id="description" placeholder="Description">
                 </div>
                 <div class="d-inline-flex">
-                    <button class="btn btn-secondary mr-2" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" type="submit">Update</button>
+                    <a href="{{ route('discounts.index') }}" class="btn btn-secondary btn-sm mr-1" type="button"
+                        data-dismiss="modal">Cancel</a>
+                    <button class="btn btn-warning btn-sm" type="submit">Edit</button>
                 </div>
             </form>
         </div>

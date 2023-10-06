@@ -16,13 +16,13 @@
             <button class="btn btn-outline-primary" type="submit">Search</button>
         </form>
     </div>
-    <p>Checkout terbaru masuk pada tanggal<span style="font-weight: 700"> ( --- ) </span></p>
+    <p>Checkout terbaru masuk pada hari<span style="font-weight: 700"> {{ $lastCheckout }} </span></p>
 
     <!-- Content Row -->
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Checkout List</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -32,7 +32,7 @@
                             <th>No</th>
                             <th>Name</th>
                             <th>Title Camp</th>
-                            <th>Tanggal Checkout</th>
+                            <th class="text-center">Tanggal Checkout</th>
                             <th>Price</th>
                             <th>Status</th>
                             {{-- <th>Total</th> --}}
@@ -59,10 +59,10 @@
                                     </div>
                                 </td>
                                 <td>{{ $checkout->camp->title }}</td>
-                                <td>{{ $checkout->created_at->translatedFormat('l, m - Y') }}</td>
+                                <td class="text-center">{{ $checkout->created_at->translatedFormat('d/m/Y') }}</td>
                                 <td>
                                     <div class='position-relative'>
-                                        Rp. @currency($checkout->camp->price)
+                                        Rp. @currency($checkout->discount === null ? $checkout->camp->price : $checkout->total)
                                         @if ($checkout->discount != null)
                                             <span style='font-size: 10px;'
                                                 class="position-absolute text-white top-0 start-100 translate-middle badge rounded-pill bg-success">
@@ -86,21 +86,12 @@
                                             class='badge rounded-pill px-2 text-white bg-warning'>Pending Payment</span>
                                     @endif
                                 </td>
-                                {{-- <td>
-                                    @if ($checkout->discount != null)
-                                        Rp. @currency($checkout->total)
-                                    @elseif($checkout->discount_percentage != null)
-                                        Rp. @currency($checkout->total)
-                                    @else
-                                        Rp. @currency($checkout->camp->price)
-                                    @endif
-                                </td> --}}
                                 <td>
                                     <div class="d-inline-flex">
                                         <a href="{{ route('checkouts.show', $checkout->id) }}"
                                             class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
                                         <a href="{{ route('checkouts.edit', $checkout->id) }}"
-                                            class="btn btn-warning btn-sm mx-2"><i class="far fa-edit"></i></a>
+                                            class="btn btn-warning btn-sm mx-1"><i class="far fa-edit"></i></a>
                                         <form
                                             onsubmit="return confirm('Apakah anda yakin ingin menghapus checkout {{ $checkout->camp->title }}')"
                                             action="{{ route('checkouts.destroy', $checkout->id) }}" method="post">

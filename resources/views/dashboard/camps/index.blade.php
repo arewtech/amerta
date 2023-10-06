@@ -76,13 +76,14 @@
                                                             {{ $camp->title }}?</p>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button class="btn btn-secondary" type="button"
+                                                        <button class="btn btn-secondary btn-sm" type="button"
                                                             data-dismiss="modal">Cancel</button>
                                                         <form action="{{ route('camps.destroy', $camp->slug) }}"
                                                             method="post">
                                                             @csrf
                                                             @method('delete')
-                                                            <button class="btn btn-primary" type="submit">Delete</button>
+                                                            <button class="btn btn-danger btn-sm"
+                                                                type="submit">Delete</button>
                                                         </form>
                                                     </div>
                                                 </div>

@@ -19,26 +19,26 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>No</th>
+                            <th class="text-center">No</th>
                             <th>Discount Name</th>
-                            <th>Code</th>
-                            <th>Percentage</th>
+                            <th class="text-center">Code</th>
+                            <th class="text-center">Percentage</th>
                             <th>Description</th>
-                            <th>Action</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($discounts as $discount)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $loop->iteration }}</td>
                                 <td>{{ $discount->name }}</td>
-                                <td>{{ $discount->code }}</td>
-                                <td>{{ $discount->percentage }}%</td>
+                                <td class="text-center">{{ $discount->code }}</td>
+                                <td class="text-center">{{ $discount->percentage }}%</td>
                                 <td>{{ $discount->description }}</td>
                                 <td>
-                                    <div class="d-inline-flex">
+                                    <div class="d-flex justify-content-center">
                                         <a href="{{ route('discounts.edit', $discount->id) }}"
-                                            class="btn btn-warning btn-sm mx-2"><i class="far fa-edit"></i></a>
+                                            class="btn btn-warning btn-sm mx-1"><i class="far fa-edit"></i></a>
                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                             data-target="#deleteDiscount{{ $discount->id }}"><i
                                                 class="far fa-trash-alt"></i></button>
@@ -125,8 +125,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary" type="submit">Create</button>
+                        <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary btn-sm" type="submit">Create</button>
                     </div>
                 </form>
             </div>
