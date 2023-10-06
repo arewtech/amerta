@@ -14,39 +14,31 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        // check apakah user sudah terdaftar di camp ini atau belum
-        // check juga berdasarkan user yang login
-        // return $camp;
-        // $user = Checkout::with("camp", "user")
-        //     ->where("user_id", auth()->user()->id)
-        //     ->get();
-        // return $user;
-        // return view("pages.user.index", compact("user"));
+        $users = User::query()
+            ->where("id", "!=", auth()->user()->id)
+            ->whereIsAdmin("users")
+            ->when($request->q, function ($users) use ($request) {
+                $users->where("name", "like", "%{$request->q}%");
+            })
+            ->latest()
+            ->get();
+        return view("dashboard.users.index", compact("users"));
     }
 
-    public function search(Request $request)
-    {
-        // $search = Checkout::search($request->q)
-        //     ->query(function ($query) {
-        //         $query->with("camp", "user");
-        //     })
-        //     ->get();
-        // return $search;
-    }
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "name" => "required|string|max:255",
+            "username" => "required|string|max:255|unique:users",
+            "email" => "required|string|email|max:255|unique:users",
+            "password" => "required|string|min:8",
+        ]);
+
+        $data = $request->except(["_token"]);
+        $data["password"] = bcrypt($request->password);
+        User::create($data);
+        sweetalert()->addSuccess("Berhasil menambahkan data user");
+        return back();
     }
 
     /**
@@ -54,9 +46,7 @@ class UserController extends Controller
      */
     public function show(User $user, Checkout $checkout)
     {
-        return $checkout;
-
-        return view("pages.user.show", compact("user"));
+        // return view("pages.user.show", compact("user"));
     }
 
     /**
@@ -64,7 +54,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view("dashboard.users.edit", compact("user"));
     }
 
     /**
@@ -72,14 +62,31 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            "name" => "required|string|max:255",
+            "username" =>
+                "required|string|max:255|unique:users,username," . $user->id,
+            "email" =>
+                "required|string|email|max:255|unique:users,email," . $user->id,
+            "password" => "nullable|string|min:8",
+            "status" => "required|string|in:active,inactive",
+        ]);
+
+        $data = $request->except(["_token", "_method"]);
+        if ($request->password) {
+            $data["password"] = bcrypt($request->password);
+        } else {
+            unset($data["password"]);
+        }
+        $user->update($data);
+        sweetalert()->addSuccess("Berhasil mengubah data user");
+        return redirect()->route("users.index");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        sweetalert()->addSuccess("Berhasil menghapus data user");
+        return back();
     }
 }

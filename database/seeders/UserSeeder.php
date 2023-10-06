@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
         $users = [
             [
                 "name" => "Admin",
+                "username" => "admin",
                 "email" => "admin@gmail.com",
                 "email_verified_at" => now(),
                 "password" => bcrypt("password"),
@@ -25,8 +26,18 @@ class UserSeeder extends Seeder
                 "remember_token" => Str::random(10),
             ],
             [
-                "name" => "Maman",
+                "name" => "Kim Maman",
+                "username" => "maman",
                 "email" => "maman@gmail.com",
+                "email_verified_at" => now(),
+                "password" => bcrypt("password"),
+                "is_admin" => "users",
+                "remember_token" => Str::random(10),
+            ],
+            [
+                "name" => "John Doe",
+                "username" => "johndoe",
+                "email" => "john@gmail.com",
                 "email_verified_at" => now(),
                 "password" => bcrypt("password"),
                 "is_admin" => "users",

@@ -79,7 +79,7 @@
                                         </div>
                                     </div>
 
-                                    @include('includes.modal.modal-edit', [$camp, $benefit])
+                                    @include('includes.modal.modal-edit-benefit', [$camp, $benefit])
                                 </td>
                             </tr>
                         @empty

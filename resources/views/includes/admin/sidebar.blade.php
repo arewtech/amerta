@@ -69,8 +69,8 @@
             <span>Discounts</span></a>
     </li>
 
-    <li class="nav-item {{ Request::url() == url('/dashboard/users') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('admin') }}">
+    <li class="nav-item {{ Route::is('users*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('users.index') }}">
             <i class="fas fa-users"></i>
             <span>Users</span></a>
     </li>

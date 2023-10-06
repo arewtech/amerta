@@ -17,7 +17,16 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array<int, string>
      */
-    protected $fillable = ["name", "email", "password", "avatar"];
+    protected $fillable = [
+        "name",
+        "username",
+        "email",
+        "password",
+        "bio",
+        "occupation",
+        "avatar",
+        "status",
+    ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -44,5 +53,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function checkouts()
     {
         return $this->hasMany(Checkout::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return "username";
     }
 }
