@@ -3,7 +3,9 @@
 @section('content')
     <!-- Page Heading -->
     <div class="d-flex align-items-center justify-content-between mb-2">
-        <h1 class="h3 mb-0 text-gray-800">Table Camp Benefits : {{ $benefits->count() }}</h1>
+        <h1 class="h3 mb-0 text-gray-800">
+            Benefits {{ $camp->title }}
+        </h1>
         <button type="button" class="d-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal"
             data-target="#createCampBenefit"><i class="fas fa-plus-circle"></i></button>
     </div>
@@ -37,6 +39,10 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="d-inline-flex align-items-center">
+                                        <button type="button" data-toggle="modal"
+                                            data-target="#editCampBenefit{{ $benefit->id }}"
+                                            class="btn btn-warning btn-sm mr-1"><i class="far fa-edit"></i>
+                                        </button>
                                         <button type="button" data-toggle="modal"
                                             data-target="#deleteCampBenefit{{ $benefit->id }}"
                                             class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
@@ -72,6 +78,8 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    @include('includes.modal.modal-edit', [$camp, $benefit])
                                 </td>
                             </tr>
                         @empty

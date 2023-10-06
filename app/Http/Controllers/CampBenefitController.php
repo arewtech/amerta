@@ -68,29 +68,29 @@ class CampBenefitController extends Controller
     public function edit(CampBenefit $campBenefit)
     {
         // return $campBenefit;
-        $benefits = Camp::all();
-        return view(
-            "dashboard.camp-benefits.edit",
-            compact("campBenefit", "benefits")
-        );
+        // $benefits = Camp::all();
+        // return view(
+        //     "dashboard.camp-benefits.edit",
+        //     compact("campBenefit", "benefits")
+        // );
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CampBenefit $campBenefit)
-    {
-        // return $campBenefit;
-        $request->validate([
-            "camp_id" => ["required", "exists:camps,id", "integer"],
+    public function update(
+        Request $request,
+        Camp $camp,
+        CampBenefit $campBenefit
+    ) {
+        $data = $request->validate([
             "name" => ["required", "string"],
         ]);
-        $data = $request->all();
-        $data["camp_id"] = $request->camp_id;
         $campBenefit->update($data);
+        $data["camp_id"] = $camp->id;
         sweetalert()->addSuccess("Berhasil mengubah data camp benefit");
         // return $campBenefit;
-        return redirect()->route("camp-benefits.show", $request->camp_id);
+        return back();
     }
 
     /**
