@@ -3,14 +3,14 @@
 @section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Update Checkout User {{ $checkout->user->name }}</h1>
+        <h1 class="h3 mb-0 text-gray-800">Edit Checkout User {{ $checkout->user->name }}</h1>
     </div>
 
     <!-- Content Row -->
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Edit Checkout</h6>
         </div>
         <div class="card-body">
             <form action="{{ route('checkouts.update', $checkout->id) }}" method="post">
@@ -38,8 +38,8 @@
                             Success Payment</option>
                     </select>
                 </div>
-                <a href="{{ route('checkouts.index') }}" class="btn btn-secondary">Cancel</a>
-                <button type="submit" class="btn btn-primary">Update</button>
+                <a href="{{ route('checkouts.index') }}" class="btn btn-secondary btn-sm">Cancel</a>
+                <button type="submit" class="btn btn-warning btn-sm">Edit</button>
             </form>
         </div>
     </div>

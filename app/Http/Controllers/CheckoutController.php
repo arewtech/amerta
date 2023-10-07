@@ -38,8 +38,8 @@ class CheckoutController extends Controller
                 ->orderBy("id", "DESC")
                 ->get();
             // return $checkouts;
-            $lastCheckout = $checkouts->first()->updated_at->format("l, d F Y");
         }
+        $lastCheckout = $checkouts->first()->updated_at->format("l, d F Y");
         return view(
             "dashboard.checkouts.index",
             compact(["checkouts", "lastCheckout"])

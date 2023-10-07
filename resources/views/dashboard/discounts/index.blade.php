@@ -51,7 +51,7 @@
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="exampleModalLabelCampBenefits">Delete
-                                                            List {{ $discount->name }}
+                                                            Discount {{ $discount->name }}
                                                         </h5>
                                                         <button class="close" type="button" data-dismiss="modal"
                                                             aria-label="Close">
@@ -59,7 +59,9 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p>Are you sure want to delete this discount {{ $discount->name }}?
+                                                        <p>
+                                                            Apakah anda yakin ingin menghapus data discount
+                                                            <b>{{ $discount->name }}</b>?
                                                         </p>
                                                     </div>
                                                     <div class="modal-footer">

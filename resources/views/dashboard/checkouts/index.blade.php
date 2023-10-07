@@ -22,7 +22,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Checkout List</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Checkout laraList</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -92,15 +92,45 @@
                                             class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
                                         <a href="{{ route('checkouts.edit', $checkout->id) }}"
                                             class="btn btn-warning btn-sm mx-1"><i class="far fa-edit"></i></a>
-                                        <form
-                                            onsubmit="return confirm('Apakah anda yakin ingin menghapus checkout {{ $checkout->camp->title }}')"
-                                            action="{{ route('checkouts.destroy', $checkout->id) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm"><i
-                                                    class="far fa-trash-alt"></i></button>
-                                        </form>
-                                        {{-- data-toggle="modal" data-target="#deleteCheckout" --}}
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                            data-target="#deleteCheckout{{ $checkout->id }}"><i
+                                                class="far fa-trash-alt"></i></button>
+
+                                        <!-- Delete Camp Benefit Modal-->
+                                        <div class="modal fade" id="deleteCheckout{{ $checkout->id }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="exampleModalLabelCampBenefits"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabelCampBenefits">Delete
+                                                            Checkout </h5>
+                                                        <button class="close" type="button" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>
+                                                            Apakah anda yakin ingin menghapus checkout
+                                                            <b>{{ $checkout->user->name }}</b> dengan camp
+                                                            <b>{{ $checkout->camp->title }}</b>?
+                                                        </p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-secondary btn-sm" type="button"
+                                                            data-dismiss="modal">Cancel</button>
+                                                        <form action="{{ route('checkouts.destroy', $checkout->id) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button class="btn btn-danger btn-sm"
+                                                                type="submit">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>

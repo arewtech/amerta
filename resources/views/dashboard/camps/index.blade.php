@@ -65,15 +65,19 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="modalCamp">Delete Camp</h5>
+                                                        <h5 class="modal-title" id="modalCamp">Delete
+                                                            {{ $camp->title }}
+                                                        </h5>
                                                         <button class="close" type="button" data-dismiss="modal"
                                                             aria-label="Close">
                                                             <span aria-hidden="true">×</span>
                                                         </button>
                                                     </div>
-                                                    <div class="modal-body">
-                                                        <p>Are you sure want to delete this
-                                                            {{ $camp->title }}?</p>
+                                                    <div class="modal-body text-left">
+                                                        <p>
+                                                            Apakah anda yakin ingin menghapus data camp
+                                                            <b>{{ $camp->title }}</b>?
+                                                        </p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button class="btn btn-secondary btn-sm" type="button"
