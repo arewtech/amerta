@@ -57,13 +57,13 @@
             <span>Camps</span></a>
     </li>
 
-    <li class="nav-item {{ Request::url() == url('/dashboard/checkouts') ? 'active' : '' }}">
+    <li class="nav-item {{ Route::is('checkouts*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('checkouts.index') }}">
             <i class="fas fa-shopping-basket"></i>
             <span>Checkouts</span></a>
     </li>
 
-    <li class="nav-item {{ Request::url() == url('/dashboard/discounts') ? 'active' : '' }}">
+    <li class="nav-item {{ Route::is('discounts*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('discounts.index') }}">
             <i class="fas fa-percentage"></i>
             <span>Discounts</span></a>
