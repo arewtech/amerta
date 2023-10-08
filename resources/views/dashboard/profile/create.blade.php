@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-end mt-4">
-                    <button type="submit" class="btn btn-sm px-3 btn-primary rounded-pill">Simpan</button>
+                    <button type="submit" class="btn btn-sm px-3 btn-primary rounded-pill">Update</button>
                 </div>
             </form>
         </div>

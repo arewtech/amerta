@@ -9,6 +9,7 @@ use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PreviewController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\EnsureTokenIsValid;
 use App\Models\Checkout;
@@ -46,12 +47,21 @@ Route::prefix("dashboard")
         );
         Route::resource("/discounts", DiscountController::class);
         Route::resource("/users", UserController::class);
+
         // profile
         Route::get("/profile", [AdminProfileController::class, "create"])->name(
             "profile"
         );
         Route::put("/profile", [AdminProfileController::class, "update"])->name(
             "profile.update"
+        );
+
+        // app settings
+        Route::get("/app-settings", [SettingController::class, "create"])->name(
+            "settings"
+        );
+        Route::post("/app-settings", [SettingController::class, "store"])->name(
+            "settings.store"
         );
     });
 

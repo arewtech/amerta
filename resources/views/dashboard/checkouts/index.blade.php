@@ -16,7 +16,7 @@
             <button class="btn btn-outline-primary" type="submit">Search</button>
         </form>
     </div>
-    <p>Checkout terbaru masuk pada hari<span style="font-weight: 700"> {{ $lastCheckout }} </span></p>
+    <p>Checkout terbaru masuk pada hari<span style="font-weight: 700"> {{ $lastCheckout ?? '-' }} </span></p>
 
     <!-- Content Row -->
     <!-- DataTales Example -->
