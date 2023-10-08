@@ -52,6 +52,11 @@ class Camp extends Model
             ->exists();
     }
 
+    public function scopeSearch($query, $search)
+    {
+        return $query->where("title", "like", "%$search%");
+    }
+
     public function benefits()
     {
         return $this->hasMany(CampBenefit::class);

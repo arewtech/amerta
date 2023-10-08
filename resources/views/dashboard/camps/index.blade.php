@@ -32,7 +32,8 @@
                         @forelse ($camps as $camp)
                             <tr>
                                 <td class='text-center'>
-                                    {{ $loop->iteration + $camps->perPage() * ($camps->currentPage() - 1) }}</td>
+                                    {{ $loop->iteration + $camps->perPage() * ($camps->currentPage() - 1) }}
+                                </td>
                                 <td>{{ $camp->title }}</td>
                                 <td class='text-center'>Rp. @currency($camp->price)</td>
                                 <td class='text-center'>

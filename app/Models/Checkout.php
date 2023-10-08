@@ -31,30 +31,37 @@ class Checkout extends Model
     protected $casts = [
         "expired" => "date",
     ];
-    // public function searchableAs()
-    // {
-    //     return "users_index";
-    // }
 
-    // public function toSearchableArray()
-    // {
-    //     return [
-    //         "cvc" => $this->cvc,
-    //     ];
-    // }
+    public function scopeFilter($query, $filters)
+    {
+        return $query
+            ->when(isset($filters["paid"]), function ($query) use ($filters) {
+                $query->where("is_paid", $filters["paid"]);
+            })
+            ->when(isset($filters["q"]), function ($query) use ($filters) {
+                $query
+                    ->whereHas("camp", function ($query) use ($filters) {
+                        $query->where(
+                            "title",
+                            "like",
+                            "%" . $filters["q"] . "%"
+                        );
+                    })
+                    ->orWhereHas("user", function ($query) use ($filters) {
+                        $query->where(
+                            "name",
+                            "like",
+                            "%" . $filters["q"] . "%"
+                        );
+                    });
+            });
+    }
 
-    // protected function makeAllSearchableUsing(Builder $query)
+    // public function scopeSearch($query, $search)
     // {
-    //     return $query->with("camp", "user");
-    // }
-
-    // search scout with relation
-    // public function toSearchableArray()
-    // {
-    //     $array = $this->toArray();
-    //     $array["title"] = $this->camp->title;
-    //     $array["user"] = $this->user->name;
-    //     return $array;
+    //     return $query->whereHas("camp", function ($query) use ($search) {
+    //         $query->where("title", "LIKE", "%" . $search->q . "%");
+    //     });
     // }
 
     public function setExpiredAttribute($value)

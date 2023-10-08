@@ -50,6 +50,12 @@ class User extends Authenticatable implements MustVerifyEmail
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     // relasi ke model checkout
+
+    public function scopeSearch($query, $search)
+    {
+        return $query->where("name", "like", "%$search%");
+    }
+
     public function checkouts()
     {
         return $this->hasMany(Checkout::class);

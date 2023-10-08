@@ -15,7 +15,8 @@ class CampController extends Controller
     public function index()
     {
         $camps = Camp::with("benefits")
-            ->orderBy("created_at", "DESC")
+            ->search(request()->q)
+            ->latest()
             ->paginate(setting("app_pagination") ?? 10);
         // return $camps;
         return view("dashboard.camps.index", compact("camps"));

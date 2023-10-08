@@ -12,9 +12,9 @@ class DiscountController extends Controller
      */
     public function index()
     {
-        $discounts = Discount::orderBy("created_at", "DESC")->paginate(
-            setting("app_pagination") ?? 10
-        );
+        $discounts = Discount::search(request()->q)
+            ->latest()
+            ->paginate(setting("app_pagination") ?? 10);
         return view("dashboard.discounts.index", compact("discounts"));
     }
 

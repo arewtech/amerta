@@ -23,22 +23,11 @@ class CheckoutController extends Controller
         // } else {
         //     return "not expired";
         // }
-        if ($request->has("q") || $request->paid) {
-            $checkouts = Checkout::with("camp", "user", "discount")
-                // filter berdasarkan is_paid
-                ->where("is_paid", "LIKE", "%" . $request->paid . "%")
-                ->whereHas("camp", function ($query) use ($request) {
-                    $query->where("title", "LIKE", "%" . $request->q . "%");
-                    // ->orWhere("is_paid", "LIKE", "%" . $request->q . "%");
-                })
-                ->orderBy("id", "DESC")
-                ->paginate(setting("app_pagination") ?? 10);
-        } else {
-            $checkouts = Checkout::with("camp", "user", "discount")
-                ->orderBy("id", "DESC")
-                ->paginate(setting("app_pagination") ?? 10);
-            // return $checkouts;
-        }
+        $checkouts = Checkout::with("camp", "user", "discount")
+            ->filter($request->only("q", "paid"))
+            ->orderBy("id", "DESC")
+            ->paginate(setting("app_pagination") ?? 10);
+
         $lastCheckout = $checkouts->first()?->updated_at->format("l, d F Y");
         return view(
             "dashboard.checkouts.index",

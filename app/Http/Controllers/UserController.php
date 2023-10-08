@@ -17,9 +17,7 @@ class UserController extends Controller
         $users = User::query()
             ->where("id", "!=", auth()->user()->id)
             ->whereIsAdmin("users")
-            ->when($request->q, function ($users) use ($request) {
-                $users->where("name", "like", "%{$request->q}%");
-            })
+            ->search($request->q)
             ->latest()
             ->paginate(setting("app_pagination") ?? 10);
         return view("dashboard.users.index", compact("users"));
