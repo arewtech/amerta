@@ -4,8 +4,9 @@
             <div class="flex lg:flex-1">
                 <a href="{{ route('home') }}" class="-m-1.5 p-1.5">
                     <span class="sr-only">Your Company</span>
-                    <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                        alt="" />
+                    <img class="h-8 w-auto"
+                        src="{{ setting('app_logo') !== null ? asset('storage/' . setting('app_logo')) : 'https://ui-avatars.com/api/?name=' . auth()->user()->name . '&color=7F9CF5&background=EBF4FF' }}"
+                        alt="logo app" />
                 </a>
             </div>
             <div class="flex lg:hidden">

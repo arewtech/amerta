@@ -1,11 +1,11 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fab fa-asymmetrik"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">{{ config('app.name') }}</div>
+    <a class="sidebar-brand d-flex align-items-center" href="{{ route('dashboard') }}">
+        <img class="img-profile rounded-circle mr-2" id="img-live-preview"
+            style="width: 55px; height: 55px; object-fit: cover; object-position: center;"
+            src="{{ setting('app_logo') !== null ? asset('storage/' . setting('app_logo')) : 'https://ui-avatars.com/api/?name=' . auth()->user()->name . '&color=7F9CF5&background=EBF4FF' }}">
+        <div class="sidebar-brand-text">{{ setting('app_title') ?? 'App Title' }} </div>
     </a>
 
     <!-- Divider -->

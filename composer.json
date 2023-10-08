@@ -16,7 +16,8 @@
         "laravel/sanctum": "^3.2",
         "laravel/scout": "^10.0",
         "laravel/tinker": "^2.8",
-        "php-flasher/flasher-sweetalert-laravel": "^1.15"
+        "php-flasher/flasher-sweetalert-laravel": "^1.15",
+        "qcod/laravel-app-settings": "^1.6"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.8",

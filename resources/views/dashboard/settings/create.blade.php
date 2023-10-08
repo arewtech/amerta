@@ -15,25 +15,25 @@
                 <div class="row mb-4">
                     <label for="website" class="col-sm-2 col-form-label">Title Website</label>
                     <div class="col-sm-10">
-                        <input type="text" name="app_title" value="Sekolahku" class="form-control " id="website"
-                            placeholder="title / nama website">
+                        <input type="text" name="app_title" value="{{ setting('app_title') }}" class="form-control "
+                            id="website" placeholder="Title / Nama website">
                     </div>
                 </div>
                 <div class="row mb-4">
                     <label for="email" class="col-sm-2 col-form-label">Email PT</label>
                     <div class="col-sm-10">
-                        <input type="email" name="app_email" value="" class="form-control " id="email"
-                            placeholder="Example@amerta.com">
-                        <small><b>PS*</b> : Email asli PT, email akan di tampilkan di halaman dashboard
+                        <input type="email" name="app_email" value="{{ setting('app_email') }}" class="form-control "
+                            id="email" placeholder="Example@amerta.com">
+                        <small><b>PS*</b> : Email asli PT / Kantor, email akan di tampilkan di halaman dashboard
                             utama</small>
                     </div>
                 </div>
                 <div class="row mb-4">
                     <label for="inputHp" class="col-sm-2 col-form-label">Nomer Hp</label>
                     <div class="col-sm-10">
-                        <input type="number" name="app_phone" value="" class="form-control " id="inputHp"
-                            placeholder="Phone">
-                        <small><b>PS*</b> : Nomer hp PT/Kantor, nomer hp akan di tampilkan di halaman dashboard
+                        <input type="number" name="app_phone" value="{{ setting('app_phone') }}" class="form-control "
+                            id="inputHp" placeholder="Phone">
+                        <small><b>PS*</b> : Nomer Hp PT / Kantor, Nomer Hp akan di tampilkan di halaman dashboard
                             utama </small>
                     </div>
                 </div>
@@ -42,9 +42,9 @@
                     <div class="col-sm-10 d-flex align-items-center">
                         <img class="img-profile rounded-circle mr-3" id="img-live-preview"
                             style="width: 80px; height: 80px; object-fit: cover; object-position: center;"
-                            src="http://arsip-app.test/storage/files/settings/E631C7lLYqKNHysUR0v6QklCSM2rS9UUskKJ11pe.png">
+                            src="{{ setting('app_logo') !== null ? asset('storage/' . setting('app_logo')) : 'https://ui-avatars.com/api/?name=' . auth()->user()->name . '&color=7F9CF5&background=EBF4FF' }}">
                         <div>
-                            <input type="file" name="app_foto" class="form-control " id="inputFoto" placeholder="file">
+                            <input type="file" name="app_logo" class="form-control " id="inputFoto" placeholder="file">
                             <small><b>PS*</b> : Logo Website </small>
                         </div>
                     </div>
@@ -54,16 +54,17 @@
                     <div class="col-sm-10">
                         <textarea class="form-control " name="app_alamat" id="exampleFormControlTextarea1" rows="4"
                             placeholder="Alamat...">
+                            {{ setting('app_alamat') }}
                             </textarea>
-                        <small><b>PS*</b> : Tulikan alamat sesuai lokasi PT/Kantor, alamat akan di tampilkan di halaman
+                        <small><b>PS*</b> : Tulikan alamat sesuai lokasi PT / Kantor, alamat akan di tampilkan di halaman
                             dashboard
                             utama</small>
                     </div>
                 </div>
                 <div class="row mb-4"><label for="inputHp" class="col-sm-2 col-form-label">Set Pagination</label>
                     <div class="col-sm-10">
-                        <input type="number" name="app_pagination" value="" class="form-control" id="inputHp"
-                            placeholder="Pagination">
+                        <input type="number" name="app_pagination" value="{{ setting('app_pagination') }}"
+                            class="form-control" id="inputHp" placeholder="Pagination">
                         <small><b>PS*</b> : Set Pagination, atur jumlah data yang akan di tampilkan di table </small>
                     </div>
                 </div>

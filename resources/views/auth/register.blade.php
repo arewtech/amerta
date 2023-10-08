@@ -4,13 +4,14 @@
         <section class="lg:w-1/3 w-11/12">
             <div class="flex w-full flex-col items-center justify-center px-6 py-8 mx-auto  lg:py-0">
                 <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 ">
-                    <img class="md:w-14 w-12 mr-2" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    <img class="md:w-14 w-12 mr-2"
+                        src="{{ setting('app_logo') !== null ? asset('storage/' . setting('app_logo')) : 'https://ui-avatars.com/api/?name=' . auth()->user()->name . '&color=7F9CF5&background=EBF4FF' }}"
                         alt="logo">
                 </a>
                 <div class="w-full bg-white border border-slate-50 rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 ">
                     <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 class="text-xl font-semibold leading-tight tracking-tight text-gray-900 md:text-2xl ">
-                            Sign up to Amerta
+                            Sign up to {{ setting('app_title') }}
                         </h1>
                         <form action="{{ route('register') }}" method="post" class="space-y-4 md:space-y-6" action="#">
                             @csrf
