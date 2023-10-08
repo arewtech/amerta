@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\CampBenefitController;
 use App\Http\Controllers\CampController;
 use App\Http\Controllers\CheckoutController;
@@ -45,6 +46,13 @@ Route::prefix("dashboard")
         );
         Route::resource("/discounts", DiscountController::class);
         Route::resource("/users", UserController::class);
+        // profile
+        Route::get("/profile", [AdminProfileController::class, "create"])->name(
+            "profile"
+        );
+        Route::put("/profile", [AdminProfileController::class, "update"])->name(
+            "profile.update"
+        );
     });
 
 Route::middleware(["auth", "verified"])->group(function () {
