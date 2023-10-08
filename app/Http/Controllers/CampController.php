@@ -16,7 +16,7 @@ class CampController extends Controller
     {
         $camps = Camp::with("benefits")
             ->orderBy("created_at", "DESC")
-            ->get();
+            ->paginate(setting("app_pagination") ?? 10);
         // return $camps;
         return view("dashboard.camps.index", compact("camps"));
     }

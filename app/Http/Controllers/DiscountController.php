@@ -12,7 +12,9 @@ class DiscountController extends Controller
      */
     public function index()
     {
-        $discounts = Discount::orderBy("created_at", "DESC")->get();
+        $discounts = Discount::orderBy("created_at", "DESC")->paginate(
+            setting("app_pagination") ?? 10
+        );
         return view("dashboard.discounts.index", compact("discounts"));
     }
 
@@ -36,6 +38,7 @@ class DiscountController extends Controller
             "description" => ["nullable", "string"],
         ]);
         Discount::create($request->all());
+        sweetalert()->addSuccess("Berhasil menambahkan data discount");
         return back();
     }
 
@@ -72,6 +75,7 @@ class DiscountController extends Controller
             "description" => ["nullable", "string"],
         ]);
         $discount->update($request->all());
+        sweetalert()->addSuccess("Berhasil mengubah data discount");
         return redirect()->route("discounts.index");
     }
 
@@ -81,6 +85,7 @@ class DiscountController extends Controller
     public function destroy(Discount $discount)
     {
         $discount->delete();
+        sweetalert()->addSuccess("Berhasil menghapus data discount");
         return back();
     }
 }

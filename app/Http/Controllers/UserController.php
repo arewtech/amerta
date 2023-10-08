@@ -21,7 +21,7 @@ class UserController extends Controller
                 $users->where("name", "like", "%{$request->q}%");
             })
             ->latest()
-            ->get();
+            ->paginate(setting("app_pagination") ?? 10);
         return view("dashboard.users.index", compact("users"));
     }
 

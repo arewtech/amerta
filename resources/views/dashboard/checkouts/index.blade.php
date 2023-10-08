@@ -29,7 +29,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>No</th>
+                            <th class="text-center">No</th>
                             <th>Name</th>
                             <th>Title Camp</th>
                             <th class="text-center">Tanggal Checkout</th>
@@ -42,7 +42,9 @@
                     <tbody>
                         @forelse ($checkouts as $checkout)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td class="text-center">
+                                    {{ $loop->iteration + $checkouts->perPage() * ($checkouts->currentPage() - 1) }}
+                                </td>
                                 <td>
                                     <div class='position-relative'>
                                         {{ $checkout->user->name }}
@@ -142,6 +144,7 @@
                     </tbody>
                 </table>
             </div>
+            <div class='px-4 mt-2'>{{ $checkouts->links() }}</div>
         </div>
     </div>
 

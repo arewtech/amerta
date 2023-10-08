@@ -32,11 +32,11 @@ class CheckoutController extends Controller
                     // ->orWhere("is_paid", "LIKE", "%" . $request->q . "%");
                 })
                 ->orderBy("id", "DESC")
-                ->get();
+                ->paginate(setting("app_pagination") ?? 10);
         } else {
             $checkouts = Checkout::with("camp", "user", "discount")
                 ->orderBy("id", "DESC")
-                ->get();
+                ->paginate(setting("app_pagination") ?? 10);
             // return $checkouts;
         }
         $lastCheckout = $checkouts->first()?->updated_at->format("l, d F Y");
@@ -203,6 +203,7 @@ class CheckoutController extends Controller
     {
         // return $checkout;
         $checkout->delete();
+        sweetalert()->addSuccess("Berhasil menghapus data checkout");
         return redirect()->route("checkouts.index");
     }
 }

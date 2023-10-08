@@ -30,7 +30,9 @@
                     <tbody>
                         @forelse ($users as $user)
                             <tr>
-                                <td class="text-center">{{ $loop->iteration }}</td>
+                                <td class="text-center">
+                                    {{ $loop->iteration + $users->perPage() * ($users->currentPage() - 1) }}
+                                </td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>
@@ -108,6 +110,7 @@
                     </tbody>
                 </table>
             </div>
+            <div class='px-4 mt-2'>{{ $users->links() }}</div>
         </div>
     </div>
 

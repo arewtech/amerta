@@ -30,7 +30,9 @@
                     <tbody>
                         @forelse ($discounts as $discount)
                             <tr>
-                                <td class="text-center">{{ $loop->iteration }}</td>
+                                <td class="text-center">
+                                    {{ $loop->iteration + $discounts->perPage() * ($discounts->currentPage() - 1) }}
+                                </td>
                                 <td>{{ $discount->name }}</td>
                                 <td class="text-center">{{ $discount->code }}</td>
                                 <td class="text-center">{{ $discount->percentage }}%</td>
@@ -88,6 +90,7 @@
                     </tbody>
                 </table>
             </div>
+            <div class='px-4 mt-2'>{{ $discounts->links() }}</div>
         </div>
     </div>
 
