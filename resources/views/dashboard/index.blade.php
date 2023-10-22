@@ -117,11 +117,12 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <div class="chart-area">
-                        <canvas id="myAreaChart"></canvas>
-                    </div>
+                    {!! $earningsChart->container() !!}
                 </div>
             </div>
         </div>
     </div>
+    <script src="{{ $earningsChart->cdn() }}"></script>
+
+    {{ $earningsChart->script() }}
 @endsection

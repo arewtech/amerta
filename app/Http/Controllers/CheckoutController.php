@@ -27,7 +27,6 @@ class CheckoutController extends Controller
             ->filter($request->only("q", "paid"))
             ->orderBy("id", "DESC")
             ->paginate(setting("app_pagination") ?? 10);
-
         $lastCheckout = $checkouts->first()?->updated_at->format("l, d F Y");
         return view(
             "dashboard.checkouts.index",
@@ -125,9 +124,7 @@ class CheckoutController extends Controller
         $user->email = $request->email;
         $user->occupation = $request->occupation;
         $user->save();
-        // if () {
-        //     # code...
-        // }
+
         // check apakah ada discount
         // jika ada maka akan di simpan ke database
         // dan jika tidak maka akan di lanjutkan ke proses selanjutnya
@@ -142,9 +139,10 @@ class CheckoutController extends Controller
             $discountPercentage = $discount->percentage;
             // berapa yang akan di potong, contoh 10% dari 100000 = 10000, 10000 akan di potong dari 100000
             $discountPrice = ($price * $discountPercentage) / 100; // 10000
-            // total yang harus di bayar
-            $camps["total"] = $price - $discountPrice; // 90000
+            $camps["total"] = $price - $discountPrice;
             // return $camps;
+        } else {
+            $camps["total"] = $camp->price;
         }
 
         Checkout::create($camps);
