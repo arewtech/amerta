@@ -32,7 +32,6 @@ class EarningsChart
                 $i
             )->translatedFormat("F");
         }
-        // dd($totalMonth);
         return $this->chart
             ->areaChart()
             ->setTitle("Earnings Chart, " . $years)
